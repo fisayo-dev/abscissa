@@ -1,12 +1,17 @@
 import express from 'express'
 import * as dotenv from 'dotenv'
 import cors from 'cors'
+import connectDB from './mongodb/connect.js';
 
-// Routers
-import usersRouters from 'routes/usersRouters.js'
+// Routes
+import usersRouters from './routes/usersRouters.js'
 
 dotenv.config()
 const app = express()
+
+// ENV variables
+const port = process.env.PORT || 7000;
+const url = process.env.MONGODB_URL
 
 // Setting up necessary middleware
 app.use(cors())
@@ -16,6 +21,11 @@ app.use(express.json({ limit: '50mb' }))
 app.use('/api/v1/users',usersRouters)
 
 // Setting up port
-app.listen(3000, () => {
-    console.log('Listening on port 3000')
-})
+try {
+    // connectDB(url)
+    app.listen(port, () => {
+        console.log(`Listening on port ${port}`)
+    })
+} catch (error) {
+    console.log(error)
+}
