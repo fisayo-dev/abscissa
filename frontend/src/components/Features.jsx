@@ -1,12 +1,13 @@
-import { Calculator, Message, Money2, Ruler } from "iconsax-react";
 import {
-  CalculatorIcon,
-  BookOpenIcon,
-  ArchiveIcon,
-  PencilIcon,
-  SigmaIcon,
-  MessageCircleIcon,
-} from "lucide-react";
+  ArchiveBox,
+  Calculator,
+  Math,
+  Message,
+  Money2,
+  Ruler,
+  TableDocument,
+} from "iconsax-react";
+import { BookOpenIcon, PencilIcon } from "lucide-react";
 
 const Features = () => {
   const mainFeatures = [
@@ -20,7 +21,7 @@ const Features = () => {
       title: "Formula Bank",
       description:
         "Access a comprehensive library of formulas for quick reference and enhanced productivity.",
-      icon: <ArchiveIcon className="h-24 w-24" />,
+      icon: <ArchiveBox className="h-24 w-24" />,
     },
     {
       title: "White Board",
@@ -32,7 +33,7 @@ const Features = () => {
       title: "Maths Solver",
       description:
         "Effortlessly tackle equations and computations with an advanced AI-powered maths solver.",
-      icon: <SigmaIcon className="h-24 w-24" />,
+      icon: <TableDocument className="h-24 w-24" />,
     },
   ];
 
@@ -64,7 +65,7 @@ const Features = () => {
             {mainFeatures.map((feature, index) => (
               <div
                 key={index}
-                className="rounded-2xl bg-slate-700 p-5 shadow-md flex flex-col gap-5 items-center text-center justify-center"
+                className="rounded-2xl bg-slate-800 p-5 shadow-md flex flex-col gap-5 items-center text-center justify-center"
               >
                 {feature.icon}
                 <h2 className="text-2xl font-bold">{feature.title}</h2>
@@ -76,7 +77,7 @@ const Features = () => {
             {subsidaryFeatures.map((feature, index) => (
               <div
                 key={index}
-                className="rounded-xl bg-slate-700 p-5 shadow-md flex sm:flex-col gap-5 sm:gap-2 items-center sm:text-center justify-center"
+                className="rounded-xl bg-slate-800 p-5 shadow-md flex sm:flex-col gap-5 sm:gap-2 items-center sm:text-center justify-center"
               >
                 {feature.icon}
                 <h2 className="text-xl font-bold">{feature.text}</h2>
