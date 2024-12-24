@@ -13,7 +13,7 @@
 }
 
 body {
-  background-color: var(--app-color);
+  background-color: var(--blue-color);
   color: var(--app-light-color);
 }
 
@@ -84,4 +84,23 @@ body {
 
 .app-container {
   @apply container mx-auto xl:px-20 px-5;
+}
+
+.hover-app-dark-color:hover  {
+  background-color: var(--dark-app-color);
+}
+
+.dark-bg-blue, .hover-dark-bg-blue:hover {
+  background-color: var(--dark-blue-color);
+}
+
+.bg-pink, .hover-bg-pink:hover {
+  background-color: var(--pink-color);
+}
+
+.dark-bg-pink, .hover-dark-bg-pink:hover {
+  background-color: var(--dark-pink-color);
+}
+.color-pink, .hover-color-pink:hover{
+  color: var(--pink-color);
 }
