@@ -1,6 +1,7 @@
 import {
   ArchiveBox,
   Calculator,
+  Computing,
   Math,
   Message,
   Money2,
@@ -12,10 +13,10 @@ import { BookOpenIcon, PencilIcon } from "lucide-react";
 const Features = () => {
   const mainFeatures = [
     {
-      title: "Word Problem Solver (AI)",
+      title: "Abscissa AI",
       description:
         "Use AI to quickly break down and solve complex word problems with ease and precision.",
-      icon: <BookOpenIcon className="h-24 w-24" />,
+      icon: <Computing className="h-24 w-24" />,
     },
     {
       title: "Formula Bank",
