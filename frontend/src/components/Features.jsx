@@ -59,7 +59,7 @@ const Features = () => {
   return (
     <div className="py-8">
       <div className="app-container">
-        <h2 className="text-4xl text-center font-bold">Features</h2>
+        <h2 className="text-4xl md:text-5xl text-center font-bold">Features</h2>
         <div className="grid gap-6 my-10 mx-auto md:w-3/4">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-7">
             {mainFeatures.map((feature, index) => (
