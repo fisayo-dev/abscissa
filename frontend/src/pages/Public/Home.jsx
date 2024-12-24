@@ -1,10 +1,11 @@
-import { Header, Landing } from "../../components";
+import { Features, Header, Landing } from "../../components";
 
 const Home = () => {
   return (
     <div>
       <Header />
       <Landing />
+      <Features />
     </div>
   );
 };
