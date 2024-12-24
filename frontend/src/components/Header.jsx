@@ -1,5 +1,7 @@
 import { Link } from "react-router-dom";
 import brain_svg from "../assets/brain_svg.png";
+import { Menu } from "iconsax-react";
+import { MenuIcon } from "lucide-react";
 
 
 const Header = () => {
@@ -15,6 +17,9 @@ const Header = () => {
           <Link className="hover:text-white">Features</Link>
           <Link className="hover:text-white">Pricing</Link>
           <Link className="hover:text-white">FAQ</Link>
+        </div>
+        <div className="flex md:hidden">
+          <MenuIcon className="h-6 w-6"/>
         </div>
       </div>
     </div>
