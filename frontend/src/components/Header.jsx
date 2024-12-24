@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 const Header = () => {
   return (
-    <div className="app-container py-4">
+    <div className="app-container py-6">
       <div className="flex items-center justify-between">
         <h2 className="text-2xl font-bold">Abscissa</h2>
         <div className="flex items-center gap-3">
