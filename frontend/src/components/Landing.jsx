@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { PiIcon } from "lucide-react";
+import { PiIcon, SearchIcon } from "lucide-react";
 
 import brain_svg from "../assets/brain_svg.png";
 
@@ -17,16 +17,16 @@ const Landing = () => {
                 Making Math Fun and Engaging—Explore Concepts, Solve Problems,
                 and Unlock Your Potential!
               </p>
-              <div className="flex gap-2 items-center">
+              <div className="flex my-3 gap-2 place-items-center items-center justify-center ">
                 <Link to="/signup">
                   <button className="shadow-md text-[0.8rem] px-4 py-3 flex items-center gap-2 rounded-full bg-pink hover-dark-bg-pink">
-                    <PiIcon className="h-6 w-6" />
+                    <PiIcon className="h-4 w-4 md:h-6 md:w-6" />
                     <p>Get Started</p>
                   </button>
                 </Link>
                 <Link to="/signup">
                   <button className="shadow-md text-[0.8rem] px-4 py-3 flex gap-2 items-center rounded-full hover-dark-bg-blue border border-slate-600">
-                    <PiIcon className="h-6 w-6" />
+                    <SearchIcon className="h-4 w-4 md:h-6 md:w-6" />
                     <p>Explore Features</p>
                   </button>
                 </Link>
@@ -35,7 +35,7 @@ const Landing = () => {
             <img
               src={brain_svg}
               alt=""
-              className="grid md:mr-auto md:place-items-end place-items-center mx-auto justify-end items-center w-7/12"
+              className="grid md:mr-auto md:place-items-end place-items-center mx-auto justify-end items-center w-9/12 md:w-6/12"
             />
           </div>
         </div>
