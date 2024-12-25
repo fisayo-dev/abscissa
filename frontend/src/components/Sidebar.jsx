@@ -6,8 +6,8 @@ import { Calculator, Computing, Convert, MenuBoard, Profile } from "iconsax-reac
 const Sidebar = () => {
   const activeLinks = ({ isActive }) =>
     isActive
-      ? "hover:bg-slate-900 px-4 py-3 color-pink font-bold rounded-lg"
-      : "hover:bg-slate-900 px-4 py-3 hover-color-pink rounded-lg";
+      ? "hover:bg-slate-900 px-3 py-3 color-pink font-bold rounded-lg"
+      : "hover:bg-slate-900 px-3 py-3 hover-color-pink rounded-lg";
 
   const linksTabs = [
     {
