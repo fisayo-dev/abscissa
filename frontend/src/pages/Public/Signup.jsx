@@ -1,8 +1,10 @@
 import { Key, User } from "iconsax-react";
 import { Logo } from "../../components";
 import { Rocket, Users } from "lucide-react";
+import { useState } from "react";
 
 const Signup = () => {
+  const [showPassword, setShowPassword] = useState(false);
   return (
     <div className="md:grid form-grid">
       <div className="grid h-[100vh] overflow-scroll place-items-center">
@@ -17,8 +19,8 @@ const Signup = () => {
                 Create an account an begin to explore the wonders of Mathematics
               </p>
             </div>
-            <form action="" className="grid gap-5 mt-5 w-full">
-              <div className="grid gap-4">
+            <form action="" className="grid gap-6 mt-5 w-full">
+              <div className="grid gap-3">
                 <div className="flex gap-4 items-center">
                   <div className="grid gap-3">
                     <label className="font-bold">First Name</label>
@@ -86,7 +88,9 @@ const Signup = () => {
           </div>
         </div>
       </div>
-      <div className="hidden md:grid dark-bg-blue border-l-[0.1rem] border-l-slate-500 shadow-md"></div>
+      <div className="hidden md:grid place-items-center dark-bg-blue border-l-[0.1rem] border-l-slate-500 shadow-md">
+        <div className="flex flex-col"></div>
+      </div>
     </div>
   );
 };
