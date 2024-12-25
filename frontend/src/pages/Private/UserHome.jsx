@@ -2,11 +2,11 @@ import { PencilIcon } from "lucide-react";
 
 const UserHome = () => {
   const sampleWhiteBoards = [
+    { title: "Database Schema Planning", date: "Today" },
     { title: "Complex Polynomial Equation", date: "Yesterday" },
     { title: "Quantum Mechanics Notes", date: "2 Days Ago" },
-    { title: "React Component Design", date: "Last Week" },
     { title: "Algorithm Optimization", date: "3 Days Ago" },
-    { title: "Database Schema Planning", date: "Today" },
+    { title: "React Component Design", date: "Last Week" },
   ];
 
   return (
