@@ -115,7 +115,7 @@ body {
 
 .form-grid {
   @apply h-full;
-  grid-template-columns: 4.5fr 7.5fr;
+  grid-template-columns: 5fr 7.5fr;
 }
 
 ::-webkit-scrollbar {
