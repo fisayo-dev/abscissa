@@ -47,11 +47,11 @@ const UserHome = () => {
             <div className="grid gap-4">
               <div className="flex py-1 items-center justify-between">
                 <h2 className="text-xl ">Daily Calculations</h2>
-                {/* <Link className="text-slate-300 hover:underline text-sm">View analysis</Link> */}
               </div>
-              <div className="flex flex-col place-items-center pt-10">
+              <div className="flex flex-col place-items-center py-10">
                 <Graph className="h-52 w-52"/>
               </div>
+                <Link className="text-right text-slate-300 hover:underline text-sm">View analysis</Link>
             </div>
           </div>
         </div>
