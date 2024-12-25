@@ -11,7 +11,7 @@ const UserHome = () => {
   ];
 
   return (
-    <div className="mx-auto 2xl:w-2/3 md:w-5/6 w-full">
+    <div className="mx-auto 2xl:w-2/3 w-11/12">
       <div className="mt-10">
         <div className="grid md:flex gap-5">
           <div className="w-full md:w-3/4 rounded-xl bg-slate-800 p-5">
@@ -43,7 +43,7 @@ const UserHome = () => {
             </div>
           </div>
           <div className="w-full md:w-3/6 overflow-hidden rounded-xl bg-slate-800 p-5">
-            <div className="grid gap-4">
+            <div className="grid p4">
               <div className="flex py-1 items-center justify-between">
                 <h2 className="text-xl ">Daily Calculations</h2>
               </div>
