@@ -1,3 +1,4 @@
+import { Graph } from "iconsax-react";
 import { PencilIcon } from "lucide-react";
 import { Link } from "react-router-dom";
 
@@ -11,14 +12,16 @@ const UserHome = () => {
   ];
 
   return (
-    <div className="mx-auto 2xl:w-2/3 md:w-3/4 w-full">
+    <div className="mx-auto 2xl:w-2/3 md:w-5/6 w-full">
       <div className="mt-10">
-        <div className="flex gap-5">
-          <div className="w-3/4 rounded-xl bg-slate-800 p-5">
+        <div className="grid md:flex gap-5">
+          <div className="w-full md:w-3/4 rounded-xl bg-slate-800 p-5">
             <div className="grid gap-4">
               <div className="flex py-1 items-center justify-between">
                 <h2 className="text-xl ">Recent Whiteboards</h2>
-                <Link className="text-slate-300 hover:underline text-sm">View all</Link>
+                <Link className="text-slate-300 hover:underline text-sm">
+                  View all
+                </Link>
               </div>
               <div className="grid gap-2">
                 {sampleWhiteBoards.map((board, index) => (
@@ -40,7 +43,17 @@ const UserHome = () => {
               </div>
             </div>
           </div>
-          <div className=" rounded-xl bg-slate-800 p-5"></div>
+          <div className="w-full md:w-3/6 overflow-hidden rounded-xl bg-slate-800 p-5">
+            <div className="grid gap-4">
+              <div className="flex py-1 items-center justify-between">
+                <h2 className="text-xl ">Daily Calculations</h2>
+                {/* <Link className="text-slate-300 hover:underline text-sm">View analysis</Link> */}
+              </div>
+              <div className="flex flex-col place-items-center pt-10">
+                <Graph className="h-52 w-52"/>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
