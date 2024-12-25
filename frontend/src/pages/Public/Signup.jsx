@@ -1,7 +1,94 @@
+import { Key, User } from "iconsax-react";
+import { Logo } from "../../components";
+import { Rocket, Users } from "lucide-react";
+
 const Signup = () => {
   return (
-    <div>Signup</div>
-  )
-}
+    <div className="md:grid form-grid">
+      <div className="grid h-[100vh] overflow-scroll place-items-center">
+        <div className="px-10 py-2">
+          <div className="flex flex-col gap-4 place-items-center">
+            <Logo />
+            <div className="grid gap-3">
+              <h2 className="text-3xl font-bold text-center">
+                What are you waiting for?
+              </h2>
+              <p className="text-center text-[0.91rem]">
+                Create an account an begin to explore the wonders of Mathematics
+              </p>
+            </div>
+            <form action="" className="grid gap-5 mt-5 w-full">
+              <div className="grid gap-4">
+                <div className="flex gap-4 items-center">
+                  <div className="grid gap-3">
+                    <label className="font-bold">First Name</label>
+                    <div className="border border-slate-600 rounded-full p-4 ">
+                      <div className="flex items-center gap-2">
+                        <User className="h-6 w-6" />
+                        <input
+                          type="text"
+                          className="w-full"
+                          placeholder="Fisayo"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div className="grid gap-3">
+                    <label className="font-bold">Last Name</label>
+                    <div className="border border-slate-600 rounded-full p-4 ">
+                      <div className="flex items-center gap-2">
+                        <Users className="h-6 w-6" />
+                        <input
+                          type="text"
+                          className="w-full"
+                          placeholder="Obadina"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
 
-export default Signup
+                <div className="grid gap-3">
+                  <label className="font-bold">Email Address</label>
+                  <div className="border border-slate-600 rounded-full p-4 ">
+                    <div className="flex items-center gap-2">
+                      <User className="h-6 w-6" />
+                      <input
+                        type="email"
+                        className="w-full"
+                        placeholder="olufisayobadina@gmail.com"
+                      />
+                    </div>
+                  </div>
+                </div>
+
+                <div className="grid gap-3">
+                  <label className="font-bold">Password</label>
+                  <div className="border border-slate-600 rounded-full p-4 ">
+                    <div className="flex items-center gap-2">
+                      <Key className="h-6 w-6" />
+                      <input
+                        type="password"
+                        className="w-full"
+                        placeholder="My very strong password"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="flex justify-center">
+                <button className="shadow-md text-[0.9rem] md:text-m px-4 py-3 flex items-center gap-2 rounded-full bg-pink hover-dark-bg-pink">
+                  <Rocket className="h-4 w-4 md:h-6 md:w-6" />
+                  <p className="capitalize">Create account</p>
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div className="hidden md:grid dark-bg-blue border-l-[0.1rem] border-l-slate-500 shadow-md"></div>
+    </div>
+  );
+};
+
+export default Signup;
