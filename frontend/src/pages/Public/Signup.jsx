@@ -1,4 +1,4 @@
-import { Key, User } from "iconsax-react";
+import { Eye, EyeSlash, Key, User } from "iconsax-react";
 import { Logo } from "../../components";
 import { Rocket, Users } from "lucide-react";
 import { useState } from "react";
@@ -16,7 +16,8 @@ const Signup = () => {
                 What are you waiting for?
               </h2>
               <p className="text-center text-[0.91rem]">
-                Create an account an begin to explore the wonders of Mathematics
+                Create an account and begin to explore the wonders of
+                Mathematics
               </p>
             </div>
             <form action="" className="grid gap-6 mt-5 w-full">
@@ -70,10 +71,11 @@ const Signup = () => {
                     <div className="flex items-center gap-2">
                       <Key className="h-6 w-6" />
                       <input
-                        type="password"
+                        type={showPassword ? "text" : "password"}
                         className="w-full"
                         placeholder="My very strong password"
                       />
+                      <div className="cursor-pointer" onClick={() => setShowPassword(prev => !prev)}>{!showPassword ? <Eye /> : <EyeSlash />}</div>
                     </div>
                   </div>
                 </div>
