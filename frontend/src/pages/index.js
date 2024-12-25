@@ -16,6 +16,7 @@ import CurrencyConverter from "./Private/CurrencyConverter";
 import Converter from "./Private/Converter";
 import Calculator from "./Private/Calculator";
 import Account from "./Private/Account";
+import Settings from "./Private/Settings";
 
-export { Home, Signup, Login, PageNotFound, Account, Calculator, Converter, CurrencyConverter, FormulaBank, Whiteboard, UserHome, UnitConverter, Solver, PiMind, Messages }
+export { Home, Signup, Login, PageNotFound, Account, Calculator, Converter, CurrencyConverter, FormulaBank, Whiteboard, UserHome, UnitConverter, Solver, PiMind, Messages, Settings }
 
