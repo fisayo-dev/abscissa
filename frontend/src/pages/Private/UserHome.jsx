@@ -1,5 +1,4 @@
-import { Graph } from "iconsax-react";
-import { PencilIcon } from "lucide-react";
+import { BarChartBig, PencilIcon } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const UserHome = () => {
@@ -49,7 +48,7 @@ const UserHome = () => {
                 <h2 className="text-xl ">Daily Calculations</h2>
               </div>
               <div className="flex flex-col place-items-center py-10">
-                <Graph className="h-52 w-52"/>
+                <BarChartBig className="h-52 w-52"/>
               </div>
                 <Link className="text-right text-slate-300 hover:underline text-sm">View analysis</Link>
             </div>
