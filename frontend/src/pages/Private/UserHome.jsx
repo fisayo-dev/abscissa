@@ -26,7 +26,7 @@ const UserHome = () => {
                 {sampleWhiteBoards.map((board, index) => (
                   <div
                     key={index}
-                    className="text-[0.9rem] px-4 py-3 rounded-lg bg-slate-600"
+                    className="text-[0.9rem] px-4 py-3 rounded-lg hover:bg-slate-600 bg-slate-700 cursor-pointer"
                   >
                     <div className="flex items-center gap-3">
                       <PencilIcon className="text-slate-300 w-10 " />
