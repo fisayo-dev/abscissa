@@ -6,7 +6,7 @@ import { useState } from "react";
 const Signup = () => {
   const [showPassword, setShowPassword] = useState(false);
   return (
-    <div className="md:grid form-grid">
+    <div className="xl:grid form-grid">
       <div className="grid h-[100vh] overflow-scroll place-items-center">
         <div className="px-10 py-2">
           <div className="flex flex-col gap-4 place-items-center">
@@ -80,17 +80,21 @@ const Signup = () => {
                   </div>
                 </div>
               </div>
-              <div className="flex justify-center">
+              <div className="flex justify-center gap-3">
                 <button className="shadow-md text-[0.9rem] md:text-m px-4 py-3 flex items-center gap-2 rounded-full bg-pink hover-dark-bg-pink">
                   <Rocket className="h-4 w-4 md:h-6 md:w-6" />
                   <p className="capitalize">Create account</p>
+                </button>
+                <button className="shadow-md text-[0.9rem] md:text-m px-4 py-3 flex items-center gap-2 rounded-full bg-pink hover-dark-bg-pink">
+                  <Rocket className="h-4 w-4 md:h-6 md:w-6" />
+                  <p className="capitalize">Continue with google</p>
                 </button>
               </div>
             </form>
           </div>
         </div>
       </div>
-      <div className="hidden md:grid place-items-center dark-bg-blue border-l-[0.1rem] border-l-slate-500 shadow-md">
+      <div className="hidden xl:grid place-items-center dark-bg-blue border-l-[0.1rem] border-l-slate-500 shadow-md">
         <div className="flex flex-col"></div>
       </div>
     </div>
