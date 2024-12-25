@@ -4,7 +4,7 @@ import {
   RouterProvider,
   Route,
 } from "react-router-dom";
-import { Home, Signup, Login, PageNotFound } from "./pages";
+import { Home, Signup, Login, PageNotFound, UserHome } from "./pages";
 function App() {
   const router = createBrowserRouter(
     createRoutesFromElements(
@@ -14,6 +14,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="*" element={<PageNotFound />} />
+        <Route path="/dashboard" element={<UserHome />} />
       </>
     )
   );
