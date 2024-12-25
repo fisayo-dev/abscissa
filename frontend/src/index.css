@@ -140,3 +140,7 @@ input,button,select {
   outline: none;
   background-color: transparent;
 }
+
+.app-grid {
+  grid-template-columns: 1fr 4fr;
+}

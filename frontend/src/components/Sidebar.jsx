@@ -57,7 +57,7 @@ const Sidebar = () => {
     },
   ];
   return (
-    <div className="hidden md:block h-[100vh] py-3 border-r-[0.1rem] border-r-slate-500 dark-bg-blue 2xl:w-[500px] md:w-[400px] overflow-scroll">
+    <div className="hidden md:block h-[100vh] py-3 border-r-[0.1rem] border-r-slate-500 dark-bg-blue overflow-scroll">
       <div className="flex justify-between items-center py-6 px-4">
         <Logo />
         <div className="flex gap-2 items-center">
