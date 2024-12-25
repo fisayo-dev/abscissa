@@ -4,5 +4,6 @@ import Sidebar from "./Sidebar";
 import Landing from "./Landing";
 import Features from "./Features";
 import Pricing from "./Pricing";
+import Logo from "./Logo";
 
-export { Footer, Header, Sidebar, Landing, Features, Pricing }
+export { Footer, Header, Sidebar, Landing, Features, Pricing, Logo }
