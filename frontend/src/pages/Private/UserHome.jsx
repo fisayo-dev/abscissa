@@ -1,4 +1,5 @@
 import { PencilIcon } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const UserHome = () => {
   const sampleWhiteBoards = [
@@ -17,6 +18,7 @@ const UserHome = () => {
             <div className="grid gap-4">
               <div className="flex py-1 items-center justify-between">
                 <h2 className="text-xl ">Recent Whiteboards</h2>
+                <Link className="text-slate-300 text-sm">View all</Link>
               </div>
               <div className="grid gap-2">
                 {sampleWhiteBoards.map((board, index) => (
