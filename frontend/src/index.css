@@ -104,3 +104,7 @@ body {
 .color-pink, .hover-color-pink:hover{
   color: var(--pink-color);
 }
+
+.border-pink {
+  border-color: var(--pink-color);
+}

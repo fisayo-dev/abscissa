@@ -1,4 +1,4 @@
-import { Features, Header, Landing } from "../../components";
+import { Features, Header, Landing, Pricing } from "../../components";
 
 const Home = () => {
   return (
@@ -6,6 +6,7 @@ const Home = () => {
       <Header />
       <Landing />
       <Features />
+      <Pricing />
     </div>
   );
 };
