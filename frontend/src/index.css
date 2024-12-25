@@ -133,7 +133,7 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: var(--pink-color);
+  @apply bg-slate-600;
 }
 
 input,button,select {
