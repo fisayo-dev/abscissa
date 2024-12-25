@@ -2,6 +2,7 @@ import { Eye, EyeSlash, Key, User } from "iconsax-react";
 import { Logo } from "../../components";
 import { Rocket, Users } from "lucide-react";
 import { useState } from "react";
+import Google from "../../assets/Google.svg";
 
 const Signup = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -75,18 +76,23 @@ const Signup = () => {
                         className="w-full"
                         placeholder="My very strong password"
                       />
-                      <div className="cursor-pointer" onClick={() => setShowPassword(prev => !prev)}>{!showPassword ? <Eye /> : <EyeSlash />}</div>
+                      <div
+                        className="cursor-pointer"
+                        onClick={() => setShowPassword((prev) => !prev)}
+                      >
+                        {!showPassword ? <Eye /> : <EyeSlash />}
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
-              <div className="flex justify-center gap-3">
-                <button className="shadow-md text-[0.9rem] md:text-m px-4 py-3 flex items-center gap-2 rounded-full bg-pink hover-dark-bg-pink">
+              <div className="grid md:flex justify-center gap-3">
+                <button className="shadow-md text-[0.9rem] px-4 py-3 flex items-center justify-center gap-2 rounded-full bg-pink hover-dark-bg-pink">
                   <Rocket className="h-4 w-4 md:h-6 md:w-6" />
                   <p className="capitalize">Create account</p>
                 </button>
-                <button className="shadow-md text-[0.9rem] md:text-m px-4 py-3 flex items-center gap-2 rounded-full bg-pink hover-dark-bg-pink">
-                  <Rocket className="h-4 w-4 md:h-6 md:w-6" />
+                <button className="shadow-md text-[0.9rem]  px-4 py-3 font-bold flex items-center justify-center gap-2 rounded-full bg-slate-200 text-slate-900 hover:bg-slate-300">
+                  <img src={Google} width={20} height={20} />
                   <p className="capitalize">Continue with google</p>
                 </button>
               </div>
