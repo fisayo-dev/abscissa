@@ -25,7 +25,7 @@ const Signup = () => {
               <div className="grid gap-3">
                 <div className="flex gap-4 items-center">
                   <div className="grid gap-3">
-                    <label className="font-bold">First Name</label>
+                    <label className="font-bold text-slate-300">First Name</label>
                     <div className="border border-slate-600 rounded-full p-4 ">
                       <div className="flex items-center gap-2">
                         <User className="h-6 w-6" />
@@ -38,7 +38,7 @@ const Signup = () => {
                     </div>
                   </div>
                   <div className="grid gap-3">
-                    <label className="font-bold">Last Name</label>
+                    <label className="font-bold text-slate-300">Last Name</label>
                     <div className="border border-slate-600 rounded-full p-4 ">
                       <div className="flex items-center gap-2">
                         <Users className="h-6 w-6" />
@@ -53,7 +53,7 @@ const Signup = () => {
                 </div>
 
                 <div className="grid gap-3">
-                  <label className="font-bold">Email Address</label>
+                  <label className="font-bold text-slate-300">Email Address</label>
                   <div className="border border-slate-600 rounded-full p-4 ">
                     <div className="flex items-center gap-2">
                       <User className="h-6 w-6" />
@@ -67,7 +67,7 @@ const Signup = () => {
                 </div>
 
                 <div className="grid gap-3">
-                  <label className="font-bold">Password</label>
+                  <label className="font-bold text-slate-300">Password</label>
                   <div className="border border-slate-600 rounded-full p-4 ">
                     <div className="flex items-center gap-2">
                       <Key className="h-6 w-6" />
