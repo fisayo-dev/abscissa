@@ -29,7 +29,7 @@ const Calculator = () => {
                 %
               </div>
               <div className="p-3 rounded-lg text-center cursor-pointer hover:bg-slate-600 bg-slate-700 flex justify-center">
-                <div className="flex justify-center gap-1">
+                <div className="relative flex justify-center gap-0">
                   <p>x</p>
                   <p>2</p>
                 </div>
