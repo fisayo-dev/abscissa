@@ -1,5 +1,5 @@
-import { Minus } from "iconsax-react";
-import { Clock, DivideIcon, DotIcon, Equal, Menu, Plus, X, XCircleIcon } from "lucide-react";
+import { Alarm, Minus } from "iconsax-react";
+import { Clock, DivideIcon, DotIcon, Equal, HistoryIcon, Menu, Plus, X, XCircleIcon } from "lucide-react";
 import { useState, useEffect } from "react";
 
 const Calculator = () => {
@@ -15,7 +15,7 @@ const Calculator = () => {
             <p>Standard</p>
           </div>
           <div className="flex items-center gap-2 hover:text-slate-100 cursor-pointer">
-            <Clock className="h-6 w-6" />
+            <HistoryIcon className="h-6 w-6" />
           </div>
         </div>
         <div className="h-[80vh] border-[0.12rem] rounded-lg border-slate-500 overflow-hidden">
