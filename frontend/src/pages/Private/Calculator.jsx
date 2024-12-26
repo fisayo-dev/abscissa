@@ -1,9 +1,10 @@
-import { Clock, Menu } from "lucide-react";
+import { Clock, Menu, XCircleIcon } from "lucide-react";
 import { useState, useEffect } from "react";
 
 const Calculator = () => {
   const [screen1, setScreen1] = useState("");
   const [screen2, setScreen2] = useState("");
+
   return (
     <div className="w-4/5 md:w-1/3 mx-auto">
       <div className="mt-4 grid gap-3">
@@ -17,8 +18,29 @@ const Calculator = () => {
           </div>
         </div>
         <div className="h-[80vh] border-[0.12rem] rounded-lg border-slate-500 overflow-hidden">
-          <div className="grid p-2">
-            <div className="w-full bg-slate-600 h-[14vh] rounded-lg"></div>
+          <div className="grid p-2 gap-4">
+            <div className="w-full p-4 border shadow-md border-slate-600 h-[14vh] rounded-lg  justify-end text-right grid gap-1">
+              <h2 className="text-sm">2+2</h2>
+              <h2 className="text-3xl">34</h2>
+            </div>
+            <div className="grid gap-2 grid-cols-3">
+              <div className="p-3 rounded-lg text-center cursor-pointer hover:bg-slate-600 bg-slate-700 flex justify-center">
+                %
+              </div>
+              <div className="p-3 rounded-lg text-center cursor-pointer hover:bg-slate-600 bg-slate-700 flex justify-center">
+                <div className="flex justify-center gap-1">
+                  <p>x</p>
+                  <p>2</p>
+                </div>
+              </div>
+              <div className="p-3 rounded-lg text-center cursor-pointer hover:bg-slate-600 bg-slate-700 flex justify-center">
+                <XCircleIcon className="h-6 w-6" />
+              </div>
+              <div className="p-3 rounded-lg text-center cursor-pointer hover:bg-slate-600 bg-slate-700 flex justify-center"></div>
+              <div className="p-3 rounded-lg text-center cursor-pointer hover:bg-slate-600 bg-slate-700 flex justify-center">
+                <p>sqrt</p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
