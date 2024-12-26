@@ -1,4 +1,5 @@
-import { Clock, Menu, XCircleIcon } from "lucide-react";
+import { Minus } from "iconsax-react";
+import { Clock, DivideIcon, DotIcon, Equal, Menu, Plus, X, XCircleIcon } from "lucide-react";
 import { useState, useEffect } from "react";
 
 const Calculator = () => {
@@ -39,6 +40,54 @@ const Calculator = () => {
               <div className="p-3 rounded-lg text-center cursor-pointer hover:bg-slate-600 bg-slate-700 flex justify-center"></div>
               <div className="p-3 rounded-lg text-center cursor-pointer hover:bg-slate-600 bg-slate-700 flex justify-center">
                 <p>sqrt</p>
+              </div>
+              <div className="p-3 rounded-lg text-center cursor-pointer hover:bg-slate-600 bg-slate-700 flex justify-center">
+                <DivideIcon className="h-6 w-6"/>
+              </div>
+              <div className="p-3 rounded-lg text-center cursor-pointer hover:bg-slate-600 bg-slate-700 flex justify-center">
+                <p>1</p>
+              </div>
+              <div className="p-3 rounded-lg text-center cursor-pointer hover:bg-slate-600 bg-slate-700 flex justify-center">
+                <p>2</p>
+              </div>
+              <div className="p-3 rounded-lg text-center cursor-pointer hover:bg-slate-600 bg-slate-700 flex justify-center">
+                <X />
+              </div>
+              <div className="p-3 rounded-lg text-center cursor-pointer hover:bg-slate-600 bg-slate-700 flex justify-center">
+               <p>3</p>
+              </div>
+              <div className="p-3 rounded-lg text-center cursor-pointer hover:bg-slate-600 bg-slate-700 flex justify-center">
+               <p>4</p>
+              </div>
+              <div className="p-3 rounded-lg text-center cursor-pointer hover:bg-slate-600 bg-slate-700 flex justify-center">
+                <Plus />
+              </div>
+              <div className="p-3 rounded-lg text-center cursor-pointer hover:bg-slate-600 bg-slate-700 flex justify-center">
+                <p>5</p>
+              </div>
+              <div className="p-3 rounded-lg text-center cursor-pointer hover:bg-slate-600 bg-slate-700 flex justify-center">
+                <p>6</p>
+              </div>
+              <div className="p-3 rounded-lg text-center cursor-pointer hover:bg-slate-600 bg-slate-700 flex justify-center">
+                <Minus />
+              </div>
+              <div className="p-3 rounded-lg text-center cursor-pointer hover:bg-slate-600 bg-slate-700 flex justify-center">
+                <p>7</p>
+              </div>
+              <div className="p-3 rounded-lg text-center cursor-pointer hover:bg-slate-600 bg-slate-700 flex justify-center">
+                <p>8</p>
+              </div>
+              <div className="p-3 rounded-lg text-center cursor-pointer hover:bg-slate-600 bg-slate-700 flex justify-center">
+                <p>9</p>
+              </div>
+              <div className="p-3 rounded-lg text-center cursor-pointer hover:bg-slate-600 bg-slate-700 flex justify-center">
+                <p>0</p>
+              </div>
+              <div className="p-3 rounded-lg text-center cursor-pointer hover:bg-slate-600 bg-slate-700 flex justify-center">
+                <DotIcon />
+              </div>
+              <div className="p-3 rounded-lg text-center cursor-pointer hover-dark-bg-pink bg-pink flex justify-center">
+                <Equal />
               </div>
             </div>
           </div>
