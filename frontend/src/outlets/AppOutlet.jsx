@@ -9,7 +9,7 @@ const AppOutlet = () => {
       <Sidebar />
       <div className="2xl:w-[70vh] xl:w-[75vw]">
         <div className="w-full grid">
-          <div className="px-4 md:px-6 w-full top-0 h-[10vh] py-5">
+          <div className="px-4 md:px-6 w-full top-0 h-[10vh] py-5 grid items-center">
             <div className="flex justify-between">
               <div className="flex gap-2 items-center">
                 <Diamonds className="h-6 w-6" />
