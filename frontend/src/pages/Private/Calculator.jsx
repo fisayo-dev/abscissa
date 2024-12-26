@@ -21,8 +21,8 @@ const Calculator = () => {
         <div className="h-[80vh] border-[0.12rem] rounded-lg border-slate-500 overflow-hidden">
           <div className="grid p-2 gap-4">
             <div className="w-full p-4 border shadow-md border-slate-600 h-[14vh] rounded-lg  justify-end text-right grid gap-1">
-              <h2 className="text-sm">2+2</h2>
-              <h2 className="text-3xl">34</h2>
+              <h2 className="text-sm  text-slate-400">2+2</h2>
+              <h2 className="text-3xl font-bold text-slate-100">34</h2>
             </div>
             <div className="grid gap-2 grid-cols-3">
               <div className="p-3 rounded-lg text-center cursor-pointer hover:bg-slate-600 bg-slate-700 flex justify-center">
