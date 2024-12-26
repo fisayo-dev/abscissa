@@ -1,4 +1,4 @@
-import { Alarm, Minus } from "iconsax-react";
+import { Alarm, Instagram, Minus } from "iconsax-react";
 import { Clock, DivideIcon, DotIcon, Equal, HistoryIcon, Menu, Plus, X, XCircleIcon } from "lucide-react";
 import { useState, useEffect } from "react";
 
@@ -18,7 +18,7 @@ const Calculator = () => {
             <HistoryIcon className="h-6 w-6" />
           </div>
         </div>
-        <div className="max-h-[80vh] border-[0.12rem] rounded-lg border-slate-500 overflow-hidden">
+        <div className="max-h-[80vh] border-[0.12rem] shadow-lg rounded-lg border-slate-500 overflow-hidden">
           <div className="grid p-2 gap-4">
             <div className="w-full p-4 border shadow-md border-slate-600 h-[14vh] rounded-lg  justify-end text-right grid gap-1">
               <h2 className="text-sm  text-slate-400">2+2</h2>
