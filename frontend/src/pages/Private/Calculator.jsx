@@ -1,12 +1,20 @@
-import { Alarm, Instagram, Minus } from "iconsax-react";
 import {
-  Clock,
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { Minus } from "iconsax-react";
+import {
   DivideIcon,
   DotIcon,
   Equal,
   HistoryIcon,
   Menu,
   Plus,
+  TestTube,
+  TestTube2,
   X,
   XCircleIcon,
 } from "lucide-react";
@@ -15,6 +23,8 @@ import { useState, useEffect } from "react";
 const Calculator = () => {
   const [smallScreen, setSmallScreen] = useState("");
   const [largeScreen, setLargeScreen] = useState("0");
+
+  const [calculatorType, setCalculatorType] = useState("standard");
 
   const calculatorBtnStyle =
     "p-3 rounded-lg text-center cursor-pointer hover:bg-slate-600 bg-slate-700 flex justify-center";
@@ -196,13 +206,37 @@ const Calculator = () => {
   };
 
   return (
-    <div className="w-full md:w-[380px] mx-auto">
-      <div className="mt-4 grid gap-3">
-        <div className="flex items-center text-slate-400 justify-between">
-          <div className="flex items-center gap-2 hover:text-slate-100 cursor-pointer">
-            <Menu className="h-6 w-6" />
-            <p>Standard</p>
-          </div>
+    <div
+      className={`w-full ${
+        calculatorType == "standard" ? "md:w-[380px]" : " md:w-[440px]"
+      } mx-auto`}
+    >
+      <div
+        className={`mt-4 grid gap-3`}
+      >
+        <div className="flex items-center gap-8 text-slate-400 justify-between">
+          <Select
+            value={calculatorType}
+            onValueChange={(value) => setCalculatorType(value)}
+          >
+            <SelectTrigger>
+              <SelectValue placeholder="Pick calculator type"></SelectValue>
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem key={1} value="standard">
+                <div className="flex items-center gap-2">
+                  <Menu className="h-6 w-6" />
+                  <p>Standard</p>
+                </div>
+              </SelectItem>
+              <SelectItem key={2} value="scientific">
+                <div className="flex items-center gap-2">
+                  <TestTube className="h-6 w-6" />
+                  <p>Scientific</p>
+                </div>
+              </SelectItem>
+            </SelectContent>
+          </Select>
           <div className="flex items-center gap-2 hover:text-slate-100 cursor-pointer">
             <HistoryIcon className="h-6 w-6" />
           </div>
@@ -224,7 +258,7 @@ const Calculator = () => {
                 onChange={(e) => setLargeScreen(e.target.value)}
               />
             </div>
-            <div className="grid gap-2 grid-cols-3">
+            <div className={`grid gap-2 ${calculatorType == "standard" ? "grid-cols-3" : "grid-cols-4 items-stretch"} `}>
               <StandardBtn />
             </div>
           </div>
