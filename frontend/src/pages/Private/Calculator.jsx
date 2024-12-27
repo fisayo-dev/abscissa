@@ -38,7 +38,7 @@ const Calculator = () => {
     setLargeScreen(0);
   };
   return (
-    <div className="w-full md:w-3/6 mx-auto">
+    <div className="w-full md:w-[380px] mx-auto">
       <div className="mt-4 grid gap-3">
         <div className="flex items-center text-slate-400 justify-between">
           <div className="flex items-center gap-2 hover:text-slate-100 cursor-pointer">
