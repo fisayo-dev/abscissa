@@ -52,6 +52,11 @@ const Calculator = () => {
     setSmallScreen(`sqrt(${largeScreen})`)
     setLargeScreen(squareRootValue)
   };
+  const handleSquare = () => {
+    const squareValue = Math.pow(largeScreen,2);
+    setSmallScreen(`sqr(${largeScreen})`)
+    setLargeScreen(squareValue)
+  };
   return (
     <div className="w-full md:w-[380px] mx-auto">
       <div className="mt-4 grid gap-3">
@@ -100,7 +105,7 @@ const Calculator = () => {
               >
                 <XCircleIcon className="h-6 w-6" />
               </div>
-              <div className="p-3 rounded-lg text-center cursor-pointer hover:bg-slate-600 bg-slate-700 flex justify-center">
+              <div className="p-3 rounded-lg text-center cursor-pointer hover:bg-slate-600 bg-slate-700 flex justify-center" onClick={() => handleSquare()}>
                 <div className="relative flex justify-center gap-0">
                   <p>x</p>
                   <p>2</p>
