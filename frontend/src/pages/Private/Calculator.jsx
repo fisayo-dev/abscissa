@@ -209,7 +209,20 @@ const Calculator = () => {
         <div
           className={calculatorBtnStyle}
         >
-          cos()
+          sin
+        </div>
+        <div
+          className={calculatorBtnStyle}
+        >
+          cos
+        </div>
+        <div
+          className={calculatorBtnStyle}
+        >
+          tan
+        </div>
+        <div className={calculatorBtnStyle} onClick={() => clearScreen()}>
+          <p>C</p>
         </div>
         <div
           className={calculatorBtnStyle}
@@ -217,20 +230,7 @@ const Calculator = () => {
         >
           %
         </div>
-        <div className={calculatorBtnStyle} onClick={() => clearScreen()}>
-          <p>C</p>
-        </div>
-        <div
-          className={calculatorBtnStyle}
-          onClick={() => handleDeleteScreen()}
-        >
-          <XCircleIcon className="h-6 w-6" />
-        </div>
-        <div
-          className={calculatorBtnStyle}
-        >
-          sin()
-        </div>
+        
         <div className={calculatorBtnStyle} onClick={() => handleSquare()}>
           <div className="relative flex justify-center gap-0">
             <p>x</p>
@@ -242,15 +242,12 @@ const Calculator = () => {
         </div>
         <div
           className={calculatorBtnStyle}
-          onClick={() => handleInputToScreen("/")}
+          onClick={() => handleDeleteScreen()}
         >
-          <DivideIcon className="h-6 w-6" />
+          <XCircleIcon className="h-6 w-6" />
         </div>
-        <div
-          className={calculatorBtnStyle}
-        >
-          tan()
-        </div>
+        
+        
         <div
           className={calculatorBtnStyle}
           onClick={() => handleInputToScreen("1")}
@@ -265,21 +262,17 @@ const Calculator = () => {
         </div>
         <div
           className={calculatorBtnStyle}
-          onClick={() => handleInputToScreen("*")}
-        >
-          <X />
-        </div>
-        <div
-          className={calculatorBtnStyle}
-        >
-          log
-        </div>
-        <div
-          className={calculatorBtnStyle}
           onClick={() => handleInputToScreen("3")}
         >
           <p>3</p>
         </div>
+        <div
+          className={calculatorBtnStyle}
+          onClick={() => handleInputToScreen("*")}
+        >
+          <X />
+        </div>
+        
         <div
           className={calculatorBtnStyle}
           onClick={() => handleInputToScreen("4")}
@@ -292,17 +285,6 @@ const Calculator = () => {
         >
           <p>5</p>
         </div>
-        <div
-          className={calculatorBtnStyle}
-        >
-          ln
-        </div>
-        <div
-          className={calculatorBtnStyle}
-          onClick={() => handleInputToScreen("+")}
-        >
-          <Plus />
-        </div>
         
         <div
           className={calculatorBtnStyle}
@@ -312,10 +294,18 @@ const Calculator = () => {
         </div>
         <div
           className={calculatorBtnStyle}
+          onClick={() => handleInputToScreen("/")}
+        >
+          <DivideIcon className="h-6 w-6" />
+        </div>
+       
+        <div
+          className={calculatorBtnStyle}
           onClick={() => handleInputToScreen("7")}
         >
           <p>7</p>
         </div>
+       
         <div
           className={calculatorBtnStyle}
           onClick={() => handleInputToScreen("8")}
@@ -324,15 +314,15 @@ const Calculator = () => {
         </div>
         <div
           className={calculatorBtnStyle}
-          onClick={() => handleInputToScreen("-")}
-        >
-          <Minus />
-        </div>
-        <div
-          className={calculatorBtnStyle}
           onClick={() => handleInputToScreen("9")}
         >
           <p>9</p>
+        </div>
+        <div
+          className={calculatorBtnStyle}
+          onClick={() => handleInputToScreen("+")}
+        >
+          <Plus />
         </div>
         <div
           className={calculatorBtnStyle}
@@ -345,6 +335,32 @@ const Calculator = () => {
           onClick={() => handleInputToScreen(".")}
         >
           <DotIcon />
+        </div>
+        <div
+          className={calculatorBtnStyle}
+        >
+          1/x
+        </div>
+        <div
+          className={calculatorBtnStyle}
+          onClick={() => handleInputToScreen("-")}
+        >
+          <Minus />
+        </div>
+        <div
+          className={calculatorBtnStyle}
+        >
+          x^y
+        </div>
+        <div
+          className={calculatorBtnStyle}
+        >
+          log
+        </div>
+        <div
+          className={calculatorBtnStyle}
+        >
+          ln
         </div>
         <div
           className="p-3 rounded-lg text-center cursor-pointer hover-dark-bg-pink bg-pink flex justify-center"
@@ -392,7 +408,7 @@ const Calculator = () => {
         </div>
         <div className="max-h-[80vh] border-[0.12rem] shadow-lg rounded-lg border-slate-500 overflow-hidden">
           <div className="grid p-2 gap-4">
-            <div className="p-4 border shadow-md border-slate-600 h-[14vh] rounded-lg  justify-end grid gap-1">
+            <div className=" px-4 border shadow-md border-slate-600 h-[14vh] rounded-lg grid ">
               <input
                 contentEditable={true}
                 type="text"
@@ -402,7 +418,7 @@ const Calculator = () => {
               />
               <input
                 type="text"
-                className="flex text-right text-3xl  font-bold w-full text-slate-100"
+                className="flex text-right text-4xl  font-bold w-full text-slate-100"
                 value={largeScreen}
                 onChange={(e) => setLargeScreen(e.target.value)}
               />
