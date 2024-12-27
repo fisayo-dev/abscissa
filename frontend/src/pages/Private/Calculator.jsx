@@ -356,28 +356,29 @@ const Calculator = () => {
   };
 
   const handleTrig = (type) => {
-    switch (type) {
-      case "sin": {
-        setSmallScreen(`sin(${largeScreen})`);
-        const sineAnswer = Math.sin(
-          Number(largeScreen) * 0.0174532897390384939834
+    if (type == "sin") {
+      setSmallScreen(`sin(${largeScreen})`);
+      let sineAnswer = 0;
+      if (largeScreen == 30 || largeScreen == 90) {
+        sineAnswer = Math.ceil(
+          Math.sin(Number(largeScreen) * 0.0174532897390384939834)
         );
-        setLargeScreen(sineAnswer.toString());
+      } else {
+        sineAnswer = Math.sin(Number(largeScreen) * 0.0174532897390384939834);
       }
-      case "cos": {
-        setSmallScreen(`cos(${largeScreen})`);
-        const cosAnswer = Math.cos(
-          Number(largeScreen) * 0.0174532897390384939834
-        );
-        setLargeScreen(cosAnswer.toString());
-      }
-      case "tan": {
-        setSmallScreen(`tan(${largeScreen})`);
-        const tanAnswer = Math.tan(
-          Number(largeScreen) * 0.0174532897390384939834
-        );
-        setLargeScreen(tanAnswer.toString());
-      }
+      setLargeScreen(sineAnswer.toString());
+    } else if (type == "cos") {
+      setSmallScreen(`cos(${largeScreen})`);
+      const cosAnswer = Math.cos(
+        Number(largeScreen) * 0.0174532897390384939834
+      );
+      setLargeScreen(cosAnswer.toString());
+    } else if (type == "tan") {
+      setSmallScreen(`tan(${largeScreen})`);
+      const tanAnswer = Math.tan(
+        Number(largeScreen) * 0.0174532897390384939834
+      );
+      setLargeScreen(tanAnswer.toString());
     }
   };
 
@@ -388,16 +389,16 @@ const Calculator = () => {
   };
 
   const handleLog = () => {
-    setSmallScreen(`log(${largeScreen})`)
-    const answer = Math.log10(Number(largeScreen))
-    setLargeScreen(answer.toString())
-  }
-  
+    setSmallScreen(`log(${largeScreen})`);
+    const answer = Math.log10(Number(largeScreen));
+    setLargeScreen(answer.toString());
+  };
+
   const handleLn = () => {
-    setSmallScreen(`ln(${largeScreen})`)
-    const answer = Math.log(Number(largeScreen))
-    setLargeScreen(answer.toString())
-  }
+    setSmallScreen(`ln(${largeScreen})`);
+    const answer = Math.log(Number(largeScreen));
+    setLargeScreen(answer.toString());
+  };
 
   return (
     <div
