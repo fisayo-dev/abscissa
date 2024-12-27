@@ -329,7 +329,9 @@ const Calculator = () => {
         >
           <DotIcon />
         </div>
-        <div className={calculatorBtnStyle} onClick={() => handleInverse()}>1/x</div>
+        <div className={calculatorBtnStyle} onClick={() => handleInverse()}>
+          1/x
+        </div>
         <div
           className={calculatorBtnStyle}
           onClick={() => handleInputToScreen("-")}
@@ -337,8 +339,12 @@ const Calculator = () => {
           <Minus />
         </div>
         <div className={calculatorBtnStyle}>x^y</div>
-        <div className={calculatorBtnStyle}>log</div>
-        <div className={calculatorBtnStyle}>ln</div>
+        <div className={calculatorBtnStyle} onClick={() => handleLog()}>
+          log
+        </div>
+        <div className={calculatorBtnStyle} onClick={() => handleLn()}>
+          ln
+        </div>
         <div
           className="p-3 rounded-lg text-center cursor-pointer hover-dark-bg-pink bg-pink flex justify-center"
           onClick={() => handleEqualTo()}
@@ -376,9 +382,21 @@ const Calculator = () => {
   };
 
   const handleInverse = () => {
-    setSmallScreen(`1/(${largeScreen})`)
-    const answer = 1 / Number(largeScreen)
-    setLargeScreen(answer)
+    setSmallScreen(`1/(${largeScreen})`);
+    const answer = 1 / Number(largeScreen);
+    setLargeScreen(answer);
+  };
+
+  const handleLog = () => {
+    setSmallScreen(`log(${largeScreen})`)
+    const answer = Math.log10(Number(largeScreen))
+    setLargeScreen(answer.toString())
+  }
+  
+  const handleLn = () => {
+    setSmallScreen(`ln(${largeScreen})`)
+    const answer = Math.log(Number(largeScreen))
+    setLargeScreen(answer.toString())
   }
 
   return (
