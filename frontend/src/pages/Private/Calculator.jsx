@@ -23,7 +23,7 @@ const Calculator = () => {
   const [smallScreen, setSmallScreen] = useState("");
   const [largeScreen, setLargeScreen] = useState("0");
 
-  const [calculatorType, setCalculatorType] = useState("standard");
+  const [calculatorType, setCalculatorType] = useState("scientific");
 
   const calculatorBtnStyle =
     "p-3 rounded-lg text-center cursor-pointer hover:bg-slate-600 bg-slate-700 flex justify-center";
@@ -206,19 +206,13 @@ const Calculator = () => {
   const ScientificBtns = () => {
     return (
       <>
-        <div
-          className={calculatorBtnStyle}
-        >
+        <div className={calculatorBtnStyle} onClick={() => handleTrig("sin")}>
           sin
         </div>
-        <div
-          className={calculatorBtnStyle}
-        >
+        <div className={calculatorBtnStyle} onClick={() => handleTrig("cos")}>
           cos
         </div>
-        <div
-          className={calculatorBtnStyle}
-        >
+        <div className={calculatorBtnStyle} onClick={() => handleTrig("tan")}>
           tan
         </div>
         <div className={calculatorBtnStyle} onClick={() => clearScreen()}>
@@ -230,7 +224,7 @@ const Calculator = () => {
         >
           %
         </div>
-        
+
         <div className={calculatorBtnStyle} onClick={() => handleSquare()}>
           <div className="relative flex justify-center gap-0">
             <p>x</p>
@@ -246,8 +240,7 @@ const Calculator = () => {
         >
           <XCircleIcon className="h-6 w-6" />
         </div>
-        
-        
+
         <div
           className={calculatorBtnStyle}
           onClick={() => handleInputToScreen("1")}
@@ -272,7 +265,7 @@ const Calculator = () => {
         >
           <X />
         </div>
-        
+
         <div
           className={calculatorBtnStyle}
           onClick={() => handleInputToScreen("4")}
@@ -285,7 +278,7 @@ const Calculator = () => {
         >
           <p>5</p>
         </div>
-        
+
         <div
           className={calculatorBtnStyle}
           onClick={() => handleInputToScreen("6")}
@@ -298,14 +291,14 @@ const Calculator = () => {
         >
           <DivideIcon className="h-6 w-6" />
         </div>
-       
+
         <div
           className={calculatorBtnStyle}
           onClick={() => handleInputToScreen("7")}
         >
           <p>7</p>
         </div>
-       
+
         <div
           className={calculatorBtnStyle}
           onClick={() => handleInputToScreen("8")}
@@ -336,32 +329,16 @@ const Calculator = () => {
         >
           <DotIcon />
         </div>
-        <div
-          className={calculatorBtnStyle}
-        >
-          1/x
-        </div>
+        <div className={calculatorBtnStyle}>1/x</div>
         <div
           className={calculatorBtnStyle}
           onClick={() => handleInputToScreen("-")}
         >
           <Minus />
         </div>
-        <div
-          className={calculatorBtnStyle}
-        >
-          x^y
-        </div>
-        <div
-          className={calculatorBtnStyle}
-        >
-          log
-        </div>
-        <div
-          className={calculatorBtnStyle}
-        >
-          ln
-        </div>
+        <div className={calculatorBtnStyle}>x^y</div>
+        <div className={calculatorBtnStyle}>log</div>
+        <div className={calculatorBtnStyle}>ln</div>
         <div
           className="p-3 rounded-lg text-center cursor-pointer hover-dark-bg-pink bg-pink flex justify-center"
           onClick={() => handleEqualTo()}
@@ -370,6 +347,32 @@ const Calculator = () => {
         </div>
       </>
     );
+  };
+
+  const handleTrig = (type) => {
+    switch (type) {
+      case "sin": {
+        setSmallScreen(`sin(${largeScreen})`);
+        const sineAnswer = Math.sin(
+          Number(largeScreen) * 0.0174532897390384939834
+        );
+        setLargeScreen(sineAnswer.toString());
+      }
+      case "cos": {
+        setSmallScreen(`cos(${largeScreen})`);
+        const cosAnswer = Math.cos(
+          Number(largeScreen) * 0.0174532897390384939834
+        );
+        setLargeScreen(cosAnswer.toString());
+      }
+      case "tan": {
+        setSmallScreen(`tan(${largeScreen})`);
+        const tanAnswer = Math.tan(
+          Number(largeScreen) * 0.0174532897390384939834
+        );
+        setLargeScreen(tanAnswer.toString());
+      }
+    }
   };
 
   return (
