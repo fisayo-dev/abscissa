@@ -13,19 +13,32 @@ import {
 import { useState, useEffect } from "react";
 
 const Calculator = () => {
-  const [smallScreen, setSmallScreen] = useState(0);
-  const [largeScreen, setLargeScreen] = useState(3);
+  const [smallScreen, setSmallScreen] = useState(2);
+  const [largeScreen, setLargeScreen] = useState(322);
 
   const handleDeleteScreen = () => {
+    if (smallScreen.toString().trim() !== "") {
+      setSmallScreen("");
+    } else {
+      const numArray = Array.from(largeScreen.toString());
+      numArray.pop();
 
-  }
+      if (numArray.length == 0) {
+        setLargeScreen(0)
+      } else {
+        let numList = "";
+        numArray.map((num) => (numList += num));
+        setLargeScreen(numList);
+      }
+    }
+  };
 
   const clearScreen = () => {
-    setSmallScreen('')
-    setLargeScreen(0)
-  }
+    setSmallScreen("");
+    setLargeScreen(0);
+  };
   return (
-    <div className="w-4/5 md:w-1/3 mx-auto">
+    <div className="w-full md:w-3/6 mx-auto">
       <div className="mt-4 grid gap-3">
         <div className="flex items-center text-slate-400 justify-between">
           <div className="flex items-center gap-2 hover:text-slate-100 cursor-pointer">
@@ -57,10 +70,16 @@ const Calculator = () => {
               <div className="p-3 rounded-lg text-center cursor-pointer hover:bg-slate-600 bg-slate-700 flex justify-center">
                 %
               </div>
-              <div className="p-3 rounded-lg text-center cursor-pointer hover:bg-slate-600 bg-slate-700 flex justify-center" onClick={() => clearScreen()}>
+              <div
+                className="p-3 rounded-lg text-center cursor-pointer hover:bg-slate-600 bg-slate-700 flex justify-center"
+                onClick={() => clearScreen()}
+              >
                 <p>C</p>
               </div>
-              <div className="p-3 rounded-lg text-center cursor-pointer hover:bg-slate-600 bg-slate-700 flex justify-center">
+              <div
+                className="p-3 rounded-lg text-center cursor-pointer hover:bg-slate-600 bg-slate-700 flex justify-center"
+                onClick={() => handleDeleteScreen()}
+              >
                 <XCircleIcon className="h-6 w-6" />
               </div>
               <div className="p-3 rounded-lg text-center cursor-pointer hover:bg-slate-600 bg-slate-700 flex justify-center">
