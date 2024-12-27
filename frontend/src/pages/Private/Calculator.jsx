@@ -57,6 +57,12 @@ const Calculator = () => {
     setSmallScreen(`sqr(${largeScreen})`)
     setLargeScreen(squareValue)
   };
+
+  const handleEqualTo = () => {
+    const evaluatedAnswer = eval(largeScreen)
+    setSmallScreen(largeScreen)
+    setLargeScreen(evaluatedAnswer)
+  }
   return (
     <div className="w-full md:w-[380px] mx-auto">
       <div className="mt-4 grid gap-3">
@@ -204,7 +210,7 @@ const Calculator = () => {
               >
                 <DotIcon />
               </div>
-              <div className="p-3 rounded-lg text-center cursor-pointer hover-dark-bg-pink bg-pink flex justify-center">
+              <div className="p-3 rounded-lg text-center cursor-pointer hover-dark-bg-pink bg-pink flex justify-center" onClick={() => handleEqualTo()}>
                 <Equal />
               </div>
             </div>
