@@ -329,7 +329,7 @@ const Calculator = () => {
         >
           <DotIcon />
         </div>
-        <div className={calculatorBtnStyle}>1/x</div>
+        <div className={calculatorBtnStyle} onClick={() => handleInverse()}>1/x</div>
         <div
           className={calculatorBtnStyle}
           onClick={() => handleInputToScreen("-")}
@@ -374,6 +374,12 @@ const Calculator = () => {
       }
     }
   };
+
+  const handleInverse = () => {
+    setSmallScreen(`1/(${largeScreen})`)
+    const answer = 1 / Number(largeScreen)
+    setLargeScreen(answer)
+  }
 
   return (
     <div
