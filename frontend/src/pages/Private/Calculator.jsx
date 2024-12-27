@@ -14,7 +14,6 @@ import {
   Menu,
   Plus,
   TestTube,
-  TestTube2,
   X,
   XCircleIcon,
 } from "lucide-react";
@@ -78,7 +77,7 @@ const Calculator = () => {
     setLargeScreen(evaluatedAnswer);
   };
 
-  const StandardBtn = () => {
+  const StandardBtns = () => {
     return (
       <>
         <div
@@ -204,6 +203,158 @@ const Calculator = () => {
       </>
     );
   };
+  const ScientificBtns = () => {
+    return (
+      <>
+        <div
+          className={calculatorBtnStyle}
+        >
+          cos()
+        </div>
+        <div
+          className={calculatorBtnStyle}
+          onClick={() => handleInputToScreen("%")}
+        >
+          %
+        </div>
+        <div className={calculatorBtnStyle} onClick={() => clearScreen()}>
+          <p>C</p>
+        </div>
+        <div
+          className={calculatorBtnStyle}
+          onClick={() => handleDeleteScreen()}
+        >
+          <XCircleIcon className="h-6 w-6" />
+        </div>
+        <div
+          className={calculatorBtnStyle}
+        >
+          sin()
+        </div>
+        <div className={calculatorBtnStyle} onClick={() => handleSquare()}>
+          <div className="relative flex justify-center gap-0">
+            <p>x</p>
+            <p>2</p>
+          </div>
+        </div>
+        <div className={calculatorBtnStyle} onClick={() => handleSquareRoot()}>
+          <p>sqrt</p>
+        </div>
+        <div
+          className={calculatorBtnStyle}
+          onClick={() => handleInputToScreen("/")}
+        >
+          <DivideIcon className="h-6 w-6" />
+        </div>
+        <div
+          className={calculatorBtnStyle}
+        >
+          tan()
+        </div>
+        <div
+          className={calculatorBtnStyle}
+          onClick={() => handleInputToScreen("1")}
+        >
+          <p>1</p>
+        </div>
+        <div
+          className={calculatorBtnStyle}
+          onClick={() => handleInputToScreen("2")}
+        >
+          <p>2</p>
+        </div>
+        <div
+          className={calculatorBtnStyle}
+          onClick={() => handleInputToScreen("*")}
+        >
+          <X />
+        </div>
+        <div
+          className={calculatorBtnStyle}
+        >
+          log
+        </div>
+        <div
+          className={calculatorBtnStyle}
+          onClick={() => handleInputToScreen("3")}
+        >
+          <p>3</p>
+        </div>
+        <div
+          className={calculatorBtnStyle}
+          onClick={() => handleInputToScreen("4")}
+        >
+          <p>4</p>
+        </div>
+        <div
+          className={calculatorBtnStyle}
+          onClick={() => handleInputToScreen("5")}
+        >
+          <p>5</p>
+        </div>
+        <div
+          className={calculatorBtnStyle}
+        >
+          ln
+        </div>
+        <div
+          className={calculatorBtnStyle}
+          onClick={() => handleInputToScreen("+")}
+        >
+          <Plus />
+        </div>
+        
+        <div
+          className={calculatorBtnStyle}
+          onClick={() => handleInputToScreen("6")}
+        >
+          <p>6</p>
+        </div>
+        <div
+          className={calculatorBtnStyle}
+          onClick={() => handleInputToScreen("7")}
+        >
+          <p>7</p>
+        </div>
+        <div
+          className={calculatorBtnStyle}
+          onClick={() => handleInputToScreen("8")}
+        >
+          <p>8</p>
+        </div>
+        <div
+          className={calculatorBtnStyle}
+          onClick={() => handleInputToScreen("-")}
+        >
+          <Minus />
+        </div>
+        <div
+          className={calculatorBtnStyle}
+          onClick={() => handleInputToScreen("9")}
+        >
+          <p>9</p>
+        </div>
+        <div
+          className={calculatorBtnStyle}
+          onClick={() => handleInputToScreen("0")}
+        >
+          <p>0</p>
+        </div>
+        <div
+          className={calculatorBtnStyle}
+          onClick={() => handleInputToScreen(".")}
+        >
+          <DotIcon />
+        </div>
+        <div
+          className="p-3 rounded-lg text-center cursor-pointer hover-dark-bg-pink bg-pink flex justify-center"
+          onClick={() => handleEqualTo()}
+        >
+          <Equal />
+        </div>
+      </>
+    );
+  };
 
   return (
     <div
@@ -211,9 +362,7 @@ const Calculator = () => {
         calculatorType == "standard" ? "md:w-[380px]" : " md:w-[440px]"
       } mx-auto`}
     >
-      <div
-        className={`mt-4 grid gap-3`}
-      >
+      <div className={`mt-4 grid gap-3`}>
         <div className="flex items-center gap-8 text-slate-400 justify-between">
           <Select
             value={calculatorType}
@@ -258,8 +407,18 @@ const Calculator = () => {
                 onChange={(e) => setLargeScreen(e.target.value)}
               />
             </div>
-            <div className={`grid gap-2 ${calculatorType == "standard" ? "grid-cols-3" : "grid-cols-4 items-stretch"} `}>
-              <StandardBtn />
+            <div
+              className={`grid gap-2 ${
+                calculatorType == "standard"
+                  ? "grid-cols-3"
+                  : "grid-cols-4 items-stretch"
+              } `}
+            >
+              {calculatorType == "standard" ? (
+                <StandardBtns />
+              ) : (
+                <ScientificBtns />
+              )}
             </div>
           </div>
         </div>
