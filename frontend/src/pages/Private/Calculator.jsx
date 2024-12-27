@@ -1,10 +1,20 @@
 import { Alarm, Instagram, Minus } from "iconsax-react";
-import { Clock, DivideIcon, DotIcon, Equal, HistoryIcon, Menu, Plus, X, XCircleIcon } from "lucide-react";
+import {
+  Clock,
+  DivideIcon,
+  DotIcon,
+  Equal,
+  HistoryIcon,
+  Menu,
+  Plus,
+  X,
+  XCircleIcon,
+} from "lucide-react";
 import { useState, useEffect } from "react";
 
 const Calculator = () => {
-  const [screen1, setScreen1] = useState("");
-  const [screen2, setScreen2] = useState("");
+  const [smallScreen, setSmallScreen] = useState(0);
+  const [largeScreen, setLargeScreen] = useState(3);
 
   return (
     <div className="w-4/5 md:w-1/3 mx-auto">
@@ -20,9 +30,20 @@ const Calculator = () => {
         </div>
         <div className="max-h-[80vh] border-[0.12rem] shadow-lg rounded-lg border-slate-500 overflow-hidden">
           <div className="grid p-2 gap-4">
-            <div className="w-full p-4 border shadow-md border-slate-600 h-[14vh] rounded-lg  justify-end text-right grid gap-1">
-              <h2 className="text-sm  text-slate-400">2+2</h2>
-              <h2 className="text-3xl font-bold text-slate-100">34</h2>
+            <div className="p-4 border shadow-md border-slate-600 h-[14vh] rounded-lg  justify-end grid gap-1">
+              <input
+                contentEditable={true}
+                type="number"
+                className="flex text-right text-sm w-full text-slate-400"
+                value={smallScreen}
+                onChange={(e) => setSmallScreen(e.target.value)}
+              />
+              <input
+                type="number"
+                className="flex text-right text-3xl  font-bold w-full text-slate-100"
+                value={largeScreen}
+                onChange={(e) => setLargeScreen(e.target.value)}
+              />
             </div>
             <div className="grid gap-2 grid-cols-3">
               <div className="p-3 rounded-lg text-center cursor-pointer hover:bg-slate-600 bg-slate-700 flex justify-center">
@@ -42,7 +63,7 @@ const Calculator = () => {
                 <p>sqrt</p>
               </div>
               <div className="p-3 rounded-lg text-center cursor-pointer hover:bg-slate-600 bg-slate-700 flex justify-center">
-                <DivideIcon className="h-6 w-6"/>
+                <DivideIcon className="h-6 w-6" />
               </div>
               <div className="p-3 rounded-lg text-center cursor-pointer hover:bg-slate-600 bg-slate-700 flex justify-center">
                 <p>1</p>
@@ -54,10 +75,10 @@ const Calculator = () => {
                 <X />
               </div>
               <div className="p-3 rounded-lg text-center cursor-pointer hover:bg-slate-600 bg-slate-700 flex justify-center">
-               <p>3</p>
+                <p>3</p>
               </div>
               <div className="p-3 rounded-lg text-center cursor-pointer hover:bg-slate-600 bg-slate-700 flex justify-center">
-               <p>4</p>
+                <p>4</p>
               </div>
               <div className="p-3 rounded-lg text-center cursor-pointer hover:bg-slate-600 bg-slate-700 flex justify-center">
                 <Plus />
