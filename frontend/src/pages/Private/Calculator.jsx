@@ -338,7 +338,7 @@ const Calculator = () => {
         >
           <Minus />
         </div>
-        <div className={calculatorBtnStyle}>x^y</div>
+        <div className={calculatorBtnStyle} onClick={() => handleInputToScreen("**")}>x^y</div>
         <div className={calculatorBtnStyle} onClick={() => handleLog()}>
           log
         </div>
@@ -403,7 +403,7 @@ const Calculator = () => {
   return (
     <div
       className={`w-full ${
-        calculatorType == "standard" ? "md:w-[380px]" : " md:w-[440px]"
+        calculatorType == "standard" ? "md:w-[380px]" : " md:w-[420px]"
       } mx-auto`}
     >
       <div className={`mt-4 grid gap-3`}>
