@@ -16,6 +16,14 @@ const Calculator = () => {
   const [smallScreen, setSmallScreen] = useState(0);
   const [largeScreen, setLargeScreen] = useState(3);
 
+  const handleDeleteScreen = () => {
+
+  }
+
+  const clearScreen = () => {
+    setSmallScreen('')
+    setLargeScreen(0)
+  }
   return (
     <div className="w-4/5 md:w-1/3 mx-auto">
       <div className="mt-4 grid gap-3">
@@ -49,16 +57,18 @@ const Calculator = () => {
               <div className="p-3 rounded-lg text-center cursor-pointer hover:bg-slate-600 bg-slate-700 flex justify-center">
                 %
               </div>
+              <div className="p-3 rounded-lg text-center cursor-pointer hover:bg-slate-600 bg-slate-700 flex justify-center" onClick={() => clearScreen()}>
+                <p>C</p>
+              </div>
+              <div className="p-3 rounded-lg text-center cursor-pointer hover:bg-slate-600 bg-slate-700 flex justify-center">
+                <XCircleIcon className="h-6 w-6" />
+              </div>
               <div className="p-3 rounded-lg text-center cursor-pointer hover:bg-slate-600 bg-slate-700 flex justify-center">
                 <div className="relative flex justify-center gap-0">
                   <p>x</p>
                   <p>2</p>
                 </div>
               </div>
-              <div className="p-3 rounded-lg text-center cursor-pointer hover:bg-slate-600 bg-slate-700 flex justify-center">
-                <XCircleIcon className="h-6 w-6" />
-              </div>
-              <div className="p-3 rounded-lg text-center cursor-pointer hover:bg-slate-600 bg-slate-700 flex justify-center"></div>
               <div className="p-3 rounded-lg text-center cursor-pointer hover:bg-slate-600 bg-slate-700 flex justify-center">
                 <p>sqrt</p>
               </div>
