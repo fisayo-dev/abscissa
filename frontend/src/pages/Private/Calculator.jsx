@@ -13,8 +13,8 @@ import {
 import { useState, useEffect } from "react";
 
 const Calculator = () => {
-  const [smallScreen, setSmallScreen] = useState(2);
-  const [largeScreen, setLargeScreen] = useState(322);
+  const [smallScreen, setSmallScreen] = useState('');
+  const [largeScreen, setLargeScreen] = useState(0);
 
   const handleDeleteScreen = () => {
     if (smallScreen.toString().trim() !== "") {
@@ -24,7 +24,7 @@ const Calculator = () => {
       numArray.pop();
 
       if (numArray.length == 0) {
-        setLargeScreen(0)
+        setLargeScreen(0);
       } else {
         let numList = "";
         numArray.map((num) => (numList += num));
@@ -36,6 +36,19 @@ const Calculator = () => {
   const clearScreen = () => {
     setSmallScreen("");
     setLargeScreen(0);
+  };
+
+  const handleInputToScreen = (val) => {
+    const lgScreenValueArr = Array.from(largeScreen.toString());
+    if (largeScreen == '0') {
+      lgScreenValueArr.pop()
+    } 
+    lgScreenValueArr.push(val);
+    let newLgScreenValue = "";
+    lgScreenValueArr.map((val) => {
+      newLgScreenValue += val;
+    });
+    setLargeScreen(newLgScreenValue);
   };
   return (
     <div className="w-full md:w-[380px] mx-auto">
@@ -54,20 +67,20 @@ const Calculator = () => {
             <div className="p-4 border shadow-md border-slate-600 h-[14vh] rounded-lg  justify-end grid gap-1">
               <input
                 contentEditable={true}
-                type="number"
+                type="text"
                 className="flex text-right text-sm w-full text-slate-400"
                 value={smallScreen}
                 onChange={(e) => setSmallScreen(e.target.value)}
               />
               <input
-                type="number"
+                type="text"
                 className="flex text-right text-3xl  font-bold w-full text-slate-100"
                 value={largeScreen}
                 onChange={(e) => setLargeScreen(e.target.value)}
               />
             </div>
             <div className="grid gap-2 grid-cols-3">
-              <div className="p-3 rounded-lg text-center cursor-pointer hover:bg-slate-600 bg-slate-700 flex justify-center">
+              <div className="p-3 rounded-lg text-center cursor-pointer hover:bg-slate-600 bg-slate-700 flex justify-center" onClick={() => handleInputToScreen('%')}>
                 %
               </div>
               <div
@@ -91,49 +104,49 @@ const Calculator = () => {
               <div className="p-3 rounded-lg text-center cursor-pointer hover:bg-slate-600 bg-slate-700 flex justify-center">
                 <p>sqrt</p>
               </div>
-              <div className="p-3 rounded-lg text-center cursor-pointer hover:bg-slate-600 bg-slate-700 flex justify-center">
+              <div className="p-3 rounded-lg text-center cursor-pointer hover:bg-slate-600 bg-slate-700 flex justify-center" onClick={() => handleInputToScreen('/')}>
                 <DivideIcon className="h-6 w-6" />
               </div>
-              <div className="p-3 rounded-lg text-center cursor-pointer hover:bg-slate-600 bg-slate-700 flex justify-center">
+              <div className="p-3 rounded-lg text-center cursor-pointer hover:bg-slate-600 bg-slate-700 flex justify-center" onClick={() => handleInputToScreen('1')}>
                 <p>1</p>
               </div>
-              <div className="p-3 rounded-lg text-center cursor-pointer hover:bg-slate-600 bg-slate-700 flex justify-center">
+              <div className="p-3 rounded-lg text-center cursor-pointer hover:bg-slate-600 bg-slate-700 flex justify-center" onClick={() => handleInputToScreen('2')}>
                 <p>2</p>
               </div>
-              <div className="p-3 rounded-lg text-center cursor-pointer hover:bg-slate-600 bg-slate-700 flex justify-center">
+              <div className="p-3 rounded-lg text-center cursor-pointer hover:bg-slate-600 bg-slate-700 flex justify-center" onClick={() => handleInputToScreen('*')}>
                 <X />
               </div>
-              <div className="p-3 rounded-lg text-center cursor-pointer hover:bg-slate-600 bg-slate-700 flex justify-center">
+              <div className="p-3 rounded-lg text-center cursor-pointer hover:bg-slate-600 bg-slate-700 flex justify-center" onClick={() => handleInputToScreen('3')}>
                 <p>3</p>
               </div>
-              <div className="p-3 rounded-lg text-center cursor-pointer hover:bg-slate-600 bg-slate-700 flex justify-center">
+              <div className="p-3 rounded-lg text-center cursor-pointer hover:bg-slate-600 bg-slate-700 flex justify-center" onClick={() => handleInputToScreen('4')}>
                 <p>4</p>
               </div>
-              <div className="p-3 rounded-lg text-center cursor-pointer hover:bg-slate-600 bg-slate-700 flex justify-center">
+              <div className="p-3 rounded-lg text-center cursor-pointer hover:bg-slate-600 bg-slate-700 flex justify-center" onClick={() => handleInputToScreen('+')}>
                 <Plus />
               </div>
-              <div className="p-3 rounded-lg text-center cursor-pointer hover:bg-slate-600 bg-slate-700 flex justify-center">
+              <div className="p-3 rounded-lg text-center cursor-pointer hover:bg-slate-600 bg-slate-700 flex justify-center" onClick={() => handleInputToScreen('5')}>
                 <p>5</p>
               </div>
-              <div className="p-3 rounded-lg text-center cursor-pointer hover:bg-slate-600 bg-slate-700 flex justify-center">
+              <div className="p-3 rounded-lg text-center cursor-pointer hover:bg-slate-600 bg-slate-700 flex justify-center" onClick={() => handleInputToScreen('6')}>
                 <p>6</p>
               </div>
-              <div className="p-3 rounded-lg text-center cursor-pointer hover:bg-slate-600 bg-slate-700 flex justify-center">
+              <div className="p-3 rounded-lg text-center cursor-pointer hover:bg-slate-600 bg-slate-700 flex justify-center" onClick={() => handleInputToScreen('-')}>
                 <Minus />
               </div>
-              <div className="p-3 rounded-lg text-center cursor-pointer hover:bg-slate-600 bg-slate-700 flex justify-center">
+              <div className="p-3 rounded-lg text-center cursor-pointer hover:bg-slate-600 bg-slate-700 flex justify-center" onClick={() => handleInputToScreen('7')}>
                 <p>7</p>
               </div>
-              <div className="p-3 rounded-lg text-center cursor-pointer hover:bg-slate-600 bg-slate-700 flex justify-center">
+              <div className="p-3 rounded-lg text-center cursor-pointer hover:bg-slate-600 bg-slate-700 flex justify-center" onClick={() => handleInputToScreen('8')}>
                 <p>8</p>
               </div>
-              <div className="p-3 rounded-lg text-center cursor-pointer hover:bg-slate-600 bg-slate-700 flex justify-center">
+              <div className="p-3 rounded-lg text-center cursor-pointer hover:bg-slate-600 bg-slate-700 flex justify-center" onClick={() => handleInputToScreen('9')}>
                 <p>9</p>
               </div>
-              <div className="p-3 rounded-lg text-center cursor-pointer hover:bg-slate-600 bg-slate-700 flex justify-center">
+              <div className="p-3 rounded-lg text-center cursor-pointer hover:bg-slate-600 bg-slate-700 flex justify-center" onClick={() => handleInputToScreen('0')}>
                 <p>0</p>
               </div>
-              <div className="p-3 rounded-lg text-center cursor-pointer hover:bg-slate-600 bg-slate-700 flex justify-center">
+              <div className="p-3 rounded-lg text-center cursor-pointer hover:bg-slate-600 bg-slate-700 flex justify-center" onClick={() => handleInputToScreen('.')}>
                 <DotIcon />
               </div>
               <div className="p-3 rounded-lg text-center cursor-pointer hover-dark-bg-pink bg-pink flex justify-center">
