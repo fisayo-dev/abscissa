@@ -85,7 +85,7 @@ const Whiteboard = () => {
 
             {/* Whiteboards display */}
             {whiteboards !== null && whiteboards.length !== 0 && (
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-5">
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-5">
                 {sampleWhiteBoards.map((board, index) => (
                   <Link key={index} className="grid gap-2">
                     <div className="h-48 md:h-32 bg-slate-700  hover:bg-slate-500 rounded-lg" />
