@@ -21,9 +21,9 @@ const Converter = () => {
       link: '/converter/length',
     },
     {
-      text: "Money",
+      text: "Currency",
       icon: <Coins className="md:h-12 md:w-12 h-8 w-8" />,
-      link: '/converter/money',
+      link: '/converter/currency',
     },
     {
       text: "Volume",
