@@ -11,12 +11,12 @@ import { Back } from "iconsax-react";
 
 export const BackBtn = () => {
   return (
-    <div className="mr-auto px-2 py-3 rounded-lg bg-slate-800 hover:bg-slate-700">
-      <Link to="/converter" className="flex items-center gap-1">
+    <Link to="/converter" className="mr-auto px-2 py-3 rounded-lg bg-slate-800 hover:bg-slate-700">
+      <div  className="flex items-center gap-1">
         <Back />
         <p>Back</p>
-      </Link>
-    </div>
+      </div>
+    </Link>
   );
 };
 
