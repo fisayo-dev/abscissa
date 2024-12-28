@@ -13,7 +13,6 @@ import {
   Whiteboard,
   Converter,
   Calculator,
-  PiMind,
   Solver,
   FormulaBank,
   Settings,
@@ -26,6 +25,7 @@ import {
   TemperatureConverter,
   WeightAndMassConverter,
   Profile,
+  AbscissaAI,
 } from "./pages";
 import AppOutlet from "./outlets/AppOutlet";
 function App() {
@@ -58,7 +58,7 @@ function App() {
           />
 
           <Route path="/calculator" element={<Calculator />} />
-          <Route path="/abscissa-ai" element={<PiMind />} />
+          <Route path="/abscissa-ai" element={<AbscissaAI />} />
           <Route path="/problem-solver" element={<Solver />} />
           <Route path="/formulae-bank" element={<FormulaBank />} />
           <Route path="/profile" element={<Profile />} />

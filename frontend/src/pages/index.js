@@ -6,7 +6,7 @@ import PageNotFound from "./Public/404";
 
 // Features Pages
 import Messages from "./Private/Messages";
-import PiMind from "./Private/PiMind";
+import AbscissaAI from "./Private/AbscissaAI";
 import Solver from "./Private/Solver";
 import Whiteboard from "./Private/Whiteboard";
 import FormulaBank from "./Private/FormulaBank";
@@ -26,5 +26,5 @@ import Settings from "./Private/Settings";
 import Profile from "./Private/Profile";
 import UserHome from "./Private/UserHome";
 
-export { Home, Signup, Login, PageNotFound, Profile, Calculator, Converter, CurrencyConverter, FormulaBank, Whiteboard, UserHome, LengthConverter, Solver, PiMind, Messages, Settings, AreaConverter, VolumeConverter, SpeedConverter, EnergyConverter,TemperatureConverter,WeightAndMassConverter }
+export { Home, Signup, Login, PageNotFound, Profile, Calculator, Converter, CurrencyConverter, FormulaBank, Whiteboard, UserHome, LengthConverter, Solver, AbscissaAI, Messages, Settings, AreaConverter, VolumeConverter, SpeedConverter, EnergyConverter,TemperatureConverter,WeightAndMassConverter }
 
