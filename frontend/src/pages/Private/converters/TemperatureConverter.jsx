@@ -35,7 +35,7 @@ const TemperatureConverter = () => {
             <input
               type="number"
               className="px-3 text-lg border rounded-lg border-slate-600 py-4"
-              placeholder="00"
+              placeholder="Degree"
             />
             <Select
               value={convertFrom}
@@ -57,7 +57,7 @@ const TemperatureConverter = () => {
             <input
               type="number"
               className="px-3 text-lg border rounded-lg border-slate-600 py-4"
-              placeholder="00"
+              placeholder="Degree"
             />
             <Select
               value={convertTo}
