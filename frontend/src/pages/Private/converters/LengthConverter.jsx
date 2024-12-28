@@ -7,12 +7,15 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Link } from "react-router-dom";
-import { Back } from "iconsax-react";
+import { Back, Ruler } from "iconsax-react";
 
 export const BackBtn = () => {
   return (
-    <Link to="/converter" className="mr-auto px-2 py-3 rounded-lg bg-slate-800 hover:bg-slate-700">
-      <div  className="flex items-center gap-1">
+    <Link
+      to="/converter"
+      className="p-2 rounded-lg bg-slate-800 hover:bg-slate-700"
+    >
+      <div className="flex items-center gap-1">
         <Back />
         <p>Back</p>
       </div>
@@ -36,11 +39,16 @@ const LengthConverter = () => {
     "miles",
   ];
 
-
   return (
     <div className="w-full md:w-4/5 2xl:w-3/5 mx-auto">
       <div className="py-8 grid gap-6">
-        <BackBtn />
+        <div className="flex items-center justify-between">
+          <BackBtn />
+          <div className="flex items-center gap-2">
+            <Ruler />
+            <p>Length Converter</p>
+          </div>
+        </div>
         <div className="grid md:grid-cols-2 grid-col-1 md:gap-5 gap-10">
           {/* Left side converter */}
           <div className="grid gap-3">
