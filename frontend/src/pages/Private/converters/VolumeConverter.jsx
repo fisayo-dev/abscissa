@@ -10,9 +10,6 @@ import { BackBtn } from "./LengthConverter";
 import { Cuboid } from "lucide-react";
 
 const VolumeConverter = () => {
-  const [convertFrom, setConvertFrom] = useState("milliliters");
-  const [convertTo, setConvertTo] = useState("cubic meters");
-
   const units = [
     "milliliters",
     "cubic centimetres",
@@ -21,6 +18,9 @@ const VolumeConverter = () => {
     "cubic inches",
     "cubic feet",
   ];
+  const [convertFrom, setConvertFrom] = useState(units[0]);
+  const [convertTo, setConvertTo] = useState(units[2]);
+
   return (
     <div className="w-full md:w-4/5 2xl:w-3/5 mx-auto">
       <div className="py-8 grid gap-6">

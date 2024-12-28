@@ -10,9 +10,6 @@ import { BackBtn } from "./LengthConverter";
 import { Scale3dIcon } from "lucide-react";
 
 const AreaConverter = () => {
-  const [convertFrom, setConvertFrom] = useState("Sqaure kilometres");
-  const [convertTo, setConvertTo] = useState("Sqaure metres");
-
   const units = [
     "Sqaure millimetres",
     "Sqaure centimetres",
@@ -25,6 +22,10 @@ const AreaConverter = () => {
     "Sqaure yards",
     "Sqaure miles",
   ];
+
+  const [convertFrom, setConvertFrom] = useState(units[0]);
+  const [convertTo, setConvertTo] = useState(units[2]);
+
   return (
     <div className="w-full md:w-4/5 2xl:w-3/5 mx-auto">
       <div className="py-8 grid gap-6">

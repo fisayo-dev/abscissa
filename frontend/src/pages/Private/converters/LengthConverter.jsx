@@ -24,9 +24,6 @@ export const BackBtn = () => {
 };
 
 const LengthConverter = () => {
-  const [convertFrom, setConvertFrom] = useState("metres");
-  const [convertTo, setConvertTo] = useState("centimetres");
-
   const units = [
     "millimetres",
     "centimetres",
@@ -38,6 +35,8 @@ const LengthConverter = () => {
     "yards",
     "miles",
   ];
+  const [convertFrom, setConvertFrom] = useState(units[0]);
+  const [convertTo, setConvertTo] = useState(units[2]);
 
   return (
     <div className="w-full md:w-4/5 2xl:w-3/5 mx-auto">
