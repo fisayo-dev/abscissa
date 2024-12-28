@@ -1,5 +1,5 @@
 import { Add, Grid1, Grid2 } from "iconsax-react";
-import { AppWindowMacIcon, List, Search } from "lucide-react";
+import { AppWindowMacIcon, List, Plus, Search } from "lucide-react";
 
 const Whiteboard = () => {
   return (
@@ -12,13 +12,13 @@ const Whiteboard = () => {
               <button className="px-4 py-3 rounded-full bg-slate-800 hover:bg-slate-700">
                 <div className="flex items-center gap-1 justify-center">
                   <Search className="h-6 w-6"/>
-                  <p>Explore</p>
+                  <p className="hidden md:block">Explore</p>
                 </div>
               </button>
               <button className="px-4 py-3 rounded-full bg-pink hover-dark-bg-pink">
                 <div className="flex items-center gap-1 justify-center">
-                  <Add className="h-6 w-6"/>
-                  <p>Create</p>
+                  <Plus className="h-6 w-6"/>
+                  <p className="hidden md:block">Create</p>
                 </div>
               </button>
             </div>
@@ -30,12 +30,12 @@ const Whiteboard = () => {
                 <input type="text" className="w-full" placeholder="Search value"/>
               </div>
             </div>
-            <div className="flex items-center gap-2">
-              <div className="p-3 rounded-full cursor-pointer hover:bg-slate-700">
-                <Grid1 className="h-6 w-6"/>
+            <div className="flex items-center md:gap-2">
+              <div className="p-2 md:p-3 rounded-full cursor-pointer hover:bg-slate-700">
+                <Grid1 className="md:h-6 md:w-6 h-5 w-5"/>
               </div>
-              <div className="p-3 rounded-full cursor-pointer hover:bg-slate-700">
-                <List className="h-6 w-6"/>
+              <div className="p-2 md:p-3 rounded-full cursor-pointer hover:bg-slate-700">
+                <List className="md:h-6 md:w-6 h-5 w-5"/>
               </div>
             </div>
           </div>
