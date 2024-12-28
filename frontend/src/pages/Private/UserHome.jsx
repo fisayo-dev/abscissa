@@ -42,7 +42,7 @@ const UserHome = () => {
                 <h2 className="">12</h2>
               </div>
               <div className="flex flex-col place-items-center py-10">
-                <Flame className="h-52 w-52" />
+                <Flame className="color-pink h-52 w-52" />
               </div>
               <Link className="text-right text-slate-300 hover:underline text-sm">
                 View analysis
