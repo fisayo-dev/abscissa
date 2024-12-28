@@ -1,4 +1,4 @@
-import { Ruler, Speedometer } from "iconsax-react";
+import { Ruler, Speedometer, Wallet1 } from "iconsax-react";
 import {
   Coins,
   Cuboid,
@@ -23,7 +23,7 @@ const Converter = () => {
     },
     {
       text: "Currency",
-      icon: <Coins className="md:h-12 md:w-12 h-8 w-8" />,
+      icon: <Wallet1 className="md:h-12 md:w-12 h-8 w-8" />,
       link: '/converter/currency',
     },
     {
