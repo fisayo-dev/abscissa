@@ -12,6 +12,7 @@ const LengthConverter = () => {
   const [convertTo, setConvertTo] = useState("centimetres");
 
   const units = [
+    "millimetres",
     "centimetres",
     "metres",
     "kilometres",
