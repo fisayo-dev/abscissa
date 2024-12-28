@@ -25,7 +25,7 @@ const Whiteboard = () => {
           </div>
           <div className="flex items-center gap-4">
             <div className="bg-slate-700 px-4 py-3 rounded-full w-full">
-              <div className="flex items-center gap-4">
+              <div className="flex items-center gap-3">
                 <Search className="h-6 w-6 text-slate-400" />
                 <input type="text" className="w-full" placeholder="Search value"/>
               </div>
