@@ -16,7 +16,6 @@ import {
   PiMind,
   Solver,
   FormulaBank,
-  Account,
   Settings,
   LengthConverter,
   AreaConverter,
@@ -26,6 +25,7 @@ import {
   EnergyConverter,
   TemperatureConverter,
   WeightAndMassConverter,
+  Profile,
 } from "./pages";
 import AppOutlet from "./outlets/AppOutlet";
 function App() {
@@ -61,7 +61,7 @@ function App() {
           <Route path="/abscissa-ai" element={<PiMind />} />
           <Route path="/problem-solver" element={<Solver />} />
           <Route path="/formulae-bank" element={<FormulaBank />} />
-          <Route path="/profile" element={<Account />} />
+          <Route path="/profile" element={<Profile />} />
           <Route path="/settings" element={<Settings />} />
         </Route>
       </>
