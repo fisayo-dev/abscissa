@@ -21,7 +21,7 @@ const AppOutlet = () => {
               </div>
             </div>
           </div>
-          <div className="md:px-8 h-[90vh] overflow-scroll ">
+          <div className="px-2 md:px-8 h-[90vh] overflow-scroll ">
             <Outlet />
           </div>
         </div>
