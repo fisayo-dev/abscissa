@@ -7,7 +7,7 @@ const AppOutlet = () => {
   return (
     <div className="w-[100vw] block md:flex">
       <Sidebar />
-      <div className="px-6 md:mx-auto 2xl:w-[70vw] sm:w-[80vw] w-full">
+      <div className="px-6 mx-auto 2xl:w-[70vw] sm:w-[80vw] w-full">
         <div className="w-full grid">
           <div className="md:px-6 w-full top-0 h-[10vh] py-5 grid items-center">
             <div className="flex justify-between">
