@@ -7,7 +7,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { BackBtn } from "./LengthConverter";
-import { Cuboid } from "lucide-react";
+import { Speedometer } from "iconsax-react";
 
 const SpeedConverter = () => {
   const units = [
@@ -28,8 +28,8 @@ const SpeedConverter = () => {
         <div className="flex items-center justify-between">
           <BackBtn />
           <div className="flex items-center gap-2">
-            <Cuboid />
-            <p>Volume Converter</p>
+            <Speedometer />
+            <p>Speed Converter</p>
           </div>
         </div>
         <div className="grid md:grid-cols-2 grid-col-1 md:gap-5 gap-10">
