@@ -1,7 +1,7 @@
-import { Brain, CogIcon, LayoutDashboardIcon, Pencil, Sigma, UserCircle } from "lucide-react";
+import { Brain, CogIcon, LayoutDashboardIcon, Sigma, UserCircle } from "lucide-react";
 import { Logo } from ".";
-import { Link, NavLink } from "react-router-dom";
-import { Calculator, Computing, Convert, MenuBoard, Profile } from "iconsax-react";
+import { NavLink } from "react-router-dom";
+import { Calculator, Computing, Convert, Note, Profile } from "iconsax-react";
 
 const Sidebar = () => {
   const activeLinks = ({ isActive }) =>
@@ -18,7 +18,7 @@ const Sidebar = () => {
     {
       text: "Whiteboard",
       link: "/whiteboard",
-      icon: <Pencil className="h-6 w-6" />,
+      icon: <Note className="h-6 w-6" />,
     },
     {
       text: "Converter",
