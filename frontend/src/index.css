@@ -100,6 +100,10 @@ body {
   background-color: var(--pink-color);
 }
 
+.bg-blue, .hover-bg-blue:hover {
+  background-color: var(--blue-color);
+}
+
 .dark-bg-pink,
 .hover-dark-bg-pink:hover {
   background-color: var(--dark-pink-color);
