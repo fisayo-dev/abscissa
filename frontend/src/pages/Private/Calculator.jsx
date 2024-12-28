@@ -7,17 +7,17 @@ import {
 } from "@/components/ui/select";
 import { Minus } from "iconsax-react";
 import {
+  CalculatorIcon,
   DivideIcon,
   DotIcon,
   Equal,
   HistoryIcon,
-  Menu,
   Plus,
   TestTube,
   X,
   XCircleIcon,
 } from "lucide-react";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 const Calculator = () => {
   const [smallScreen, setSmallScreen] = useState("");
@@ -338,7 +338,12 @@ const Calculator = () => {
         >
           <Minus />
         </div>
-        <div className={calculatorBtnStyle} onClick={() => handleInputToScreen("**")}>x^y</div>
+        <div
+          className={calculatorBtnStyle}
+          onClick={() => handleInputToScreen("**")}
+        >
+          x^y
+        </div>
         <div className={calculatorBtnStyle} onClick={() => handleLog()}>
           log
         </div>
@@ -418,7 +423,7 @@ const Calculator = () => {
             <SelectContent>
               <SelectItem key={1} value="standard">
                 <div className="flex items-center gap-2">
-                  <Menu className="h-6 w-6" />
+                  <CalculatorIcon className="h-6 w-6" />
                   <p>Standard</p>
                 </div>
               </SelectItem>
