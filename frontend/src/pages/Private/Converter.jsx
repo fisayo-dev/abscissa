@@ -1,8 +1,9 @@
-import { Ruler, Speedometer, Weight } from "iconsax-react";
+import { Ruler, Speedometer } from "iconsax-react";
 import {
   Coins,
   Cuboid,
   Flame,
+  Scale,
   Scale3DIcon,
   ThermometerIcon,
 } from "lucide-react";
@@ -47,7 +48,7 @@ const Converter = () => {
     },
     {
       text: "Weight and Mass",
-      icon: <Weight className="md:h-12 md:w-12 h-8 w-8" />,
+      icon: <Scale className="md:h-12 md:w-12 h-8 w-8" />,
       link: '/converter/weight-and-mass',
     },
   ];
