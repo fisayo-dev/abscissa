@@ -6,6 +6,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { BackBtn } from "./LengthConverter";
 
 const AreaConverter = () => {
   const [convertFrom, setConvertFrom] = useState("Sqaure kilometres");
@@ -25,7 +26,8 @@ const AreaConverter = () => {
   ];
   return (
     <div className="w-full md:w-4/5 2xl:w-3/5 mx-auto">
-      <div className="mt-8">
+      <div className="py-8 grid gap-6">
+        <BackBtn />
         <div className="grid md:grid-cols-2 grid-col-1 md:gap-5 gap-10">
           {/* Left side converter */}
           <div className="grid gap-3">
