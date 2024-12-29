@@ -26,8 +26,8 @@ const AbscissaAI = () => {
                 key={index}
                 className={`p-3  ${
                   chat.type == "request"
-                    ? "bg-pink rounded-xl ml-auto w-4/6 md:w-2/6 rounded-br-none text-right"
-                    : "border-t border-t-slate-800 mr-auto w-full rounded-bl-none text-left"
+                    ? "bg-pink rounded-2xl ml-auto w-4/6 md:w-2/6 text-right"
+                    : "border-t border-t-slate-800 mr-auto w-full text-left"
                 } `}
               >
                 {chat.text}
