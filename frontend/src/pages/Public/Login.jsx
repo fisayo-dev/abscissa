@@ -3,6 +3,7 @@ import { Logo } from "../../components";
 import { Rocket, Users } from "lucide-react";
 import { useState } from "react";
 import Google from "../../assets/Google.svg";
+import { Link } from "react-router-dom";
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -60,15 +61,19 @@ const Login = () => {
                   </div>
                 </div>
               </div>
-              <div className="grid md:flex justify-center gap-3">
+              <div className="flex justify-center gap-3">
                 <button className="shadow-md text-[0.9rem] px-4 py-3 flex items-center justify-center gap-2 rounded-full bg-pink hover-dark-bg-pink">
                   <Rocket className="h-4 w-4 md:h-6 md:w-6" />
-                  <p className="capitalize">Login to account</p>
+                  <p className="capitalize">Create account</p>
                 </button>
                 <button className="shadow-md text-[0.9rem]  px-4 py-3 font-bold flex items-center justify-center gap-2 rounded-full bg-slate-200 text-slate-900 hover:bg-slate-300">
                   <img src={Google} width={20} height={20} />
-                  <p className="capitalize">Continue with google</p>
+                  {/* <p className="capitalize">Continue with google</p> */}
                 </button>
+              </div>
+              <div className="text-sm text-center">
+               Are you new here? 
+                <Link to="/login" className="color-pink hover:underline"> Signup</Link>
               </div>
             </form>
           </div>
