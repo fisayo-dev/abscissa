@@ -2,6 +2,7 @@ import {
   ArchiveBox,
   Calculator,
   Computing,
+  DollarCircle,
   Math,
   Message,
   Money2,
@@ -46,7 +47,7 @@ const Features = () => {
     },
     {
       text: "Currency Converter",
-      icon: <Money2 className="h-10 w-10" />,
+      icon: <DollarCircle className="h-10 w-10" />,
     },
     {
       text: "Smart Calculator",
