@@ -2,11 +2,24 @@ import { Outlet } from "react-router-dom";
 import { Sidebar, SidebarResponsive } from "../components";
 import { Message } from "iconsax-react";
 import { BellIcon, MenuIcon, RocketIcon } from "lucide-react";
+import { useState } from "react";
 
 const AppOutlet = () => {
+  const [turnMenuOn, setTurnMenuOn] = useState(false);
+
   return (
-    <div className="relative w-[100vw] block md:flex">
-      <div className="absolute top-0 left-0 h-full w-full">
+    <div className={`relative w-[100vw] block md:flex `}>
+      <div
+        className={`bg-black bg-opacity-60 z-30 absolute h-[100vh] w-[100vw] ${
+          turnMenuOn ? "block" : "hidden"
+        }`}
+        onClick={() => setTurnMenuOn(false)}
+      />
+      <div
+        className={`${
+          turnMenuOn ? "block" : "hidden"
+        } z-40  absolute  top-0 left-0 h-full`}
+      >
         <SidebarResponsive />
       </div>
       <Sidebar />
@@ -15,7 +28,10 @@ const AppOutlet = () => {
           <div className="md:px-6 w-full top-0 h-[10vh] py-5 grid items-center">
             <div className="flex justify-between">
               <div className="flex gap-2 items-center">
-                <div className="block xl:hidden p-2 hover:bg-slate-700 rounded-full">
+                <div
+                  className="block xl:hidden p-2 hover:bg-slate-700 rounded-full"
+                  onClick={() => setTurnMenuOn(true)}
+                >
                   <MenuIcon className="h-7 w-7" />
                 </div>
                 <RocketIcon className="h-6 w-6 color-pink" />
