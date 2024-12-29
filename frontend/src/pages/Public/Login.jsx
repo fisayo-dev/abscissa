@@ -73,8 +73,8 @@ const Login = () => {
                   {/* <p className="capitalize">Continue with google</p> */}
                 </button>
               </div>
-              <div className="text-sm text-center">
-                Are you new here?
+              <div className="text-sm text-center flex gap-1 justify-center">
+                <p>Are you new here?</p>
                 <Link to="/signup" className="color-pink hover:underline">
                    Signup
                 </Link>
