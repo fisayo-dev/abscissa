@@ -7,7 +7,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { BackBtn } from "./LengthConverter";
-import { Wallet1 } from "iconsax-react";
+import { DollarCircle } from "iconsax-react";
 
 const CurrencyConverter = () => {
   const units = ["dollars", "naira", "cedis", "pounds", "yen"];
@@ -20,7 +20,7 @@ const CurrencyConverter = () => {
         <div className="flex items-center justify-between">
           <BackBtn />
           <div className="flex items-center gap-2">
-            <Wallet1 />
+            <DollarCircle />
             <p>Currency Converter</p>
           </div>
         </div>
