@@ -105,7 +105,10 @@ const Signup = () => {
               </div>
               <div className="text-sm text-center">
                 I already have an account?
-                <Link to="/login" className="color-pink hover:underline"> Login</Link>
+                <Link to="/login" className="color-pink hover:underline">
+                  {" "}
+                  Login
+                </Link>
               </div>
             </form>
           </div>

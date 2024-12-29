@@ -28,7 +28,9 @@ const Login = () => {
             <form action="" className="grid gap-6 mt-5 w-full">
               <div className="grid gap-3">
                 <div className="grid gap-3">
-                  <label className="font-bold text-slate-300">Email Address</label>
+                  <label className="font-bold text-slate-300">
+                    Email Address
+                  </label>
                   <div className="border border-slate-600 rounded-full p-4 ">
                     <div className="flex items-center gap-2">
                       <User className="h-6 w-6" />
@@ -72,8 +74,11 @@ const Login = () => {
                 </button>
               </div>
               <div className="text-sm text-center">
-               Are you new here? 
-                <Link to="/signup" className="color-pink hover:underline"> Signup</Link>
+                Are you new here?
+                <Link to="/signup" className="color-pink hover:underline">
+                  
+                  Signup
+                </Link>
               </div>
             </form>
           </div>
