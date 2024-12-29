@@ -73,7 +73,7 @@ const Login = () => {
               </div>
               <div className="text-sm text-center">
                Are you new here? 
-                <Link to="/login" className="color-pink hover:underline"> Signup</Link>
+                <Link to="/signup" className="color-pink hover:underline"> Signup</Link>
               </div>
             </form>
           </div>
