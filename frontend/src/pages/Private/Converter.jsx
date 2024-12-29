@@ -1,6 +1,5 @@
-import { Ruler, Speedometer, Wallet1 } from "iconsax-react";
+import { DollarCircle, Ruler, Speedometer } from "iconsax-react";
 import {
-  Coins,
   Cuboid,
   Flame,
   Scale,
@@ -23,7 +22,7 @@ const Converter = () => {
     },
     {
       text: "Currency",
-      icon: <Wallet1 className="md:h-12 md:w-12 h-8 w-8" />,
+      icon: <DollarCircle className="md:h-12 md:w-12 h-8 w-8" />,
       link: '/converter/currency',
     },
     {
