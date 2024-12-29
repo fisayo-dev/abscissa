@@ -5,10 +5,11 @@ import {
   Math,
   Message,
   Money2,
+  Note,
   Ruler,
   TableDocument,
 } from "iconsax-react";
-import { BookOpenIcon, PencilIcon } from "lucide-react";
+import { BookOpenIcon, Brain, PencilIcon, Sigma } from "lucide-react";
 
 const Features = () => {
   const mainFeatures = [
@@ -16,25 +17,25 @@ const Features = () => {
       title: "Abscissa AI",
       description:
         "Use AI to quickly break down and solve complex word problems with ease and precision.",
-      icon: <Computing className="h-24 w-24" />,
+      icon: <Brain className="h-24 w-24" />,
     },
     {
       title: "Formula Bank",
       description:
         "Access a comprehensive library of formulas for quick reference and enhanced productivity.",
-      icon: <ArchiveBox className="h-24 w-24" />,
+      icon: <Sigma className="h-24 w-24" />,
     },
     {
       title: "White Board",
       description:
         "Visualize ideas, solve problems, and collaborate effectively with an interactive digital whiteboard.",
-      icon: <PencilIcon className="h-24 w-24" />,
+      icon: <Note className="h-24 w-24" />,
     },
     {
       title: "Maths Solver",
       description:
         "Effortlessly tackle equations and computations with an advanced AI-powered maths solver.",
-      icon: <TableDocument className="h-24 w-24" />,
+      icon: <Computing className="h-24 w-24" />,
     },
   ];
 
