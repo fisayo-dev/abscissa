@@ -1,7 +1,7 @@
 import { Outlet } from "react-router-dom";
 import { Sidebar } from "../components";
-import { Diamonds, Message } from "iconsax-react";
-import { BellIcon } from "lucide-react";
+import { Diamonds, Menu, Message } from "iconsax-react";
+import { BellIcon, MenuIcon, MenuSquare } from "lucide-react";
 
 const AppOutlet = () => {
   return (
@@ -12,8 +12,11 @@ const AppOutlet = () => {
           <div className="md:px-6 w-full top-0 h-[10vh] py-5 grid items-center">
             <div className="flex justify-between">
               <div className="flex gap-2 items-center">
+                <div className="block xl:hidden p-2 hover:bg-slate-700 rounded-full">
+                  <MenuIcon className="h-7 w-7"/>
+                </div>
                 <Diamonds className="h-6 w-6" />
-                <p>Premimum Plan</p>
+                <p className="hidden md:block">Premimum Plan</p>
               </div>
               <div className="flex items-center gap-2 justify-end">
                 <BellIcon className="h-6 w-6" />
