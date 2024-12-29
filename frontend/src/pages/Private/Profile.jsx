@@ -14,7 +14,7 @@ const Profile = () => {
 
   return (
     <div className="mx-auto 2xl:w-2/3 w-11/12">
-      <div className="mt-10">
+      <div className="my-8">
         <div className="grid gap-10">
           <div className="relative bg-slate-900 rounded-lg p-5">
             {/* Edit or view profile */}
