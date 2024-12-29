@@ -1,4 +1,4 @@
-import { Grid1 } from "iconsax-react";
+import { Grid1, Note, NoteAdd } from "iconsax-react";
 import {
   List,
   LoaderPinwheelIcon,
@@ -34,7 +34,7 @@ const Whiteboard = () => {
               <button className="px-4 py-3 rounded-full bg-pink hover-dark-bg-pink">
                 <div className="flex items-center gap-1 justify-center">
                   <Plus className="h-6 w-6" />
-                  <p className="hidden md:block">Create</p>
+                  <p className="hidden md:block">New</p>
                 </div>
               </button>
             </div>
