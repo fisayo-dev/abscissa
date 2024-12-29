@@ -85,12 +85,12 @@ const Whiteboard = () => {
 
             {/* Whiteboards display */}
             {whiteboards !== null && whiteboards.length !== 0 && (
-              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-5">
+              <div className="grid h-56 md:h-52 grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-5">
                 {sampleWhiteBoards.map((board, index) => (
-                  <Link key={index} className="grid gap-2">
+                  <Link key={index} className="flex flex-col gap-2">
                     <div className="h-48 md:h-32 bg-slate-700  hover:bg-slate-500 rounded-lg" />
-                    <div className="grid gap-1 ">
-                      <h2>{board.title}</h2>
+                    <div className="flex flex-col gap-1 ">
+                      <h2>{board.title.length > 25 ?  `${board.title.substring(0,25)}..` : board.title}</h2>
                       <p className="text-sm">{board.date}</p>
                     </div>
                   </Link>
