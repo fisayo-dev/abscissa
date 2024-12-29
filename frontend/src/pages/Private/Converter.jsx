@@ -54,8 +54,8 @@ const Converter = () => {
   ];
   return (
     <div className="w-full md:w-4/5 2xl:w-3/5 mx-auto">
-      <div className="mt-8">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-5">
+      <div className="my-8">
+        <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-5">
           {converters.map((converter, index) => (
             <Link to={converter.link} key={index} className="cursor-pointer hover:bg-slate-700 bg-slate-800 p-4 rounded-lg">
               <div className="flex items-center justify-center gap-5 flex-col">
