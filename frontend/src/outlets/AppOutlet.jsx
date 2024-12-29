@@ -1,7 +1,7 @@
 import { Outlet } from "react-router-dom";
 import { Sidebar } from "../components";
-import { Diamonds, Menu, Message } from "iconsax-react";
-import { BellIcon, MenuIcon, MenuSquare } from "lucide-react";
+import { Message } from "iconsax-react";
+import { BellIcon, MenuIcon, RocketIcon } from "lucide-react";
 
 const AppOutlet = () => {
   return (
@@ -13,9 +13,9 @@ const AppOutlet = () => {
             <div className="flex justify-between">
               <div className="flex gap-2 items-center">
                 <div className="block xl:hidden p-2 hover:bg-slate-700 rounded-full">
-                  <MenuIcon className="h-7 w-7"/>
+                  <MenuIcon className="h-7 w-7" />
                 </div>
-                <Diamonds className="h-6 w-6" />
+                <RocketIcon className="h-6 w-6 color-pink" />
                 <p className="hidden md:block">Premimum Plan</p>
               </div>
               <div className="flex items-center gap-2 justify-end">
