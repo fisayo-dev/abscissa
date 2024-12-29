@@ -1,11 +1,14 @@
 import { Outlet } from "react-router-dom";
-import { Sidebar } from "../components";
+import { Sidebar, SidebarResponsive } from "../components";
 import { Message } from "iconsax-react";
 import { BellIcon, MenuIcon, RocketIcon } from "lucide-react";
 
 const AppOutlet = () => {
   return (
-    <div className="w-[100vw] block md:flex">
+    <div className="relative w-[100vw] block md:flex">
+      <div className="absolute top-0 left-0 h-full w-full">
+        <SidebarResponsive />
+      </div>
       <Sidebar />
       <div className="px-6 mx-auto 2xl:w-[70vw] sm:w-[80vw] w-full">
         <div className="w-full grid">
