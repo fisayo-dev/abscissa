@@ -54,9 +54,9 @@ const Pricing = () => {
               >
                 <div className="flex flex-col gap-3">
                   <p
-                    className={`text-[1.02rem] px-5 py-2 ${
-                      index == 1 && "border-pink"
-                    } border-[0.2rem] rounded-full mx-auto `}
+                    className={`text-[1.02rem] px-4 py-2 ${
+                      index == 1 ? "dark-bg-pink" : 'bg-slate-700'
+                    } rounded-full mx-auto  `}
                   >
                     {plan.plan}
                   </p>
