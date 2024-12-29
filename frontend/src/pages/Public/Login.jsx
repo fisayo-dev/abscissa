@@ -68,7 +68,7 @@ const Login = () => {
                   <Rocket className="h-4 w-4 md:h-6 md:w-6" />
                   <p className="capitalize">Create account</p>
                 </button>
-                <button className="shadow-md text-[0.9rem]  px-4 py-3 font-bold flex items-center justify-center gap-2 rounded-full bg-slate-200 text-slate-900 hover:bg-slate-300">
+                <button className="shadow-md text-[0.9rem]  px-4 py-3 font-bold flex items-center justify-center gap-2 rounded-full bg-slate-800 text-slate-900 hover:bg-slate-700">
                   <img src={Google} width={20} height={20} />
                   {/* <p className="capitalize">Continue with google</p> */}
                 </button>
@@ -76,8 +76,7 @@ const Login = () => {
               <div className="text-sm text-center">
                 Are you new here?
                 <Link to="/signup" className="color-pink hover:underline">
-                  
-                  Signup
+                   Signup
                 </Link>
               </div>
             </form>
