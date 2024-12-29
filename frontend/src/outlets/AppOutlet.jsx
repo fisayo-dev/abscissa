@@ -1,16 +1,22 @@
-import { Outlet } from "react-router-dom";
+import { Outlet, useNavigate } from "react-router-dom";
 import { Sidebar, SidebarResponsive } from "../components";
 import { Message } from "iconsax-react";
 import { BellIcon, MenuIcon, RocketIcon } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const AppOutlet = () => {
   const [turnMenuOn, setTurnMenuOn] = useState(false);
+  // const navigate = useNavigate()
+
+  // useEffect(() => {
+  //   setTurnMenuOn(false)
+  //   console.log('Amen')
+  // },[])
 
   return (
     <div className={`relative w-[100vw] block md:flex `}>
       <div
-        className={`bg-black bg-opacity-60 z-30 absolute h-[100vh] w-[100vw] ${
+        className={`bg-black md:hidden bg-opacity-60 z-30 absolute h-[100vh] w-[100vw] ${
           turnMenuOn ? "block" : "hidden"
         }`}
         onClick={() => setTurnMenuOn(false)}
