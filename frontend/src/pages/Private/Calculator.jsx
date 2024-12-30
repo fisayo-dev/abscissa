@@ -399,7 +399,7 @@ const Calculator = () => {
         calculatorType == "standard" ? "md:w-[380px]" : " md:w-[420px]"
       } mx-auto`}
     >
-      <div className={`mt-4 grid gap-3`}>
+      <div className={`my-6 grid gap-3`}>
         <div className="flex items-center gap-8 text-slate-400 justify-between">
           <Select
             value={calculatorType}
@@ -427,7 +427,7 @@ const Calculator = () => {
             <HistoryIcon className="h-6 w-6" />
           </div>
         </div>
-        <div className="max-h-[80vh] border-[0.12rem] shadow-lg rounded-lg border-slate-500 overflow-hidden">
+        <div className="max-h-[90vh] border-[0.12rem] shadow-lg rounded-lg border-slate-500 overflow-hidden">
           <div className="grid p-2 gap-4">
             <div className=" px-4 border shadow-md border-slate-600 h-[14vh] rounded-lg grid ">
               <input
