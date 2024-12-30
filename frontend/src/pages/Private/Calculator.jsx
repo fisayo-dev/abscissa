@@ -362,7 +362,7 @@ const Calculator = () => {
 
   const handleTrig = (type) => {
     const toRadians = (degrees) => degrees * (Math.PI / 180);
-  
+
     if (type === "sin") {
       setSmallScreen(`sin(${largeScreen})`);
       const sineAnswer = Math.sin(toRadians(Number(largeScreen))).toFixed(10);
@@ -377,7 +377,6 @@ const Calculator = () => {
       setLargeScreen(tanAnswer);
     }
   };
-  
 
   const handleInverse = () => {
     setSmallScreen(`1/(${largeScreen})`);
@@ -393,8 +392,8 @@ const Calculator = () => {
 
   const handleLn = () => {
     setSmallScreen(`ln(${largeScreen})`);
-    const answer = Math.log(Number(largeScreen));
-    setLargeScreen(answer.toString());
+    const answer = Math.log(Number(largeScreen)).toFixed(10);
+    setLargeScreen(answer);
   };
 
   return (
