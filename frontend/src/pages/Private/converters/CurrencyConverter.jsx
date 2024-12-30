@@ -123,7 +123,7 @@ const CurrencyConverter = () => {
           <div className="flex items-center justify-center">
             <button
               type="button"
-              className="p-2 border rounded-full hover:bg-gray-200"
+              className="p-2 border rounded-full hover:bg-slate-200 hover:text-slate-900"
               onClick={handleSwap}
             >
               <ArrowSwapHorizontal />
