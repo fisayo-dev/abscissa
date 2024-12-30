@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   Select,
   SelectContent,
@@ -16,19 +16,46 @@ const TemperatureConverter = () => {
   const [unitA, setUnitA] = useState(units[0]);
   const [unitB, setUnitB] = useState(units[2]);
 
-  const convertDegree = (side) => {
-    if (unitA == "fahrenheit" && unitB == "celsius") {
-      if (side == "A") {
-        // Convert from F to C
-        const celsiusExpression = (valueA * 5) / 9 - 32;
-        setValueB(celsiusExpression);
-      } else if (side == "B") {
-        // Convert from C to F
-        const fahrenheitExpression = (valueB + 32);
-        setValueA((1.8 * fahrenheitExpression));
-      }
+  const convertTemperature = (value, fromUnit, toUnit) => {
+    if (!value) return "";
+    const numericValue = parseFloat(value);
+    if (isNaN(numericValue)) return "";
+
+    switch (fromUnit) {
+      case "fahrenheit":
+        if (toUnit === "celsius") return ((numericValue - 32) * 5) / 9;
+        if (toUnit === "kelvin") return ((numericValue - 32) * 5) / 9 + 273.15;
+        break;
+      case "celsius":
+        if (toUnit === "fahrenheit") return numericValue * 1.8 + 32;
+        if (toUnit === "kelvin") return numericValue + 273.15;
+        break;
+      case "kelvin":
+        if (toUnit === "celsius") return numericValue - 273.15;
+        if (toUnit === "fahrenheit") return (numericValue - 273.15) * 1.8 + 32;
+        break;
+      default:
+        return value;
     }
+    return value;
   };
+
+  const handleInputAChange = (e) => {
+    const inputValue = e.target.value;
+    setValueA(inputValue);
+    setValueB(convertTemperature(inputValue, unitA, unitB));
+  };
+
+  const handleInputBChange = (e) => {
+    const inputValue = e.target.value;
+    setValueB(inputValue);
+    setValueA(convertTemperature(inputValue, unitB, unitA));
+  };
+
+  useEffect(() => {
+    setValueB(convertTemperature(valueA, unitA, unitB));
+  }, [unitA, unitB]);
+
   return (
     <div className="w-full md:w-4/5 2xl:w-3/5 mx-auto">
       <div className="py-8 grid gap-6">
@@ -48,14 +75,11 @@ const TemperatureConverter = () => {
               className="px-3 text-lg border rounded-lg border-slate-600 py-4"
               placeholder="Degree"
               value={valueA}
-              onChange={(e) => {
-                setValueA(e.target.value);
-                convertDegree("A");
-              }}
+              onChange={handleInputAChange}
             />
             <Select value={unitA} onValueChange={(value) => setUnitA(value)}>
               <SelectTrigger>
-                <SelectValue placeholder="Pick calculator type"></SelectValue>
+                <SelectValue placeholder="Pick unit"></SelectValue>
               </SelectTrigger>
               <SelectContent>
                 {units.map((unit, index) => (
@@ -74,14 +98,11 @@ const TemperatureConverter = () => {
               className="px-3 text-lg border rounded-lg border-slate-600 py-4"
               placeholder="Degree"
               value={valueB}
-              onChange={(e) => {
-                setValueB(e.target.value);
-                convertDegree("B");
-              }}
+              onChange={handleInputBChange}
             />
             <Select value={unitB} onValueChange={(value) => setUnitB(value)}>
               <SelectTrigger>
-                <SelectValue placeholder="Pick calculator type"></SelectValue>
+                <SelectValue placeholder="Pick unit"></SelectValue>
               </SelectTrigger>
               <SelectContent>
                 {units.map((unit, index) => (
