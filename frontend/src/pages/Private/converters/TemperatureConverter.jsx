@@ -54,7 +54,10 @@ const TemperatureConverter = () => {
 
   useEffect(() => {
     setValueB(convertTemperature(valueA, unitA, unitB));
-  }, [unitA, unitB]);
+  }, [unitB]);
+  useEffect(() => {
+    setValueA(convertTemperature(valueB, unitB, unitA));
+  }, [unitA]);
 
   return (
     <div className="w-full md:w-4/5 2xl:w-3/5 mx-auto">
