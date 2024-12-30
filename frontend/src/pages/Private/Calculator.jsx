@@ -224,15 +224,12 @@ const Calculator = () => {
         >
           %
         </div>
-
+  
         <div className={calculatorBtnStyle} onClick={() => handleSquare()}>
-          <div className="relative flex justify-center gap-0">
-            <p>x</p>
-            <p>2</p>
-          </div>
+          <p>x²</p>
         </div>
         <div className={calculatorBtnStyle} onClick={() => handleSquareRoot()}>
-          <p>sqrt</p>
+          <p>√</p>
         </div>
         <div
           className={calculatorBtnStyle}
@@ -240,7 +237,7 @@ const Calculator = () => {
         >
           <XCircleIcon className="h-6 w-6" />
         </div>
-
+  
         <div
           className={calculatorBtnStyle}
           onClick={() => handleInputToScreen("1")}
@@ -265,7 +262,7 @@ const Calculator = () => {
         >
           <X />
         </div>
-
+  
         <div
           className={calculatorBtnStyle}
           onClick={() => handleInputToScreen("4")}
@@ -278,7 +275,7 @@ const Calculator = () => {
         >
           <p>5</p>
         </div>
-
+  
         <div
           className={calculatorBtnStyle}
           onClick={() => handleInputToScreen("6")}
@@ -291,14 +288,14 @@ const Calculator = () => {
         >
           <DivideIcon className="h-6 w-6" />
         </div>
-
+  
         <div
           className={calculatorBtnStyle}
           onClick={() => handleInputToScreen("7")}
         >
           <p>7</p>
         </div>
-
+  
         <div
           className={calculatorBtnStyle}
           onClick={() => handleInputToScreen("8")}
@@ -342,7 +339,7 @@ const Calculator = () => {
           className={calculatorBtnStyle}
           onClick={() => handleInputToScreen("**")}
         >
-          x^y
+          xʸ
         </div>
         <div className={calculatorBtnStyle} onClick={() => handleLog()}>
           log
@@ -359,7 +356,7 @@ const Calculator = () => {
       </>
     );
   };
-
+  
   const handleTrig = (type) => {
     const toRadians = (degrees) => degrees * (Math.PI / 180);
 
@@ -448,7 +445,7 @@ const Calculator = () => {
               />
             </div>
             <div
-              className={`grid gap-2 ${
+              className={`grid gap-2 md:text-[1.1rem] ${
                 calculatorType == "standard"
                   ? "grid-cols-3"
                   : "grid-cols-4 items-stretch"
