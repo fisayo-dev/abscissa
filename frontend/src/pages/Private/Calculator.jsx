@@ -361,31 +361,23 @@ const Calculator = () => {
   };
 
   const handleTrig = (type) => {
-    if (type == "sin") {
+    const toRadians = (degrees) => degrees * (Math.PI / 180);
+  
+    if (type === "sin") {
       setSmallScreen(`sin(${largeScreen})`);
-      let sineAnswer = 0;
-      if (largeScreen == 30 || largeScreen == 90) {
-        sineAnswer = Math.ceil(
-          Math.sin(Number(largeScreen) * 0.0174532897390384939834)
-        );
-      } else {
-        sineAnswer = Math.sin(Number(largeScreen) * 0.0174532897390384939834);
-      }
-      setLargeScreen(sineAnswer.toString());
-    } else if (type == "cos") {
+      const sineAnswer = Math.sin(toRadians(Number(largeScreen))).toFixed(10);
+      setLargeScreen(sineAnswer);
+    } else if (type === "cos") {
       setSmallScreen(`cos(${largeScreen})`);
-      const cosAnswer = Math.cos(
-        Number(largeScreen) * 0.0174532897390384939834
-      );
-      setLargeScreen(cosAnswer.toString());
-    } else if (type == "tan") {
+      const cosAnswer = Math.cos(toRadians(Number(largeScreen))).toFixed(10);
+      setLargeScreen(cosAnswer);
+    } else if (type === "tan") {
       setSmallScreen(`tan(${largeScreen})`);
-      const tanAnswer = Math.tan(
-        Number(largeScreen) * 0.0174532897390384939834
-      );
-      setLargeScreen(tanAnswer.toString());
+      const tanAnswer = Math.tan(toRadians(Number(largeScreen))).toFixed(10);
+      setLargeScreen(tanAnswer);
     }
   };
+  
 
   const handleInverse = () => {
     setSmallScreen(`1/(${largeScreen})`);
