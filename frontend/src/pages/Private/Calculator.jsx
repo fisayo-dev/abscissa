@@ -387,8 +387,8 @@ const Calculator = () => {
 
   const handleLog = () => {
     setSmallScreen(`log(${largeScreen})`);
-    const answer = Math.log10(Number(largeScreen));
-    setLargeScreen(answer.toString());
+    const answer = Math.log10(Number(largeScreen)).toFixed(10);
+    setLargeScreen(answer);
   };
 
   const handleLn = () => {
