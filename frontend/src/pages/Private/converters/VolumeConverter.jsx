@@ -96,13 +96,13 @@ const VolumeConverter = () => {
     // When input value or units change, update the output value
     const convertedValue = convertVolume(inputValue, convertFrom, convertTo);
     setOutputValue(convertedValue);
-  }, [inputValue, convertFrom]);
+  }, [convertFrom]);
 
   useEffect(() => {
     // When input value or units change, update the output value
     const convertedValue = convertVolume(outputValue, convertTo, convertFrom);
     setInputValue(convertedValue);
-  }, [outputValue, convertTo]);
+  }, [convertTo]);
 
   return (
     <div className="w-full md:w-4/5 2xl:w-3/5 mx-auto">
