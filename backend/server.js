@@ -20,7 +20,12 @@ app.use(cors())
 app.use(express.json({ limit: '50mb' }))
 
 // Routes
-app.use('/api/v1/users',usersRouters)
+app.use('/api/v1/users', usersRouters)
+
+// Test file to check if backend route is working
+app.get('/', (req,res)   => {
+    res.send(`Backend route working -  ${req.method}`)
+})
 
 // Setting up mongodb connection
 
