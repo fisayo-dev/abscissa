@@ -5,8 +5,7 @@ import mongoose from 'mongoose'
 dotenv.config()
 
 const createUser = async (req, res) => {
-    
-    
+        
 }
 const getUsers = async (req, res) => {
     const allUsers = await User.find()

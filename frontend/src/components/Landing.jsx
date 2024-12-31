@@ -2,8 +2,22 @@ import { Link } from "react-router-dom";
 import { PiIcon, SearchIcon } from "lucide-react";
 
 import brain_svg from "../assets/brain_svg.png";
+import { useEffect } from "react";
 
 const Landing = () => {
+  const fetchData = async () => {
+    try {
+      const res = await fetch('/api/');
+      const data = await res.json();
+      console.log(data)
+    } catch (err) {
+      console.error(err.message);
+    }
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
   return (
     <div>
       <div className="py-5">
