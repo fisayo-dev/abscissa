@@ -10,6 +10,10 @@ const UserSchema = new mongoose.Schema({
     allWhiteboards: [{
         type: mongoose.Schema.Types.ObjectId, ref:
         'Whiteboard'
+    }],
+    allHistorys: [{
+        type: mongoose.Schema.Types.ObjectId, ref:
+        'History'
     }]
 })
 
