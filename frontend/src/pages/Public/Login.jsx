@@ -1,12 +1,55 @@
 import { Eye, EyeSlash, Key, User } from "iconsax-react";
 import { Logo } from "../../components";
-import { Rocket, Users } from "lucide-react";
-import { useState } from "react";
+import { Rocket } from "lucide-react";
+import { useEffect, useState } from "react";
 import Google from "../../assets/Google.svg";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useAuth } from "../../contexts/AuthContext";
 
 const Login = () => {
+  const { user, login } = useAuth();
   const [showPassword, setShowPassword] = useState(false);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (user) {
+      navigate("/dashboard");
+    }
+  }, [user, navigate]);
+
+  const submitForm = async (e) => {
+    e.preventDefault();
+    if (
+      password.trim() == "" ||
+      email.trim() == "" 
+    ) {
+      alert("Pls fill in the fields");
+      return;
+    }
+
+    try {
+      const res = await fetch("/api/v1/users/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          email,
+          password,
+        }),
+      });
+      const data = await res.json();
+      if (data.token) {
+        login(data.token);
+      } else {
+        alert(data.message);
+      }
+    } catch (err) {
+      console.error("Error:", err.message);
+    }
+  };
+
   return (
     <div className="xl:grid login-grid">
       <div className="hidden xl:grid place-items-center dark-bg-blue border-r-[0.1rem] border-l-slate-500 shadow-md">
@@ -25,7 +68,7 @@ const Login = () => {
                 mathematics.
               </p>
             </div>
-            <form action="" className="grid gap-6 mt-5 w-full">
+            <form onSubmit={submitForm} className="grid gap-6 mt-5 w-full">
               <div className="grid gap-3">
                 <div className="grid gap-3">
                   <label className="font-bold text-slate-300">
@@ -38,6 +81,8 @@ const Login = () => {
                         type="email"
                         className="w-full"
                         placeholder="olufisayobadina@gmail.com"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
                       />
                     </div>
                   </div>
@@ -52,6 +97,8 @@ const Login = () => {
                         type={showPassword ? "text" : "password"}
                         className="w-full"
                         placeholder="My very strong password"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
                       />
                       <div
                         className="cursor-pointer"
@@ -76,7 +123,7 @@ const Login = () => {
               <div className="text-sm text-center flex gap-1 justify-center">
                 <p>Are you new here?</p>
                 <Link to="/signup" className="color-pink hover:underline">
-                   Signup
+                  Signup
                 </Link>
               </div>
             </form>

@@ -4,7 +4,7 @@ import brain_svg from "../assets/brain_svg.png";
 
 const AuthContext = createContext();
 
-export const AuthProvider = ({ children }) => {
+export const AuthProvider = ({children }) => {
   const [appLoading, setAppLoading] = useState(false);
   const [user, setUser] = useState(null);
 

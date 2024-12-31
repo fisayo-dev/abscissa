@@ -34,6 +34,27 @@ const createUser = async (req, res) => {
         res.status(500).json({ message: 'Error registering user' });
     }
 }
+
+const loginUser = async (req, res) => {
+    const { email, password } = req.body;
+    try {
+
+        const user = await User.findOne({ email })
+        
+        if (!user) return res.status(400).json({ message: "Sorry, but you don't seem to have an account" })
+            
+        // Check the password
+        const isPasswordValid = await bcrypt.compare(password, user.password)
+        if (!isPasswordValid) return res.status(401).json({ message: 'Incorrect password' })
+        
+        // Generate a JWT
+        const token = jwt.sign({ user }, SECRET_KEY, { expiresIn: '1h' });
+        res.status(200).json({ token })
+    } catch (err) {
+        res.status(500).json({messgae: 'An error occured while trying to log in the user'})
+    }
+    
+}
 const getUsers = async (req, res) => {
     const allUsers = await User.find()
     res.status(200).json(allUsers)
@@ -48,5 +69,5 @@ const updateUser = async (req, res) => {
     
 }
 
-export { createUser, deleteUser, getUserInfoByID, getUsers, updateUser }
+export { createUser, deleteUser, loginUser, getUserInfoByID, getUsers, updateUser }
 
