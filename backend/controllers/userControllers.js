@@ -1,6 +1,6 @@
-import mongoose from 'mongoose'
-import User from '../mongodb/models/user.js'
+import User from '../mongodb/models/User.js'
 import * as dotenv from 'dotenv'
+import mongoose from 'mongoose'
 
 dotenv.config()
 
