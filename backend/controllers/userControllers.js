@@ -1,11 +1,38 @@
 import User from '../mongodb/models/User.js'
 import * as dotenv from 'dotenv'
-import mongoose from 'mongoose'
-
+import bcrypt from 'bcryptjs'
+import jwt from 'jsonwebtoken';
 dotenv.config()
 
+const SECRET_KEY = process.env.SECRET_KEY;
+
 const createUser = async (req, res) => {
+    const { first_name, last_name, email, password } = req.body
+    
+    try {
+        // Hash the user password
+        const hashedPassword = await bcrypt.hash(password, 20);
         
+        const userExits = await User.findOne({ email })
+
+        // If user exist return the user
+        if (userExits) return res.status(400).json({ message: 'User already exist' });
+        
+        // If user doesn't exist, Create user 
+        const newUser = new User({
+            first_name, last_name, email, password: hashedPassword, all_whiteboards: [], all_historys: [], plan: 'free', education_grade: 'College'    
+        })
+        const savedUser = await newUser.save();
+        console.log(savedUser)
+
+        // Generate a JWT
+        const token = jwt.sign({ savedUser }, SECRET_KEY, { expiresIn: '1h' });
+
+        // Return the token to the client
+        res.status(201).json({ token });
+    } catch (err) {
+        res.status(500).json({ message: 'Error registering user' });
+    }
 }
 const getUsers = async (req, res) => {
     const allUsers = await User.find()
