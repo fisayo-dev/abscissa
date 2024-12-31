@@ -1,5 +1,5 @@
 import { useContext, createContext, useState, useEffect } from "react";
-// import { jwtDecode } from "jwt-decode";
+import { jwtDecode } from "jwt-decode";
 import brain_svg from "../assets/brain_svg.png";
 
 const AuthContext = createContext();
@@ -10,16 +10,14 @@ export const AuthProvider = ({ children }) => {
 
   useEffect(() => {
     setAppLoading(true);
-    setTimeout(() => {
-      setAppLoading(false);
-    }, 4000);
-    // const tokenKey = localStorage.getItem("TOKEN");
-    // if (tokenKey) {
-    //   const decoded = jwtDecode(tokenKey);
-    //   setUser(decoded);
-    // } else {
-    //   setUser(null);
-    // }
+    const tokenKey = localStorage.getItem("TOKEN");
+    if (tokenKey) {
+        const decoded = jwtDecode(tokenKey);
+        setUser(decoded);
+    } else {
+        setUser(null);
+    }
+    setAppLoading(false);
   }, []);
 
   const login = (token) => {
@@ -53,14 +51,6 @@ export const AuthProvider = ({ children }) => {
       ) : (
         children
       )}
-      {/* {formLoading ? (
-        <div className="fixed w-[100vw] h-[100vh] flex items-center justify-center bg-blue overflow-hidden">
-          <img src={brain_svg} alt="" className="h-11 md:h-20 w-11 md:w-20" />
-          <h2 className="text-4xl md:text-6xl font-extrabold">Abscissa</h2>
-        </div>
-      ) : (
-        children
-      )} */}
     </AuthContext.Provider>
   );
 };

@@ -1,12 +1,59 @@
 import { Eye, EyeSlash, Key, User } from "iconsax-react";
 import { Logo } from "../../components";
 import { Rocket, Users } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Google from "../../assets/Google.svg";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useAuth } from "../../contexts/AuthContext";
 
 const Signup = () => {
+  const { user, login } = useAuth();
   const [showPassword, setShowPassword] = useState(false);
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (user) {
+      navigate("/dashboard");
+    }
+  }, [user, navigate]);
+  const submitForm = async (e) => {
+    e.preventDefault();
+    if (
+      password.trim() == "" ||
+      firstName.trim() == "" ||
+      email.trim() == "" ||
+      lastName.trim() == ""
+    ) {
+      alert("Pls fill in the fields");
+      return;
+    }
+
+    try {
+      const res = await fetch("/api/v1/users/create", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          first_name: firstName,
+          last_name: lastName,
+          email,
+          password,
+        }),
+      });
+      const data = await res.json();
+      if (data.token) {
+        login(data.token);
+      } else {
+        alert(data.message);
+      }
+    } catch (err) {
+      console.error("Error:", err.message);
+    }
+  };
   return (
     <div className="xl:grid form-grid">
       <div className="grid h-[100vh] overflow-scroll place-items-center">
@@ -22,7 +69,7 @@ const Signup = () => {
                 Mathematics
               </p>
             </div>
-            <form action="" className="grid gap-6 mt-5 w-full">
+            <form onSubmit={submitForm} className="grid gap-6 mt-5 w-full">
               <div className="grid gap-3">
                 <div className="flex gap-4 items-center">
                   <div className="grid gap-3">
@@ -36,6 +83,8 @@ const Signup = () => {
                           type="text"
                           className="w-full"
                           placeholder="Fisayo"
+                          value={firstName}
+                          onChange={(e) => setFirstName(e.target.value)}
                         />
                       </div>
                     </div>
@@ -51,6 +100,8 @@ const Signup = () => {
                           type="text"
                           className="w-full"
                           placeholder="Obadina"
+                          value={lastName}
+                          onChange={(e) => setLastName(e.target.value)}
                         />
                       </div>
                     </div>
@@ -68,6 +119,8 @@ const Signup = () => {
                         type="email"
                         className="w-full"
                         placeholder="olufisayobadina@gmail.com"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
                       />
                     </div>
                   </div>
@@ -82,6 +135,8 @@ const Signup = () => {
                         type={showPassword ? "text" : "password"}
                         className="w-full"
                         placeholder="My very strong password"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
                       />
                       <div
                         className="cursor-pointer"
