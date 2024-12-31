@@ -5,6 +5,7 @@ const WhiteboardSchema = new mongoose.Schema({
     date_created: {type: Date, requird: true},
     publicity: {type: Boolean, requird: true},
     content: { type: String, requird: true },
+    creator: {type: mongoose.Schema.Types.ObjectId, ref: 'User'},
 })
 
 const WhiteboardModel = mongoose.model('Whiteboard', WhiteboardSchema)
