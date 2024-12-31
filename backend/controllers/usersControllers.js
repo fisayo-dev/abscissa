@@ -1,3 +1,4 @@
+import User from '../mongodb/models/User.js'
 import * as dotenv from 'dotenv'
 
 dotenv.config()
