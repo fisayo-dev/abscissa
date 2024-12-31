@@ -8,7 +8,7 @@ const createUser = async (req, res) => {
 const getUsers = async (req, res) => {
     
 }
-const getUser = async (req, res) => {
+const getUserInfoByID = async (req, res) => {
     
 }
 const deleteUser = async (req, res) => {
@@ -18,4 +18,4 @@ const updateUser = async (req, res) => {
     
 }
 
-export { createUser, deleteUser, getUser, getUsers, updateUser }
+export { createUser, deleteUser, getUserInfoByID, getUsers, updateUser }
