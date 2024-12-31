@@ -7,11 +7,11 @@ const UserSchema = new mongoose.Schema({
     password: {type: String, required: true},
     plan: {type: String, required: true},
     education_grade: { type: String, required: true },
-    allWhiteboards: [{
+    all_whiteboards: [{
         type: mongoose.Schema.Types.ObjectId, ref:
         'Whiteboard'
     }],
-    allHistorys: [{
+    all_historys: [{
         type: mongoose.Schema.Types.ObjectId, ref:
         'History'
     }]
