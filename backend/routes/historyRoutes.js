@@ -3,7 +3,7 @@ import { createHistory, deleteHistory, getHistorys } from '../controllers/histor
 
 const router = express.Router()
 
-router.get('/historys', getHistorys)
+router.get('/', getHistorys)
 router.put('/create', createHistory)
 router.delete('/:id', deleteHistory)
 
