@@ -1,9 +1,13 @@
+import { useAuth } from "@/contexts/AuthContext";
 import { Pencil, Users } from "lucide-react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
 const Profile = () => {
   const [userAlive, setUserAlive] = useState(true);
+  const { user } = useAuth()
+
+  console.log(user)
   const sampleWhiteBoards = [
     { title: "Database Schema Planning", date: "Today" },
     { title: "Complex Polynomial Equation", date: "Yesterday" },

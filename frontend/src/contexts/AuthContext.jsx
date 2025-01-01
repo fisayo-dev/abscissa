@@ -13,7 +13,7 @@ export const AuthProvider = ({ children }) => {
     const tokenKey = localStorage.getItem("TOKEN");
     if (tokenKey) {
       const decoded = jwtDecode(tokenKey);
-      setUser(decoded);
+      setUser(decoded.savedUser);
     } else {
       setUser(null);
     }
@@ -23,7 +23,7 @@ export const AuthProvider = ({ children }) => {
   const login = (token) => {
     localStorage.setItem("TOKEN", token);
     const decoded = jwtDecode(token);
-    setUser(decoded);
+    setUser(decoded.savedUser);
   };
 
   const logout = () => {
