@@ -6,6 +6,7 @@ import mongoose from 'mongoose'
 
 // Routes
 import usersRouters from './routes/usersRouters.js'
+import historyRoutes from './routes/historyRoutes.js'
 
 dotenv.config()
 const app = express()
@@ -21,6 +22,7 @@ app.use(express.json({ limit: '50mb' }))
 
 // Routes
 app.use('/api/v1/users', usersRouters)
+app.use('/api/v1/historys', historyRoutes)
 
 // Test file to check if backend route is working
 app.get('/api/', (req,res)   => {
