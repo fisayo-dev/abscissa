@@ -1,13 +1,13 @@
 import { useAuth } from "@/contexts/AuthContext";
-import { Pencil, Users } from "lucide-react";
+import { GraduationCap, Pencil, Users } from "lucide-react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
 const Profile = () => {
   const [userAlive, setUserAlive] = useState(true);
-  const { user } = useAuth()
+  const { user } = useAuth();
 
-  console.log(user)
+  console.log(user);
   const sampleWhiteBoards = [
     { title: "Database Schema Planning", date: "Today" },
     { title: "Complex Polynomial Equation", date: "Yesterday" },
@@ -44,9 +44,14 @@ const Profile = () => {
                 style={{ backgroundImage: `url("/brain_svg.png") ` }}
               />
               <div className="md:gap-1 text-center md:text-left">
-                <h2 className="text-2xl">Fisayo Obadina</h2>
-                <p>olufisayobadina@gmail.com</p>
-                <p className="text-sm">College Student</p>
+                <h2 className="text-2xl">
+                  {user.first_name} {user.last_name}
+                </h2>
+                <p>{user.email}</p>
+                <div className="flex items-center gap-1 justify-center md:justify-normal">
+                  <GraduationCap className="h-5 w-5 color-pink"/>
+                  <p className="text-sm">{user.education_grade}</p>
+                </div>
               </div>
               <div className="flex md:hidden items-center cursor-pointer bg-slate-800 justify-center hover:bg-slate-700 mx-auto px-4 py-3 rounded-full gap-2">
                 {!userAlive && (
@@ -67,7 +72,7 @@ const Profile = () => {
           <div className="grid gap-4">
             <h2 className="text-xl">Recent Whiteboards</h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-5">
-              {sampleWhiteBoards.map((board,index) => (
+              {sampleWhiteBoards.map((board, index) => (
                 <Link key={index} className="grid gap-2">
                   <div className="h-48 md:h-32 bg-slate-700  hover:bg-slate-500 rounded-lg" />
                   <div className="grid gap-1 ">
