@@ -31,15 +31,15 @@ const Calculator = () => {
     "p-3 rounded-lg text-center cursor-pointer hover:bg-slate-600 bg-slate-700 flex justify-center";
 
   // Funciton to save history to the database
-  const createHistory = async () => {
+  const createHistory = async (expression,result) => {
     try {
       await fetch("/api/v1/historys/create", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           date: new Date(),
-          expression: "smallScreen",
-          result: "largeScreen",
+          expression,
+          result,
           calculator_type: calculatorType,
           email: user.email,
         }),
@@ -96,7 +96,7 @@ const Calculator = () => {
     setSmallScreen(largeScreen);
     const evaluatedAnswer = eval(largeScreen);
     setLargeScreen(evaluatedAnswer);
-    createHistory();
+    createHistory(largeScreen,evaluatedAnswer);
   };
 
   const StandardBtns = () => {
