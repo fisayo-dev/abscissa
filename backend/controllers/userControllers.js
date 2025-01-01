@@ -1,4 +1,4 @@
-import User from '../mongodb/models/User.js'
+import User from '../mongodb/models/user.js'
 import * as dotenv from 'dotenv'
 import bcrypt from 'bcryptjs'
 import jwt from 'jsonwebtoken';
