@@ -29,7 +29,7 @@ const createHistory = async (req, res) => {
             
         // Create history document
         const newHistory = new History({
-            date, expression, result, calculator_type, creator:user._id
+            date, expression, result, calculator_type, creator: user._id
         })
         await newHistory.save()
         
@@ -39,12 +39,11 @@ const createHistory = async (req, res) => {
         
         // await session.commitTransaction()
         
-        res.status(201).json({message: 'History successfully created'})
+        res.status(201).json({ message: 'History successfully created' })
         
     } catch (err) {
-        res.status(500).json({ message: err.message})
-}
-    
+        res.status(500).json({ message: err.message })
+    }
 }
 
 const deleteHistory = async (req, res) => {

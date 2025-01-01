@@ -24,6 +24,40 @@ const Calculator = () => {
   const [smallScreen, setSmallScreen] = useState("");
   const [largeScreen, setLargeScreen] = useState("0");
   const { user } = useAuth();
+  const [userDetails, setUserDetails] = useState(null);
+
+  useEffect(() => {
+    const fetchUserDetails = async () => {
+      if (!user) {
+        setError("User ID not found.");
+        setIsLoading(false);
+        return;
+      }
+
+      try {
+        const token = localStorage.getItem("TOKEN");
+        if (!token) throw new Error("Authentication token missing.");
+
+        const response = await fetch(`/api/v1/users/${user}`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+
+        if (!response.ok) throw new Error("Failed to fetch user details");
+
+        const data = await response.json();
+        setUserDetails(data);
+      } catch (err) {
+        console.error(err);
+        setError(err.message);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchUserDetails();
+  }, [user]);
 
   const [calculatorType, setCalculatorType] = useState("scientific");
 
@@ -50,7 +84,7 @@ const Calculator = () => {
           expression,
           result,
           calculator_type: calculatorType,
-          email: user.email,
+          email: userDetails.email,
         }),
       });
     } catch (err) {
