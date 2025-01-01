@@ -4,7 +4,7 @@ import { createHistory, deleteHistory, getHistorys } from '../controllers/histor
 const router = express.Router()
 
 router.get('/', getHistorys)
-router.put('/create', createHistory)
+router.post('/create', createHistory)
 router.delete('/:id', deleteHistory)
 
 export default router

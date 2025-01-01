@@ -5,6 +5,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { useAuth } from "@/contexts/AuthContext";
 import { Minus } from "iconsax-react";
 import {
   CalculatorIcon,
@@ -22,11 +23,31 @@ import { useState } from "react";
 const Calculator = () => {
   const [smallScreen, setSmallScreen] = useState("");
   const [largeScreen, setLargeScreen] = useState("0");
+  const { user } = useAuth();
 
   const [calculatorType, setCalculatorType] = useState("scientific");
 
   const calculatorBtnStyle =
     "p-3 rounded-lg text-center cursor-pointer hover:bg-slate-600 bg-slate-700 flex justify-center";
+
+  // Funciton to save history to the database
+  const createHistory = async () => {
+    try {
+      await fetch("/api/v1/historys/create", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          date: new Date(),
+          expression: "smallScreen",
+          result: "largeScreen",
+          calculator_type: calculatorType,
+          email: user.email,
+        }),
+      });
+    } catch (err) {
+      console.log("Error:", err.message);
+    }
+  };
 
   // Calculator Btn Functions
   const handleDeleteScreen = () => {
@@ -72,9 +93,10 @@ const Calculator = () => {
   };
 
   const handleEqualTo = () => {
-    const evaluatedAnswer = eval(largeScreen);
     setSmallScreen(largeScreen);
+    const evaluatedAnswer = eval(largeScreen);
     setLargeScreen(evaluatedAnswer);
+    createHistory();
   };
 
   const StandardBtns = () => {
@@ -224,7 +246,7 @@ const Calculator = () => {
         >
           %
         </div>
-  
+
         <div className={calculatorBtnStyle} onClick={() => handleSquare()}>
           <p>x²</p>
         </div>
@@ -237,7 +259,7 @@ const Calculator = () => {
         >
           <XCircleIcon className="h-6 w-6" />
         </div>
-  
+
         <div
           className={calculatorBtnStyle}
           onClick={() => handleInputToScreen("1")}
@@ -262,7 +284,7 @@ const Calculator = () => {
         >
           <X />
         </div>
-  
+
         <div
           className={calculatorBtnStyle}
           onClick={() => handleInputToScreen("4")}
@@ -275,7 +297,7 @@ const Calculator = () => {
         >
           <p>5</p>
         </div>
-  
+
         <div
           className={calculatorBtnStyle}
           onClick={() => handleInputToScreen("6")}
@@ -288,14 +310,14 @@ const Calculator = () => {
         >
           <DivideIcon className="h-6 w-6" />
         </div>
-  
+
         <div
           className={calculatorBtnStyle}
           onClick={() => handleInputToScreen("7")}
         >
           <p>7</p>
         </div>
-  
+
         <div
           className={calculatorBtnStyle}
           onClick={() => handleInputToScreen("8")}
@@ -356,7 +378,7 @@ const Calculator = () => {
       </>
     );
   };
-  
+
   const handleTrig = (type) => {
     const toRadians = (degrees) => degrees * (Math.PI / 180);
 

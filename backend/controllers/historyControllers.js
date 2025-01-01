@@ -11,9 +11,9 @@ const createHistory = async (req, res) => {
 
         const { date, expression, result, calculator_type, email } = req.body;
         
-        // Start session
-        const session = await mongoose.startSession()
-        session.startTransaction()
+        // // Start session
+        // const session = await mongoose.startSession()
+        // session.startTransaction()
         
         // Find if user exist
         const user = await User.findOne({ email })
@@ -24,13 +24,13 @@ const createHistory = async (req, res) => {
         const newHistory = new History({
             date, expression, result, calculator_type, creator:user._id
         })
-        await newHistory.save({ session })
+        await newHistory.save()
         
         // Update history array for particular user
         user.all_historys.push(newHistory._id)
-        await user.save({ session })
+        await user.save()
         
-        await session.commitTransaction()
+        // await session.commitTransaction()
         
         res.status(201).json({message: 'History successfully created'})
         
