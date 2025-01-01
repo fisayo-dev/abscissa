@@ -1,6 +1,6 @@
 import { Eye, EyeSlash, Key, User } from "iconsax-react";
 import { Logo } from "../../components";
-import { Rocket } from "lucide-react";
+import { Loader2Icon, Rocket } from "lucide-react";
 import { useEffect, useState } from "react";
 import Google from "../../assets/Google.svg";
 import { Link, useNavigate } from "react-router-dom";
@@ -12,6 +12,7 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loadingIntroPhase, setLoadingIntroPhase] = useState(false);
+  const [formLoading, setFormLoading] = useState(false);
 
   const navigate = useNavigate();
 
@@ -24,6 +25,7 @@ const Login = () => {
   }, [user, navigate]);
 
   const submitForm = async (e) => {
+    setFormLoading(true)
     e.preventDefault();
     if (password.trim() == "" || email.trim() == "") {
       alert("Pls fill in the fields");
@@ -48,12 +50,20 @@ const Login = () => {
     } catch (err) {
       console.error("Error:", err.message);
     }
+    setFormLoading(false)
   };
 
   return (
     <>
       {!loadingIntroPhase && (
         <div className="xl:grid login-grid">
+          {formLoading && (
+            <div className="fixed z-50 overflow-hidden w-[100vw] h-[100vh]">
+              <div className="h-full flex items-center justify-center bg-blue overflow-hidden">
+                <Loader2Icon className="mx-auto h-36 w-36 animate-spin color-pink" />
+              </div>
+            </div>
+          )}
           <div className="hidden xl:grid place-items-center dark-bg-blue border-r-[0.1rem] border-l-slate-500 shadow-md">
             <div className="flex flex-col"></div>
           </div>
