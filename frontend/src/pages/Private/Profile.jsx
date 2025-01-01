@@ -91,7 +91,7 @@ const Profile = () => {
 };
 
 const ActionButton = () => (
-  <div className="flex items-center cursor-pointer bg-slate-800 justify-center hover:bg-slate-700 px-4 py-3 rounded-full gap-2">
+  <div className="flex items-center cursor-pointer bg-slate-800 justify-center hover:bg-slate-700 px-3 py-2 text-sm rounded-full gap-2">
     <Pencil className="h-5 w-6" />
     <p className="hidden md:block">Edit Profile</p>
   </div>
