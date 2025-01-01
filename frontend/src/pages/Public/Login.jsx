@@ -11,21 +11,21 @@ const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [loadingIntroPhase, setLoadingIntroPhase] = useState(false);
 
   const navigate = useNavigate();
 
   useEffect(() => {
+    setLoadingIntroPhase(true)
     if (user) {
       navigate("/dashboard");
     }
+    setLoadingIntroPhase(false)
   }, [user, navigate]);
-
+  
   const submitForm = async (e) => {
     e.preventDefault();
-    if (
-      password.trim() == "" ||
-      email.trim() == "" 
-    ) {
+    if (password.trim() == "" || email.trim() == "") {
       alert("Pls fill in the fields");
       return;
     }
@@ -51,7 +51,7 @@ const Login = () => {
   };
 
   return (
-    <div className="xl:grid login-grid">
+    <div className={`${loadingIntroPhase ? "hidden" : " xl:grid login-grid"}`}>
       <div className="hidden xl:grid place-items-center dark-bg-blue border-r-[0.1rem] border-l-slate-500 shadow-md">
         <div className="flex flex-col"></div>
       </div>

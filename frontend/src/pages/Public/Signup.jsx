@@ -13,13 +13,17 @@ const Signup = () => {
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [loadingIntroPhase, setLoadingIntroPhase] = useState(true);
+
 
   const navigate = useNavigate();
 
   useEffect(() => {
+    setLoadingIntroPhase(true)
     if (user) {
       navigate("/dashboard");
     }
+    setLoadingIntroPhase(false)
   }, [user, navigate]);
   const submitForm = async (e) => {
     e.preventDefault();
@@ -55,7 +59,7 @@ const Signup = () => {
     }
   };
   return (
-    <div className="xl:grid form-grid">
+    <div className={`${loadingIntroPhase ? "hidden" : " xl:grid login-grid"}`}>
       <div className="grid h-[100vh] overflow-scroll place-items-center">
         <div className="px-10 py-2">
           <div className="flex flex-col gap-4 place-items-center">

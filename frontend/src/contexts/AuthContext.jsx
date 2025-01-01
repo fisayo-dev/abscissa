@@ -4,7 +4,7 @@ import brain_svg from "../assets/brain_svg.png";
 
 const AuthContext = createContext();
 
-export const AuthProvider = ({children }) => {
+export const AuthProvider = ({ children }) => {
   const [appLoading, setAppLoading] = useState(false);
   const [user, setUser] = useState(null);
 
@@ -12,10 +12,10 @@ export const AuthProvider = ({children }) => {
     setAppLoading(true);
     const tokenKey = localStorage.getItem("TOKEN");
     if (tokenKey) {
-        const decoded = jwtDecode(tokenKey);
-        setUser(decoded);
+      const decoded = jwtDecode(tokenKey);
+      setUser(decoded);
     } else {
-        setUser(null);
+      setUser(null);
     }
     setAppLoading(false);
   }, []);
