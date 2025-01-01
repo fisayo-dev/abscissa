@@ -1,15 +1,46 @@
 import User from '../mongodb/models/user.js'
 import History from '../mongodb/models/history.js'
+import mongoose from 'mongoose'
 
-const getHistorys = (req, res) => {
+const getHistorys = async (req, res) => {
     res.send(`Deleted history ${req.query.id}`)
 }
 
-const createHistory = (req, res) => {
+const createHistory = async (req, res) => {
+    try {
+
+        const { date, expression, result, calculator_type, email } = req.body;
+        
+        // Start session
+        const session = await mongoose.startSession()
+        session.startTransaction()
+        
+        // Find if user exist
+        const user = await User.findOne({ email })
+        
+        if (!user) throw new Error('User not found')
+            
+        // Create history document
+        const newHistory = new History({
+            date, expression, result, calculator_type, creator:user._id
+        })
+        await newHistory.save({ session })
+        
+        // Update history array for particular user
+        user.all_historys.push(newHistory._id)
+        await user.save({ session })
+        
+        await session.commitTransaction()
+        
+        res.status(201).json({message: 'History successfully created'})
+        
+    } catch (err) {
+        res.status(500).json({ message: err.message})
+}
     
 }
 
-const deleteHistory = (req, res) => {
+const deleteHistory = async (req, res) => {
     
 }
 
