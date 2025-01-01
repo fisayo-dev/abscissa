@@ -1,13 +1,11 @@
-import express from 'express'
-import { createUser,updateUser,deleteUser,getUserInfoByID,getUsers, loginUser } from '../controllers/userControllers.js'
+import express from 'express';
+import { createUser, loginUser, getUserInfoByID } from '../controllers/userControllers.js';
+import authMiddleware from '../middlewares/authMiddleware.js';
 
-const router = express.Router()
+const router = express.Router();
 
-router.post('/create', createUser)
-router.post('/login', loginUser)
-router.get('/', getUsers)
-router.get('/:id', getUserInfoByID)
-router.delete('/:id', deleteUser)
-router.put('/:id', updateUser)
-
-export default router
+// User Routes
+router.post('/create', createUser);
+router.post('/login', loginUser);
+router.get('/:id', authMiddleware, getUserInfoByID); // Protected Route
+export default router;

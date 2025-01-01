@@ -18,7 +18,7 @@ import {
   X,
   XCircleIcon,
 } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const Calculator = () => {
   const [smallScreen, setSmallScreen] = useState("");
@@ -30,8 +30,17 @@ const Calculator = () => {
   const calculatorBtnStyle =
     "p-3 rounded-lg text-center cursor-pointer hover:bg-slate-600 bg-slate-700 flex justify-center";
 
+  // Fetching all histories
+  const fetchHistories = async () => {
+    const res = await fetch(`/api/v1/historys?creator=${user._id}`, {
+      headers: { "Content-Type": "application/json" },
+    });
+    const data = await res.json();
+    console.log(data);
+  };
+
   // Funciton to save history to the database
-  const createHistory = async (expression,result) => {
+  const createHistory = async (expression, result) => {
     try {
       await fetch("/api/v1/historys/create", {
         method: "POST",
@@ -96,7 +105,7 @@ const Calculator = () => {
     setSmallScreen(largeScreen);
     const evaluatedAnswer = eval(largeScreen);
     setLargeScreen(evaluatedAnswer);
-    createHistory(largeScreen,evaluatedAnswer);
+    createHistory(largeScreen, evaluatedAnswer);
   };
 
   const StandardBtns = () => {
@@ -414,6 +423,10 @@ const Calculator = () => {
     const answer = Math.log(Number(largeScreen)).toFixed(10);
     setLargeScreen(answer);
   };
+
+  useEffect(() => {
+    fetchHistories();
+  }, []);
 
   return (
     <div

@@ -3,7 +3,14 @@ import History from '../mongodb/models/history.js'
 import mongoose from 'mongoose'
 
 const getHistorys = async (req, res) => {
-    res.send(`Deleted history ${req.query.id}`)
+    const { creator } = req.query;
+    try {
+        const creatorHistories = History.findOne({ creator })
+        res.status(200).json({ historys: creatorHistories })
+    } catch (err) {
+        res.status(500).json({ message: 'Error trying to get histories' })
+    }
+    
 }
 
 const createHistory = async (req, res) => {
