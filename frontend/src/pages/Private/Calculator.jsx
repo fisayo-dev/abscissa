@@ -15,7 +15,7 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { useAuth } from "@/contexts/AuthContext";
-import { Clock, Minus, Trash } from "iconsax-react";
+import { Clock, Minus, Refresh, Trash } from "iconsax-react";
 import {
   CalculatorIcon,
   DivideIcon,
@@ -97,9 +97,11 @@ const Calculator = () => {
           Authorization: `Bearer ${token}`,
         },
       });
-      setHistoryList((histories) => histories.filter(history => history._id !== id))
+      setHistoryList((histories) =>
+        histories.filter((history) => history._id !== id)
+      );
     } catch (err) {
-      console.log('Error: ', err.message)
+      console.log("Error: ", err.message);
     }
   };
 
@@ -562,16 +564,27 @@ const Calculator = () => {
                           <p className="text-sm ">{history.expression}</p>
                           <p className="text-lg font-bold ">{history.result}</p>
                         </div>
-                        <div className="cursor-pointer" onClick={() => deleteHistory(history._id)}>
+                        <div
+                          className="cursor-pointer"
+                          onClick={() => deleteHistory(history._id)}
+                        >
                           <Trash className="h-6 w-6 text-red-500 hover:text-red-400" />
                         </div>
                       </div>
                     ))}
                   </div>
                 )}
-                {/* <DialogFooter>
-                  <Button type="submit">Save changes</Button>
-                </DialogFooter> */}
+                <DialogFooter>
+                  <div
+                    onClick={() => fetchHistories()}
+                    className="bg-pink dark-bg-pink rounded-full py-2 px-3 cursor-pointer"
+                  >
+                    <div className="flex justify-center gap-1 items-center">
+                      <Refresh className="h-5 w-5"/>
+                      <p>Refresh</p>
+                    </div>
+                  </div>
+                </DialogFooter>
               </DialogContent>
             </Dialog>
           </div>
