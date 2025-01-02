@@ -26,11 +26,12 @@ const Calculator = () => {
   const { user } = useAuth();
   const [userDetails, setUserDetails] = useState(null);
 
+  const token = localStorage.getItem("TOKEN");
+
   useEffect(() => {
     const fetchUserDetails = async () => {
       if (!user) {
         setError("User ID not found.");
-        setIsLoading(false);
         return;
       }
 
@@ -51,8 +52,6 @@ const Calculator = () => {
       } catch (err) {
         console.error(err);
         setError(err.message);
-      } finally {
-        setIsLoading(false);
       }
     };
 
@@ -66,8 +65,11 @@ const Calculator = () => {
 
   // Fetching all histories
   const fetchHistories = async () => {
-    const res = await fetch(`/api/v1/historys?creator=${user._id}`, {
-      headers: { "Content-Type": "application/json" },
+    const res = await fetch(`/api/v1/historys?creator=${user}`, {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `beared ${token}`,
+      },
     });
     const data = await res.json();
     console.log(data);
@@ -75,14 +77,13 @@ const Calculator = () => {
 
   // Funciton to save history to the database
   const createHistory = async (expression, result) => {
-    const token = localStorage.getItem('TOKEN')
     try {
       await fetch("/api/v1/historys/create", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`
-         },
+          Authorization: `Bearer ${token}`,
+        },
         body: JSON.stringify({
           date: new Date(),
           expression,
