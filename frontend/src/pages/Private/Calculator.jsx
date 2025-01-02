@@ -75,10 +75,14 @@ const Calculator = () => {
 
   // Funciton to save history to the database
   const createHistory = async (expression, result) => {
+    const token = localStorage.getItem('TOKEN')
     try {
       await fetch("/api/v1/historys/create", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`
+         },
         body: JSON.stringify({
           date: new Date(),
           expression,

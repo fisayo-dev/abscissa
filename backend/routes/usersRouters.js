@@ -4,8 +4,10 @@ import authMiddleware from '../middlewares/authMiddleware.js';
 
 const router = express.Router();
 
-// User Routes
+// Public Routes
 router.post('/create', createUser);
 router.post('/login', loginUser);
-router.get('/:id', authMiddleware, getUserInfoByID); // Protected Route
+
+// Protected Routes
+router.get('/:id', authMiddleware, getUserInfoByID); 
 export default router;
