@@ -1,6 +1,7 @@
 import { useContext, createContext, useState, useEffect } from "react";
 import {jwtDecode} from "jwt-decode";
 import brain_svg from "../assets/brain_svg.png";
+import { useNavigate } from "react-router-dom";
 
 const AuthContext = createContext();
 
@@ -8,12 +9,29 @@ export const AuthProvider = ({ children }) => {
   const [appLoading, setAppLoading] = useState(true); // Set app loading initially to true
   const [user, setUser] = useState(null);
 
+  
   useEffect(() => {
     const tokenKey = localStorage.getItem("TOKEN");
+
     if (tokenKey) {
-      const decoded = jwtDecode(tokenKey);
-      setUser(decoded.id);
+      try {
+        const decoded = jwtDecode(tokenKey);
+
+        // Check if the token is expired
+        const currentTime = Date.now() / 1000; // Current time in seconds
+        if (decoded.exp && decoded.exp < currentTime) {
+          // Token expired, log out
+          logout();
+        } else {
+          // Token is valid
+          setUser(decoded.id);
+        }
+      } catch (err) {
+        console.error("Invalid token:", err);
+        logout(); // If token decoding fails, log out the user
+      }
     }
+
     setAppLoading(false); // Set app loading to false once the token check is done
   }, []);
 
@@ -26,6 +44,7 @@ export const AuthProvider = ({ children }) => {
   const logout = () => {
     localStorage.removeItem("TOKEN");
     setUser(null);
+    // navigate("/login"); // Redirect the user to the login page
   };
 
   const contextData = {
