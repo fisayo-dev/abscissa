@@ -1,7 +1,12 @@
 import { useAuth } from "@/contexts/AuthContext";
 import { GraduationCap, Pencil } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
+import { Edit } from "iconsax-react";
+
+// Importing shadcn components
 import {
   Dialog,
   DialogContent,
@@ -12,16 +17,25 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 
-import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
-
 const Profile = () => {
   const [userDetails, setUserDetails] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [editProfile, setEditProfile] = useState(true);
   const { user, logout } = useAuth();
   const navigate = useNavigate();
+
+  // Profile edit Changes
+  const [newFirstName, setNewFirstName] = useState("");
+  const [newLastName, setNewLastName] = useState("");
+  const [newEducationGrade, setNewEducationGrade] = useState("");
+
+  // Refs for inputs to manage focus
+  const firstNameRef = useRef(null);
+  const lastNameRef = useRef(null);
+  const educationGradeRef = useRef(null);
+
+  // State for dialog visibility
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
 
   useEffect(() => {
     const fetchUserDetails = async () => {
@@ -60,6 +74,9 @@ const Profile = () => {
 
         const data = await response.json();
         setUserDetails(data);
+        setNewFirstName(data.first_name);
+        setNewLastName(data.last_name);
+        setNewEducationGrade(data.education_grade);
       } catch (err) {
         console.error(err);
         setError(err.message);
@@ -70,6 +87,57 @@ const Profile = () => {
 
     fetchUserDetails();
   }, [user, logout, navigate]);
+
+  useEffect(() => {
+    // Set focus on the first input when dialog opens
+    if (firstNameRef.current) {
+      firstNameRef.current.focus();
+    }
+  }, [userDetails]);
+
+  const handleProfileUpdate = async () => {
+    const token = localStorage.getItem("TOKEN");
+    if (!token) {
+      alert("Authentication token missing.");
+      return;
+    }
+
+    try {
+      const response = await fetch(`/api/v1/users/edit/${userDetails._id}`, {
+        method: "PUT", // Make sure to use PUT for updating data
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({
+          first_name: newFirstName,
+          last_name: newLastName,
+          education_grade: newEducationGrade,
+        }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.message || "Failed to update profile");
+      }
+
+      // Update the user details in state after successful update
+      setUserDetails(data.user);
+      setNewFirstName(data.user.first_name);
+      setNewLastName(data.user.last_name);
+      setNewEducationGrade(data.user.education_grade);
+
+      // Close the dialog after successful update
+      setIsDialogOpen(false);
+
+      alert("Profile updated successfully");
+    } catch (err) {
+      console.error(err);
+      setError(err.message);
+      alert("Error updating profile");
+    }
+  };
 
   if (isLoading) {
     return <p>Loading...</p>;
@@ -88,10 +156,6 @@ const Profile = () => {
       <div className="my-8">
         <div className="grid gap-10">
           <div className="relative bg-slate-900 rounded-lg p-5">
-            <div className="absolute bottom-4 right-4">
-              <ActionButton userDetails={userDetails} />
-            </div>
-
             <div className="md:flex grid justify-center md:justify-normal items-center gap-5">
               <div className="h-32 w-32 bg-blue border-4 border-slate-800 rounded-full mx-auto md:m-0 bg-cover bg-center" />
               <div className="md:gap-1 text-center md:text-left">
@@ -103,6 +167,64 @@ const Profile = () => {
                   <GraduationCap className="h-5 w-5 color-pink" />
                   <p className="text-sm">{userDetails.education_grade}</p>
                 </div>
+              </div>
+              <div className=" mx-auto md:absolute md:bottom-4 md:right-4">
+                <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
+                  <DialogTrigger asChild>
+                    <div className="bg-slate-800 cursor-pointer hover:bg-slate-700 rounded-full">
+                      <div className="px-3 py-2 flex items-center justify-center gap-2">
+                        <Edit className="h-5 w-5" />
+                        <p>Edit Profile</p>
+                      </div>
+                    </div>
+                  </DialogTrigger>
+                  <DialogContent className="sm:max-w-[425px]">
+                    <DialogHeader>
+                      <DialogTitle>Edit Profile</DialogTitle>
+                      <DialogDescription>
+                        Update your personal details below.
+                      </DialogDescription>
+                    </DialogHeader>
+                    <form
+                      className="grid gap-4"
+                      onSubmit={(e) => {
+                        e.preventDefault();
+                        handleProfileUpdate();
+                      }}
+                    >
+                      <div className="grid gap-2">
+                        <label className="font-bold">First Name</label>
+                        <Input
+                          ref={firstNameRef}
+                          placeholder="Place in your updated first name"
+                          value={newFirstName}
+                          onChange={(e) => setNewFirstName(e.target.value)}
+                        />
+                      </div>
+                      <div className="grid gap-2">
+                        <label className="font-bold">Last Name</label>
+                        <Input
+                          ref={lastNameRef}
+                          placeholder="Place in your updated last name"
+                          value={newLastName}
+                          onChange={(e) => setNewLastName(e.target.value)}
+                        />
+                      </div>
+                      <div className="grid gap-2">
+                        <label className="font-bold">Education Grade</label>
+                        <Input
+                          ref={educationGradeRef}
+                          placeholder="Place in your updated education grade"
+                          value={newEducationGrade}
+                          onChange={(e) => setNewEducationGrade(e.target.value)}
+                        />
+                      </div>
+                      <div className="flex mx-auto mt-4">
+                        <Button type="submit">Save changes</Button>
+                      </div>
+                    </form>
+                  </DialogContent>
+                </Dialog>
               </div>
             </div>
           </div>
@@ -118,50 +240,5 @@ const Profile = () => {
     </div>
   );
 };
-
-const ActionButton = ({ userDetails }) => (
-  <Dialog>
-    <DialogTrigger asChild>
-      <div className="flex items-center cursor-pointer bg-slate-800 justify-center hover:bg-slate-700 px-3 py-2 text-sm rounded-full gap-2">
-        <Pencil className="h-5 w-6" />
-        <p className="hidden md:block">Edit Profile</p>
-      </div>
-    </DialogTrigger>
-    <DialogContent>
-      <DialogHeader className="text">
-        <DialogTitle>Edit Profile</DialogTitle>
-        <DialogDescription>
-          <p className="capitalize">Decide how you appear to others</p>
-        </DialogDescription>
-      </DialogHeader>
-      <form action="" className="grid gap-4">
-        <div className="grid gap-2">
-          <label className="font-bold">First Name</label>
-          <Input
-            placeholder="Place in your updated first name"
-            value={userDetails.first_name}
-          />
-        </div>
-        <div className="grid gap-2">
-          <label className="font-bold">Last Name</label>
-          <Input
-            placeholder="Place in your updated first name"
-            value={userDetails.last_name}
-          />
-        </div>
-        <div className="grid gap-2">
-          <label className="font-bold">Education Grade</label>
-          <Input
-            placeholder="Place in your updated first name"
-            value={userDetails.education_grade}
-          />
-        </div>
-        <div className="flex mx-auto">
-          <Button>Save changes</Button>
-        </div>
-      </form>
-    </DialogContent>
-  </Dialog>
-);
 
 export default Profile;
