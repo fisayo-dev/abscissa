@@ -163,11 +163,13 @@ const Calculator = () => {
     const squareRootValue = Math.sqrt(largeScreen);
     setSmallScreen(`sqrt(${largeScreen})`);
     setLargeScreen(squareRootValue);
+    createHistory(`sqrt(${largeScreen})`, squareRootValue)
   };
   const handleSquare = () => {
     const squareValue = Math.pow(largeScreen, 2);
     setSmallScreen(`sqr(${largeScreen})`);
     setLargeScreen(squareValue);
+    createHistory(`sqr(${largeScreen})`, squareValue)
   };
 
   const handleEqualTo = () => {
@@ -464,14 +466,17 @@ const Calculator = () => {
       setSmallScreen(`sin(${largeScreen})`);
       const sineAnswer = Math.sin(toRadians(Number(largeScreen))).toFixed(10);
       setLargeScreen(sineAnswer);
+      createHistory(`sin(${largeScreen})`, sineAnswer)
     } else if (type === "cos") {
       setSmallScreen(`cos(${largeScreen})`);
       const cosAnswer = Math.cos(toRadians(Number(largeScreen))).toFixed(10);
       setLargeScreen(cosAnswer);
+      createHistory(`cos(${largeScreen})`, cosAnswer)
     } else if (type === "tan") {
       setSmallScreen(`tan(${largeScreen})`);
       const tanAnswer = Math.tan(toRadians(Number(largeScreen))).toFixed(10);
       setLargeScreen(tanAnswer);
+      createHistory(`tan(${largeScreen})`, tanAnswer)
     }
   };
 
@@ -479,18 +484,21 @@ const Calculator = () => {
     setSmallScreen(`1/(${largeScreen})`);
     const answer = 1 / Number(largeScreen);
     setLargeScreen(answer);
+    createHistory(`1/(${largeScreen})`, answer)
   };
 
   const handleLog = () => {
     setSmallScreen(`log(${largeScreen})`);
     const answer = Math.log10(Number(largeScreen)).toFixed(10);
     setLargeScreen(answer);
+    createHistory(`log(${largeScreen})`, answer)
   };
 
   const handleLn = () => {
     setSmallScreen(`ln(${largeScreen})`);
     const answer = Math.log(Number(largeScreen)).toFixed(10);
     setLargeScreen(answer);
+    createHistory(`ln(${largeScreen})`, answer)
   };
 
   useEffect(() => {
