@@ -5,14 +5,26 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog"
 import { useAuth } from "@/contexts/AuthContext";
-import { Minus } from "iconsax-react";
+import { Clock, Minus, Trash } from "iconsax-react";
 import {
   CalculatorIcon,
   DivideIcon,
   DotIcon,
   Equal,
+  File,
+  Frown,
   HistoryIcon,
+  Loader2Icon,
   Plus,
   TestTube,
   X,
@@ -25,6 +37,7 @@ const Calculator = () => {
   const [largeScreen, setLargeScreen] = useState("0");
   const { user } = useAuth();
   const [userDetails, setUserDetails] = useState(null);
+  const [historyList, setHistoryList] = useState([])
 
   const token = localStorage.getItem("TOKEN");
 
@@ -72,7 +85,7 @@ const Calculator = () => {
       },
     });
     const data = await res.json();
-    console.log(data);
+    setHistoryList(data)
   };
 
   // Funciton to save history to the database
@@ -498,7 +511,49 @@ const Calculator = () => {
             </SelectContent>
           </Select>
           <div className="flex items-center gap-2 hover:text-slate-100 cursor-pointer">
-            <HistoryIcon className="h-6 w-6" />
+            <Dialog>
+              <DialogTrigger asChild>
+                <HistoryIcon className="h-6 w-6" />
+              </DialogTrigger>
+              <DialogContent className="sm:max-w-[425px]">
+                <DialogHeader className="text">
+                  <DialogTitle>Your Histories</DialogTitle>
+                  <DialogDescription>
+                    See all your calculations here
+                  </DialogDescription>
+                </DialogHeader>
+                {historyList === null && (
+                  <div className="flex flex-col gap-4 justify-center">
+                    <Loader2Icon className="h-28 w-28 mx-auto color-pink animate-spin " />
+                    <p className="text-center">Fetching histories</p>
+                  </div>
+                )}
+                {historyList !== null && historyList.length === 0 && (
+                  <div className="flex flex-col gap-4 justify-center">
+                    <Clock className="h-28 w-28 mx-auto color-pink" />
+                    <p className="text-center">You don't have any history yet</p>
+                  </div>
+                )}
+                {historyList !== null && historyList.length !== 0 && (
+                  <div className="grid gap-4 px-5">
+                    {historyList.map((history, index) => (
+                      <div key={index} className=" border border-slate-600 rounded-md flex items-center justify-between px-3 py-2">
+                        <div className="flex flex-col gap-1">
+                          <p className="text-sm ">{history.expression}</p>
+                          <p className="text-lg font-bold ">{history.result}</p>
+                        </div>
+                        <div className="cursor-pointer">
+                          <Trash className="h-6 w-6 text-red-500 hover:text-red-400"/>
+                        </div>
+                     </div>   
+                    ))}
+                  </div>
+                )}
+                {/* <DialogFooter>
+                  <Button type="submit">Save changes</Button>
+                </DialogFooter> */}
+              </DialogContent>
+            </Dialog>
           </div>
         </div>
         <div className="max-h-[90vh] border-[0.12rem] shadow-lg rounded-lg border-slate-500 overflow-hidden">
