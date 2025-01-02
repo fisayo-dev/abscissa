@@ -163,13 +163,13 @@ const Calculator = () => {
     const squareRootValue = Math.sqrt(largeScreen);
     setSmallScreen(`sqrt(${largeScreen})`);
     setLargeScreen(squareRootValue);
-    createHistory(`sqrt(${largeScreen})`, squareRootValue)
+    createHistory(`sqrt(${largeScreen})`, squareRootValue);
   };
   const handleSquare = () => {
     const squareValue = Math.pow(largeScreen, 2);
     setSmallScreen(`sqr(${largeScreen})`);
     setLargeScreen(squareValue);
-    createHistory(`sqr(${largeScreen})`, squareValue)
+    createHistory(`sqr(${largeScreen})`, squareValue);
   };
 
   const handleEqualTo = () => {
@@ -466,17 +466,17 @@ const Calculator = () => {
       setSmallScreen(`sin(${largeScreen})`);
       const sineAnswer = Math.sin(toRadians(Number(largeScreen))).toFixed(10);
       setLargeScreen(sineAnswer);
-      createHistory(`sin(${largeScreen})`, sineAnswer)
+      createHistory(`sin(${largeScreen})`, sineAnswer);
     } else if (type === "cos") {
       setSmallScreen(`cos(${largeScreen})`);
       const cosAnswer = Math.cos(toRadians(Number(largeScreen))).toFixed(10);
       setLargeScreen(cosAnswer);
-      createHistory(`cos(${largeScreen})`, cosAnswer)
+      createHistory(`cos(${largeScreen})`, cosAnswer);
     } else if (type === "tan") {
       setSmallScreen(`tan(${largeScreen})`);
       const tanAnswer = Math.tan(toRadians(Number(largeScreen))).toFixed(10);
       setLargeScreen(tanAnswer);
-      createHistory(`tan(${largeScreen})`, tanAnswer)
+      createHistory(`tan(${largeScreen})`, tanAnswer);
     }
   };
 
@@ -484,21 +484,21 @@ const Calculator = () => {
     setSmallScreen(`1/(${largeScreen})`);
     const answer = 1 / Number(largeScreen);
     setLargeScreen(answer);
-    createHistory(`1/(${largeScreen})`, answer)
+    createHistory(`1/(${largeScreen})`, answer);
   };
 
   const handleLog = () => {
     setSmallScreen(`log(${largeScreen})`);
     const answer = Math.log10(Number(largeScreen)).toFixed(10);
     setLargeScreen(answer);
-    createHistory(`log(${largeScreen})`, answer)
+    createHistory(`log(${largeScreen})`, answer);
   };
 
   const handleLn = () => {
     setSmallScreen(`ln(${largeScreen})`);
     const answer = Math.log(Number(largeScreen)).toFixed(10);
     setLargeScreen(answer);
-    createHistory(`ln(${largeScreen})`, answer)
+    createHistory(`ln(${largeScreen})`, answer);
   };
 
   useEffect(() => {
@@ -565,23 +565,39 @@ const Calculator = () => {
                   <div className="grid gap-4 px-5 h-[300px] overflow-scroll">
                     {historyList.map((history, index) => (
                       <div className="grid gap-1">
-                        <p className="text-sm text-slate-500">{new Date(history.date).getDay()}/{new Date(history.date).getMonth()+1}/{new Date(history.date).getFullYear()}</p>
-                      <div
-                        key={index}
-                        className=" border border-slate-600 rounded-md flex items-center justify-between px-3 py-2"
-                      >
-                        <div className="flex flex-col gap-1">
-                          <p className="text-sm ">{history.expression}</p>
-                          <p className="text-lg font-bold ">{history.result}</p>
+                        <div className="flex justify-between">
+                          <p className="text-sm text-slate-500">
+                            {new Date(history.date).getDay()}/
+                            {new Date(history.date).getMonth() + 1}/
+                            {new Date(history.date).getFullYear()}
+                          </p>
+
+                          <p className="text-sm text-slate-500">
+                            {new Date(history.date).getHours() - 12}:
+                            {new Date(history.date).getMinutes()}{" "}
+                            {new Date(history.date).getHours() >= 12
+                              ? "PM"
+                              : "AM"}
+                          </p>
                         </div>
                         <div
-                          className="cursor-pointer"
-                          onClick={() => deleteHistory(history._id)}
+                          key={index}
+                          className=" border border-slate-600 rounded-md flex items-center justify-between px-3 py-2"
                         >
-                          <Trash className="h-6 w-6 text-red-500 hover:text-red-400" />
+                          <div className="flex flex-col gap-1">
+                            <p className="text-sm ">{history.expression}</p>
+                            <p className="text-lg font-bold ">
+                              {history.result}
+                            </p>
+                          </div>
+                          <div
+                            className="cursor-pointer"
+                            onClick={() => deleteHistory(history._id)}
+                          >
+                            <Trash className="h-6 w-6 text-red-500 hover:text-red-400" />
+                          </div>
                         </div>
-                        </div>
-                        </div>
+                      </div>
                     ))}
                   </div>
                 )}
@@ -591,7 +607,7 @@ const Calculator = () => {
                     className="bg-pink dark-bg-pink rounded-full py-2 px-3 cursor-pointer"
                   >
                     <div className="flex justify-center gap-1 items-center">
-                      <Refresh className="h-5 w-5"/>
+                      <Refresh className="h-5 w-5" />
                       <p>Refresh</p>
                     </div>
                   </div>
