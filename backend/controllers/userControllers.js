@@ -30,7 +30,7 @@ const createUser = async (req, res) => {
 
         const savedUser = await newUser.save();
 
-        const token = jwt.sign({ id: savedUser._id }, SECRET_KEY, { expiresIn: '1h' });
+        const token = jwt.sign({ id: savedUser._id }, SECRET_KEY, { expiresIn: '36h' });
         res.status(201).json({ token });
     } catch (err) {
         console.error(err);
@@ -49,7 +49,7 @@ const loginUser = async (req, res) => {
         const isPasswordValid = await bcrypt.compare(password, savedUser.password);
         if (!isPasswordValid) return res.status(401).json({ message: 'Incorrect password' });
 
-        const token = jwt.sign({ id: savedUser._id }, SECRET_KEY, { expiresIn: '1h' });
+        const token = jwt.sign({ id: savedUser._id }, SECRET_KEY, { expiresIn: '36h' });
         res.status(200).json({ token });
     } catch (err) {
         console.error(err);
