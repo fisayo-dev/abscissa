@@ -40,7 +40,17 @@ const createHistory = async (req, res) => {
 }
 
 const deleteHistory = async (req, res) => {
+    const { id } = req.params
     
+    try {
+        const historyExist = await History.findById(id)
+        if (!historyExist) return res.status(404).json({ message: 'Sorry this history cannot be found in our database' }) 
+        
+        await History.deleteOne({_id: id})
+        res.status(200).json({message: 'Your history has been successfully deleted'})
+    } catch (err) {
+        res.status(500).json({message: 'An error occurred trying to delete histroy... Pls try again'})
+    }
 }
 
 export { getHistorys, deleteHistory, createHistory }

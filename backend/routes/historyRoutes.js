@@ -7,6 +7,6 @@ const router = express.Router()
 // Protected Routes
 router.get('/', getHistorys)
 router.post('/create', authMiddleware, createHistory)
-router.delete('/:id', deleteHistory)
+router.delete('/:id', authMiddleware, deleteHistory)
 
 export default router

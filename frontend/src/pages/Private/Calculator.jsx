@@ -13,7 +13,7 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@/components/ui/dialog"
+} from "@/components/ui/dialog";
 import { useAuth } from "@/contexts/AuthContext";
 import { Clock, Minus, Trash } from "iconsax-react";
 import {
@@ -37,7 +37,7 @@ const Calculator = () => {
   const [largeScreen, setLargeScreen] = useState("0");
   const { user } = useAuth();
   const [userDetails, setUserDetails] = useState(null);
-  const [historyList, setHistoryList] = useState([])
+  const [historyList, setHistoryList] = useState([]);
 
   const token = localStorage.getItem("TOKEN");
 
@@ -85,7 +85,22 @@ const Calculator = () => {
       },
     });
     const data = await res.json();
-    setHistoryList(data)
+    setHistoryList(data);
+  };
+
+  const deleteHistory = async (id) => {
+    try {
+      await fetch(`/api/v1/historys/${id}`, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      setHistoryList((histories) => histories.filter(history => history._id !== id))
+    } catch (err) {
+      console.log('Error: ', err.message)
+    }
   };
 
   // Funciton to save history to the database
@@ -531,21 +546,26 @@ const Calculator = () => {
                 {historyList !== null && historyList.length === 0 && (
                   <div className="flex flex-col gap-4 justify-center">
                     <Clock className="h-28 w-28 mx-auto color-pink" />
-                    <p className="text-center">You don't have any history yet</p>
+                    <p className="text-center">
+                      You don't have any history yet
+                    </p>
                   </div>
                 )}
                 {historyList !== null && historyList.length !== 0 && (
                   <div className="grid gap-4 px-5">
                     {historyList.map((history, index) => (
-                      <div key={index} className=" border border-slate-600 rounded-md flex items-center justify-between px-3 py-2">
+                      <div
+                        key={index}
+                        className=" border border-slate-600 rounded-md flex items-center justify-between px-3 py-2"
+                      >
                         <div className="flex flex-col gap-1">
                           <p className="text-sm ">{history.expression}</p>
                           <p className="text-lg font-bold ">{history.result}</p>
                         </div>
-                        <div className="cursor-pointer">
-                          <Trash className="h-6 w-6 text-red-500 hover:text-red-400"/>
+                        <div className="cursor-pointer" onClick={() => deleteHistory(history._id)}>
+                          <Trash className="h-6 w-6 text-red-500 hover:text-red-400" />
                         </div>
-                     </div>   
+                      </div>
                     ))}
                   </div>
                 )}
