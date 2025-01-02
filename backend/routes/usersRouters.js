@@ -1,5 +1,5 @@
 import express from 'express';
-import { createUser, loginUser, getUserInfoByID } from '../controllers/userControllers.js';
+import { createUser, loginUser, getUserInfoByID, editUserProfile } from '../controllers/userControllers.js';
 import authMiddleware from '../middlewares/authMiddleware.js';
 
 const router = express.Router();
@@ -10,4 +10,5 @@ router.post('/login', loginUser);
 
 // Protected Routes
 router.get('/:id', authMiddleware, getUserInfoByID); 
+router.get('/edit/:id', authMiddleware, editUserProfile)
 export default router;

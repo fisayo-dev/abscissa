@@ -71,5 +71,33 @@ const getUserInfoByID = async (req, res) => {
     }
 };
 
+const editUserProfile = async (req, res) => {
+    const { id } = req.params;
+    const { first_name, last_name, education_grade } = req.body;
+
+    try {
+        // Find the user by ID and exclude password and all_historys fields
+        const user = await User.findById(id).select('-password -all_historys');
+        
+        // If user doesn't exist, return 404
+        if (!user) return res.status(404).json({ message: 'User not found' });
+
+        // Update the user with the new values from the request body
+        user.first_name = first_name || user.first_name;
+        user.last_name = last_name || user.last_name;   
+        user.education_grade = education_grade || user.education_grade;
+
+        // Save the updated user document
+        await user.save();
+
+        // Return the updated user data (you can adjust the response as needed)
+        res.status(200).json({ message: 'User profile updated successfully', user });
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ message: 'Error updating user profile', error: err.message });
+    }
+};
+
+
 // Other functions for update, delete etc.
-export { createUser, loginUser, getUserInfoByID };
+export { createUser, loginUser, getUserInfoByID, editUserProfile};
