@@ -85,7 +85,13 @@ const Calculator = () => {
       },
     });
     const data = await res.json();
-    setHistoryList(data);
+    let specifiedHistoryList = [];
+    if (calculatorType == 'scientific') {
+      specifiedHistoryList = data.filter(histroy => histroy.calculator_type == 'scientific')
+    } else if (calculatorType == 'standard') {
+      specifiedHistoryList = data.filter(histroy => histroy.calculator_type == 'standard')
+    }
+    setHistoryList(specifiedHistoryList);
   };
 
   const deleteHistory = async (id) => {
@@ -503,7 +509,7 @@ const Calculator = () => {
 
   useEffect(() => {
     fetchHistories();
-  }, []);
+  }, [calculatorType]);
 
   return (
     <div
@@ -544,7 +550,7 @@ const Calculator = () => {
                 <DialogHeader className="text">
                   <DialogTitle>Your Histories</DialogTitle>
                   <DialogDescription>
-                    See all your calculations here
+                    <p className="capitalize">{calculatorType} Calculations</p>
                   </DialogDescription>
                 </DialogHeader>
                 {historyList === null && (
