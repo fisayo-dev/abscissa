@@ -562,8 +562,10 @@ const Calculator = () => {
                   </div>
                 )}
                 {historyList !== null && historyList.length !== 0 && (
-                  <div className="grid gap-4 px-5">
+                  <div className="grid gap-4 px-5 h-[300px] overflow-scroll">
                     {historyList.map((history, index) => (
+                      <div className="grid gap-1">
+                        <p className="text-sm text-slate-500">{new Date(history.date).getDay()}/{new Date(history.date).getMonth()+1}/{new Date(history.date).getFullYear()}</p>
                       <div
                         key={index}
                         className=" border border-slate-600 rounded-md flex items-center justify-between px-3 py-2"
@@ -578,7 +580,8 @@ const Calculator = () => {
                         >
                           <Trash className="h-6 w-6 text-red-500 hover:text-red-400" />
                         </div>
-                      </div>
+                        </div>
+                        </div>
                     ))}
                   </div>
                 )}
