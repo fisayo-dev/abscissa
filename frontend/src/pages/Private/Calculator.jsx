@@ -607,8 +607,8 @@ const Calculator = () => {
                     className="bg-pink dark-bg-pink rounded-full py-2 px-3 cursor-pointer"
                   >
                     <div className="flex justify-center gap-1 items-center">
-                      <Refresh className="h-5 w-5" />
-                      <p>Refresh</p>
+                      <Refresh className="h-4 w-4" />
+                      <p className="text-sm">Refresh</p>
                     </div>
                   </div>
                 </DialogFooter>
