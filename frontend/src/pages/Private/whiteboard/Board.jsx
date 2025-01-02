@@ -1,5 +1,9 @@
-const Board = () => {
-  return <div>Board</div>;
-};
+import React from 'react'
 
-export default Board;
+const Board = () => {
+  return (
+    <div>Board</div>
+  )
+}
+
+export default Board

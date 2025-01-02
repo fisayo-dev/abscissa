@@ -40,7 +40,7 @@ function App() {
         <Route path="/signup" element={<Signup />} />
         <Route path="*" element={<PageNotFound />} />
         <Route path="" element={<PrivateRoutes />}>
-          <Route path="/whiteboard/board/:id" element={<Board />} />
+          <Route path="/whiteboard/board" element={<Board />} />
           <Route path="" element={<AppOutlet />}>
             <Route path="/dashboard" element={<UserHome />} />
             <Route path="/whiteboard" element={<Whiteboard />} />
