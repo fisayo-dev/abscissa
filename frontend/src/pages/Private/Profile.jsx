@@ -1,13 +1,14 @@
 import { useAuth } from "@/contexts/AuthContext";
 import { GraduationCap, Pencil } from "lucide-react";
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const Profile = () => {
   const [userDetails, setUserDetails] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
-  const { user } = useAuth();
+  const { user, logout } = useAuth();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchUserDetails = async () => {
@@ -27,7 +28,19 @@ const Profile = () => {
           },
         });
 
-        if (!response.ok) throw new Error("Failed to fetch user details");
+        if (!response.ok) {
+          const data = await response.json();
+
+          // Check if the error message indicates token expiration
+          if (data.message && data.message.toLowerCase().includes("token expired")) {
+            alert("Your session has expired. Please log in again.");
+            logout();
+            navigate("/login");
+            return;
+          }
+
+          throw new Error(data.message || "Failed to fetch user details");
+        }
 
         const data = await response.json();
         setUserDetails(data);
@@ -40,7 +53,7 @@ const Profile = () => {
     };
 
     fetchUserDetails();
-  }, [user]);
+  }, [user, logout, navigate]);
 
   if (isLoading) {
     return <p>Loading...</p>;
