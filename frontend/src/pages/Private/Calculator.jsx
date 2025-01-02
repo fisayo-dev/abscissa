@@ -86,10 +86,14 @@ const Calculator = () => {
     });
     const data = await res.json();
     let specifiedHistoryList = [];
-    if (calculatorType == 'scientific') {
-      specifiedHistoryList = data.filter(histroy => histroy.calculator_type == 'scientific')
-    } else if (calculatorType == 'standard') {
-      specifiedHistoryList = data.filter(histroy => histroy.calculator_type == 'standard')
+    if (calculatorType == "scientific") {
+      specifiedHistoryList = data.filter(
+        (histroy) => histroy.calculator_type == "scientific"
+      );
+    } else if (calculatorType == "standard") {
+      specifiedHistoryList = data.filter(
+        (histroy) => histroy.calculator_type == "standard"
+      );
     }
     setHistoryList(specifiedHistoryList);
   };
