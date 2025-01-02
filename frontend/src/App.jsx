@@ -26,6 +26,7 @@ import {
   WeightAndMassConverter,
   Profile,
   AbscissaAI,
+  Board,
 } from "./pages";
 import AppOutlet from "./outlets/AppOutlet";
 import PrivateRoutes from "./utils/PrivateRoutes";
@@ -39,6 +40,7 @@ function App() {
         <Route path="/signup" element={<Signup />} />
         <Route path="*" element={<PageNotFound />} />
         <Route path="" element={<PrivateRoutes />}>
+          <Route path="/whiteboard/board/:id" element={<Board />} />
           <Route path="" element={<AppOutlet />}>
             <Route path="/dashboard" element={<UserHome />} />
             <Route path="/whiteboard" element={<Whiteboard />} />

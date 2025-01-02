@@ -25,6 +25,7 @@ import WeightAndMassConverter from "./Private/converters/WeightAndMassConverter"
 import Settings from "./Private/Settings";
 import Profile from "./Private/Profile";
 import UserHome from "./Private/UserHome";
+import Board from "./Private/whiteboard/Board";
 
-export { Home, Signup, Login, PageNotFound, Profile, Calculator, Converter, CurrencyConverter, FormulaBank, Whiteboard, UserHome, LengthConverter, Solver, AbscissaAI, Messages, Settings, AreaConverter, VolumeConverter, SpeedConverter, EnergyConverter,TemperatureConverter,WeightAndMassConverter }
+export { Home, Signup, Login, PageNotFound, Profile, Calculator, Converter, CurrencyConverter, FormulaBank, Whiteboard, UserHome, LengthConverter, Solver, AbscissaAI, Messages, Settings, AreaConverter, VolumeConverter, SpeedConverter, EnergyConverter,TemperatureConverter,WeightAndMassConverter, Board }
 
