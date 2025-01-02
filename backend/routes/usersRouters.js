@@ -10,5 +10,5 @@ router.post('/login', loginUser);
 
 // Protected Routes
 router.get('/:id', authMiddleware, getUserInfoByID); 
-router.get('/edit/:id', authMiddleware, editUserProfile)
+router.put('/edit/:id', authMiddleware, editUserProfile)
 export default router;
