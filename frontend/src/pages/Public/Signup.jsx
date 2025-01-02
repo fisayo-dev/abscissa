@@ -27,7 +27,6 @@ const Signup = () => {
   }, [user, navigate]);
 
   const submitForm = async (e) => {
-    setFormLoading(true)
     e.preventDefault();
     if (
       password.trim() == "" ||
@@ -38,8 +37,9 @@ const Signup = () => {
       alert("Pls fill in the fields");
       return;
     }
-
+    
     try {
+      setFormLoading(true)
       const res = await fetch("/api/v1/users/create", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
