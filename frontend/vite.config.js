@@ -7,7 +7,7 @@ export default defineConfig(({ mode }) => {
   const isProduction = mode === "production";
   const backendUrl = isProduction
     ? "https://abscissa-1.onrender.com/api/v1" // Replace with your Render backend URL
-    : "http://localhost:7000/api"; // Local development backend URL
+    : "http://localhost:7000/"; // Local development backend URL
 
   return {
     plugins: [react()],
@@ -22,7 +22,7 @@ export default defineConfig(({ mode }) => {
     server: {
       proxy: {
         "/api/": {
-          target: backendUrl, // Dynamically set the backend URL
+          target: "http://localhost:7000/", // Dynamically set the backend URL
           changeOrigin: true,
           secure: false,
         },

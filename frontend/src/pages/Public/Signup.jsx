@@ -37,9 +37,9 @@ const Signup = () => {
       alert("Pls fill in the fields");
       return;
     }
-    
+
     try {
-      setFormLoading(true)
+      setFormLoading(true);
       const res = await fetch("/api/v1/users/create", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -59,13 +59,13 @@ const Signup = () => {
     } catch (err) {
       console.error("Error:", err.message);
     }
-    setFormLoading(false)
+    setFormLoading(false);
   };
   return (
     <>
       {!loadingIntroPhase && (
         <div className="xl:grid login-grid">
-           {formLoading && (
+          {formLoading && (
             <div className="fixed z-50 overflow-hidden w-[100vw] h-[100vh]">
               <div className="h-full flex items-center justify-center bg-blue overflow-hidden">
                 <Loader2Icon className="mx-auto h-36 w-36 animate-spin color-pink" />
