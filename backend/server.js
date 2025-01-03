@@ -15,17 +15,26 @@ const port = process.env.PORT || 7000;
 const localUrl = process.env.MONGO_URI_LOCAL;
 const productionUrl = process.env.MONGO_URI_PRODUCTION;
 
+// CORS Configuration
 const corsOptions = {
   origin: process.env.NODE_ENV === 'production' 
-    ? 'https://abscissa.vercel.app' 
-    : 'http://localhost:5173', 
+    ? 'https://abscissa.vercel.app'  // Production frontend URL
+    : (origin, callback) => {
+        // Allow specific origins in development
+        const allowedOrigins = ['http://localhost:5173', 'http://localhost:3000'];
+        if (allowedOrigins.includes(origin)) {
+          callback(null, true);
+        } else {
+          callback(new Error('Not allowed by CORS'));
+        }
+      },
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
-  credentials: true, 
+  credentials: true,  // Ensure credentials (like cookies) are sent
 };
 
-// Setting up necessary middleware
-app.use(cors(corsOptions));
-app.use(express.json({ limit: '50mb' }));
+// Middleware
+app.use(cors(corsOptions));  // Apply CORS middleware with options
+app.use(express.json({ limit: '50mb' }));  // Increase body size limit if needed
 
 // Routes
 app.use('/api/v1/users', usersRouters);
@@ -36,18 +45,18 @@ app.get('/api/', (req, res) => {
   res.status(200).json({ message: 'Backend route working' });
 });
 
-// Setting up mongodb connection
+// MongoDB Connection
 const MONGO_URI = process.env.NODE_ENV === 'production' ? productionUrl : localUrl;
 
 mongoose.connect(MONGO_URI)
   .then(() => console.log('Connected to MongoDB'))
-  .catch(err => console.error(err));
+  .catch(err => console.error('MongoDB connection error:', err));
 
-// Setting up port
+// Start server
 try {
   app.listen(port, () => {
-    console.log(`Listening on port ${port}`);
+    console.log(`Server is listening on port ${port}`);
   });
 } catch (error) {
-  console.log(error);
+  console.error('Error starting the server:', error);
 }
