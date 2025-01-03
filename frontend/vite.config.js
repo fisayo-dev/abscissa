@@ -22,7 +22,7 @@ export default defineConfig(({ mode }) => {
     server: {
       proxy: {
         "/api/": {
-          target: "http://localhost:7000/", // Dynamically set the backend URL
+          target: backendUrl, // Dynamically set the backend URL
           changeOrigin: true,
           secure: false,
         },
