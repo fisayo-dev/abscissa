@@ -6,8 +6,8 @@ export default defineConfig(({ mode }) => {
   // Determine the backend URL based on the environment
   const isProduction = mode === "production";
   const backendUrl = isProduction
-    ? "https://abscissa-1.onrender.com/api/v1" // Replace with your Render backend URL
-    : "http://localhost:7000/"; // Local development backend URL
+    ? "https://abscissa-1.onrender.com" // Replace with your Render backend URL
+    : "http://localhost:7000"; // Local development backend URL
 
   return {
     plugins: [react()],
