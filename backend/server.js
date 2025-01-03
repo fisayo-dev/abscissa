@@ -15,16 +15,16 @@ const port = process.env.PORT || 7000;
 const localUrl = process.env.MONGO_URI_LOCAL;
 const productionUrl = process.env.MONGO_URI_PRODUCTION;
 
-const corsOptions = {
-  origin: process.env.NODE_ENV === 'production' 
-    ? 'https://abscissa.vercel.app' 
-    : 'http://localhost:5173', 
-  methods: ['GET', 'POST', 'PUT', 'DELETE'],
-  credentials: true, 
-};
+// const corsOptions = {
+//   origin: process.env.NODE_ENV === 'production' 
+//     ? 'https://abscissa.vercel.app' 
+//     : 'http://localhost:5173', 
+//   methods: ['GET', 'POST', 'PUT', 'DELETE'],
+//   credentials: true, 
+// };
 
 // Setting up necessary middleware
-app.use(cors(corsOptions));
+// app.use(cors(corsOptions));
 // app.use(express.json({ limit: '50mb' }));
 
 // Routes
