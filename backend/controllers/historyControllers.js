@@ -1,5 +1,5 @@
-import User from '../mongodb/models/user.js'
-import History from '../mongodb/models/history.js'
+import User from '../mongodb/models/User.js'
+import History from '../mongodb/models/History.js'
 
 const getHistorys = async (req, res) => {
     const { creator } = req.query;
