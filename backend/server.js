@@ -15,18 +15,17 @@ const port = process.env.PORT || 7000;
 const localUrl = process.env.MONGO_URI_LOCAL;
 const productionUrl = process.env.MONGO_URI_PRODUCTION;
 
-// Set CORS origin dynamically based on environment
 const corsOptions = {
   origin: process.env.NODE_ENV === 'production' 
-    ? 'https://abscissa.vercel.app' // Replace with your production frontend URL
-    : 'http://localhost:5173', // Local frontend URL (adjust the port if necessary)
+    ? 'https://abscissa.vercel.app' 
+    : 'http://localhost:5173', 
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
-  credentials: true, // Enable cookies (if needed)
+  credentials: true, 
 };
 
 // Setting up necessary middleware
 app.use(cors(corsOptions));
-app.use(express.json({ limit: '50mb' }));
+// app.use(express.json({ limit: '50mb' }));
 
 // Routes
 app.use('/api/v1/users', usersRouters);
