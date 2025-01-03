@@ -13,7 +13,8 @@ const app = express()
 
 // ENV variables
 const port = process.env.PORT || 7000;
-const url = process.env.MONGODB_URL
+const localUrl =  process.env.MONGO_URI_LOCAL
+const productionUrl = process.env.MONGO_URI_PRODUCTION
 
 
 // Setting up necessary middleware
@@ -32,7 +33,7 @@ app.get('/api/', (req,res)   => {
 // Setting up mongodb connection
 
 const MONGO_URI =
-    process.env.NODE_ENV === 'production' ? process.env.MONGO_URI_PRODUCTION : process.env.MONGO_URI_LOCAL;
+    process.env.NODE_ENV === 'production' ? productionUrl : localUrl;
 
 mongoose.connect(MONGO_URI)
     .then(() => console.log('Connected to MongoDB'))
