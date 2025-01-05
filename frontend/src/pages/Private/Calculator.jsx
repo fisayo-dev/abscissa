@@ -95,7 +95,10 @@ const Calculator = () => {
         (histroy) => histroy.calculator_type == "standard"
       );
     }
-    setHistoryList(specifiedHistoryList);
+    const sortedHistories = specifiedHistoryList.sort(
+      (a, b) => new Date(b.date) - new Date(a.date)
+    );
+    setHistoryList(sortedHistories);
   };
 
   const deleteHistory = async (id) => {
@@ -583,8 +586,10 @@ const Calculator = () => {
                           </p>
 
                           <p className="text-sm text-slate-500">
-                            {new Date(history.date).getHours() > 12 ? new Date(history.date).getHours() - 12:  new Date(history.date).getHours()}:
-                            {new Date(history.date).getMinutes()}{" "}
+                            {new Date(history.date).getHours() > 12
+                              ? new Date(history.date).getHours() - 12
+                              : new Date(history.date).getHours()}
+                            :{new Date(history.date).getMinutes()}{" "}
                             {new Date(history.date).getHours() >= 12
                               ? "PM"
                               : "AM"}
