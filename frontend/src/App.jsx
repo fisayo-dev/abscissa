@@ -15,7 +15,6 @@ import {
   Calculator,
   Solver,
   FormulaBank,
-  Settings,
   LengthConverter,
   AreaConverter,
   CurrencyConverter,
@@ -66,7 +65,6 @@ function App() {
             <Route path="/problem-solver" element={<Solver />} />
             <Route path="/formulae-bank" element={<FormulaBank />} />
             <Route path="/profile" element={<Profile />} />
-            <Route path="/settings" element={<Settings />} />
           </Route>
         </Route>
       </>
