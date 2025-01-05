@@ -46,10 +46,15 @@ const Profile = () => {
       }
 
       try {
+        const url =
+      process.env.NODE_ENV == "production"
+        ? `https://abscissa-1.onrender.com/api/v1/users/${user}`
+            : `/api/v1/users/${user}`;
+        
         const token = localStorage.getItem("TOKEN");
         if (!token) throw new Error("Authentication token missing.");
 
-        const response = await fetch(`/api/v1/users/${user}`, {
+        const response = await fetch(url, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
