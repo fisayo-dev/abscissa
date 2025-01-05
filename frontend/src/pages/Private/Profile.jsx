@@ -174,7 +174,7 @@ const Profile = () => {
                 <p>{userDetails.email}</p>
                 <div className="flex items-center gap-1 justify-center md:justify-normal">
                   <GraduationCap className="h-5 w-5 color-pink" />
-                  <p className="text-sm">{userDetails.education_grade}</p>
+                  <p className="text-sm">{userDetails.education_grade} - Student</p>
                 </div>
               </div>
               <div className=" mx-auto md:absolute md:bottom-4 md:right-4">
