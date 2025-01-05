@@ -25,15 +25,20 @@ const Login = () => {
   }, [user, navigate]);
 
   const submitForm = async (e) => {
-    setFormLoading(true)
+    setFormLoading(true);
     e.preventDefault();
     if (password.trim() == "" || email.trim() == "") {
       alert("Pls fill in the fields");
       return;
     }
 
+    const url =
+      process.env.NODE_ENV == "production"
+        ? "https://abscissa-1.onrender.com/api/v1/users/login"
+        : "/api/v1/users/login";
+
     try {
-      const res = await fetch("/api/v1/users/login", {
+      const res = await fetch(url, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -50,7 +55,7 @@ const Login = () => {
     } catch (err) {
       console.error("Error:", err.message);
     }
-    setFormLoading(false)
+    setFormLoading(false);
   };
 
   return (

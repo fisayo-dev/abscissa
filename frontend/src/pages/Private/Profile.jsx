@@ -101,9 +101,13 @@ const Profile = () => {
       alert("Authentication token missing.");
       return;
     }
+    const url =
+      process.env.NODE_ENV == "production"
+        ? `https://abscissa-1.onrender.com/api/v1/users/edit/${userDetails._id}`
+        : `/api/v1/users/edit/${userDetails._id}`;
 
     try {
-      const response = await fetch(`/api/v1/users/edit/${userDetails._id}`, {
+      const response = await fetch(url, {
         method: "PUT", // Make sure to use PUT for updating data
         headers: {
           "Content-Type": "application/json",

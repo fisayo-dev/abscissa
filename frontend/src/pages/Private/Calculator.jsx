@@ -78,7 +78,12 @@ const Calculator = () => {
 
   // Fetching all histories
   const fetchHistories = async () => {
-    const res = await fetch(`/api/v1/historys?creator=${user}`, {
+    const url =
+      process.env.NODE_ENV == "production"
+        ? `https://abscissa-1.onrender.com/api/v1/historys?creator=${user}`
+        : `/api/v1/historys?creator=${user}`;
+
+    const res = await fetch(url, {
       headers: {
         "Content-Type": "application/json",
         Authorization: `beared ${token}`,
@@ -102,8 +107,12 @@ const Calculator = () => {
   };
 
   const deleteHistory = async (id) => {
+    const url =
+      process.env.NODE_ENV == "production"
+        ? `https://abscissa-1.onrender.com/api/v1/historys/${id}`
+        : `/api/v1/historys/${id}`;
     try {
-      await fetch(`/api/v1/historys/${id}`, {
+      await fetch(url, {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",
@@ -120,8 +129,12 @@ const Calculator = () => {
 
   // Funciton to save history to the database
   const createHistory = async (expression, result) => {
+    const url =
+      process.env.NODE_ENV == "production"
+        ? "https://abscissa-1.onrender.com/api/v1/historys/create"
+        : "/api/v1/historys/create";
     try {
-      await fetch("/api/v1/historys/create", {
+      await fetch(url, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
