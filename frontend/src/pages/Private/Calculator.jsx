@@ -572,9 +572,9 @@ const Calculator = () => {
                   </div>
                 )}
                 {historyList !== null && historyList.length !== 0 && (
-                  <div className="grid gap-4 px-5 h-[300px] overflow-scroll">
+                  <div className="grid gap-4 px-5 max-h-[400px] overflow-scroll">
                     {historyList.map((history, index) => (
-                      <div className="grid gap-1">
+                      <div className="grid gap-2">
                         <div className="flex justify-between">
                           <p className="text-sm text-slate-500">
                             {new Date(history.date).getDay()}/
@@ -583,7 +583,7 @@ const Calculator = () => {
                           </p>
 
                           <p className="text-sm text-slate-500">
-                            {new Date(history.date).getHours() - 12}:
+                            {new Date(history.date).getHours() > 12 ? new Date(history.date).getHours() - 12:  new Date(history.date).getHours()}:
                             {new Date(history.date).getMinutes()}{" "}
                             {new Date(history.date).getHours() >= 12
                               ? "PM"
