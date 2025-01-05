@@ -61,7 +61,7 @@ const Login = () => {
   return (
     <>
       {!loadingIntroPhase && (
-        <div className="xl:grid login-grid">
+        <div className="xl:grid form-grid">
           {formLoading && (
             <div className="fixed z-50 overflow-hidden w-[100vw] h-[100vh]">
               <div className="h-full flex items-center justify-center bg-blue overflow-hidden">
