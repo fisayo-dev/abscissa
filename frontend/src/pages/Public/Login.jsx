@@ -132,7 +132,7 @@ const Login = () => {
                   <div className="flex justify-center gap-3">
                     <button className="shadow-md text-[0.9rem] px-4 py-3 flex items-center justify-center gap-2 rounded-full bg-pink hover-dark-bg-pink">
                       <Rocket className="h-4 w-4 md:h-6 md:w-6" />
-                      <p className="capitalize">Create account</p>
+                      <p className="capitalize">Login </p>
                     </button>
                     <button className="shadow-md text-[0.9rem]  px-4 py-3 font-bold flex items-center justify-center gap-2 rounded-full bg-slate-800 text-slate-900 hover:bg-slate-700">
                       <img src={Google} width={20} height={20} />
