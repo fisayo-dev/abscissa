@@ -7,6 +7,10 @@ dotenv.config();
 
 const SECRET_KEY = process.env.SECRET_KEY;
 
+const sendOtp = async (req, res) => {
+    
+}
+
 // User Creation
 const createUser = async (req, res) => {
     const { first_name, last_name, email, password } = req.body;
@@ -100,4 +104,4 @@ const editUserProfile = async (req, res) => {
 
 
 // Other functions for update, delete etc.
-export { createUser, loginUser, getUserInfoByID, editUserProfile};
+export { createUser, loginUser, getUserInfoByID, editUserProfile, sendOtp};
