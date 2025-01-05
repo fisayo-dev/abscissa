@@ -577,7 +577,7 @@ const Calculator = () => {
                       <div className="grid gap-2">
                         <div className="flex justify-between">
                           <p className="text-sm text-slate-500">
-                            {new Date(history.date).getDay()}/
+                            {new Date(history.date).getDate()}/
                             {new Date(history.date).getMonth() + 1}/
                             {new Date(history.date).getFullYear()}
                           </p>
