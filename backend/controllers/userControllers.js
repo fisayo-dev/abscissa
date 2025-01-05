@@ -1,26 +1,86 @@
 import User from '../mongodb/models/User.js';
+import Otp from '../mongodb/models/Otp.js'; // Add a new model for OTP storage
 import * as dotenv from 'dotenv';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
+import nodemailer from 'nodemailer';
+import crypto from 'crypto';
 
 dotenv.config();
 
 const SECRET_KEY = process.env.SECRET_KEY;
+const OTP_EXPIRY = 7 * 60 * 1000; // 7 minutes in milliseconds
 
+// Configure Nodemailer
+const transporter = nodemailer.createTransport({
+    service: 'Gmail',
+    auth: {
+        user: process.env.EMAIL,
+        pass: process.env.EMAIL_PASSWORD,
+    },
+});
+
+// Send OTP
 const sendOtp = async (req, res) => {
-    
-}
+    const { email } = req.body;
 
-// User Creation
-const createUser = async (req, res) => {
-    const { first_name, last_name, email, password } = req.body;
+    if (!email) {
+        return res.status(400).json({ message: 'Email is required' });
+    }
 
     try {
-        const userExits = await User.findOne({ email });
-        if (userExits) return res.status(400).json({ message: 'User already exists' });
+        const otp = crypto.randomInt(100000, 999999).toString(); // Generate 6-digit OTP
+        const expiry = new Date(Date.now() + OTP_EXPIRY);
 
+        // Save OTP to database
+        await Otp.findOneAndUpdate(
+            { email },
+            { otp, expiry },
+            { upsert: true, new: true }
+        );
+
+        // Send OTP email
+        await transporter.sendMail({
+            from: process.env.EMAIL,
+            to: email,
+            subject: 'Your OTP Code',
+            text: `Your OTP is ${otp}. It expires in 7 minutes.`,
+        });
+
+        res.status(200).json({ message: 'OTP sent successfully' });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: 'Error sending OTP', error: error.message });
+    }
+};
+
+// Create User with OTP Verification
+const createUser = async (req, res) => {
+    const { first_name, last_name, email, password, otp } = req.body;
+
+    if (!email || !password || !otp) {
+        return res.status(400).json({ message: 'Email, password, and OTP are required' });
+    }
+
+    try {
+        // Verify OTP
+        const otpRecord = await Otp.findOne({ email, otp });
+        if (!otpRecord) {
+            return res.status(400).json({ message: 'Invalid OTP' });
+        }
+
+        if (otpRecord.expiry < new Date()) {
+            return res.status(400).json({ message: 'OTP has expired' });
+        }
+
+        // Check if user already exists
+        const userExists = await User.findOne({ email });
+        if (userExists) {
+            return res.status(400).json({ message: 'User already exists' });
+        }
+
+        // Hash password and create user
         const hashedPassword = await bcrypt.hash(password, 12);
-
         const newUser = new User({
             first_name,
             last_name,
@@ -34,13 +94,17 @@ const createUser = async (req, res) => {
 
         const savedUser = await newUser.save();
 
+        // Delete OTP after successful use
+        await Otp.deleteOne({ email });
+
+        // Generate JWT
         const token = jwt.sign({ id: savedUser._id }, SECRET_KEY, { expiresIn: '36h' });
-        res.status(201).json({ token });
-    } catch (err) {
-        console.error(err);
-        res.status(500).json({ message: 'Error registering user', error: err.message });
+        res.status(201).json({ message: 'User created successfully', token });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: 'Error creating user', error: error.message });
     }
-};
+}
 
 // User Login
 const loginUser = async (req, res) => {
