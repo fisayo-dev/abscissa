@@ -40,7 +40,7 @@ const Signup = () => {
 
     try {
       setFormLoading(true);
-      const res = await fetch("/api/v1/users/create", {
+      const res = await fetch("https://abscissa-1.onrender.com/api/v1/users/create", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
