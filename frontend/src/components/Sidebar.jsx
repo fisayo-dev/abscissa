@@ -1,14 +1,14 @@
 import {
   Brain,
-  CogIcon,
   LayoutDashboardIcon,
-  LogOut,
+  PowerIcon,
   Sigma,
   UserCircle,
 } from "lucide-react";
 import { Logo } from ".";
 import { NavLink } from "react-router-dom";
-import { Calculator, Computing, Convert, Logout, Note, Profile } from "iconsax-react";
+import { Calculator, Computing, Convert, Note, Profile } from "iconsax-react";
+
 import { useAuth } from "../contexts/AuthContext";
 
 const Sidebar = () => {
@@ -62,7 +62,7 @@ const Sidebar = () => {
     {
       text: "Logout",
       link: "/",
-      icon: <Logout className="h-6 w-6" />,
+      icon: <PowerIcon className="h-6 w-6" />,
     },
   ];
   return (
