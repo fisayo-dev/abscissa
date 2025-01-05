@@ -69,7 +69,7 @@ const Login = () => {
               </div>
             </div>
           )}
-          <div className="hidden xl:grid place-items-center dark-bg-blue border-r-[0.1rem] border-l-slate-500 shadow-md">
+          <div className="hidden xl:grid place-items-center dark-bg-blue border-r-[0.1rem] border-r-slate-500  shadow-md">
             <div className="flex flex-col"></div>
           </div>
           <div className="grid h-[100vh] overflow-scroll place-items-center">
