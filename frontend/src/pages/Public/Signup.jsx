@@ -38,9 +38,14 @@ const Signup = () => {
       return;
     }
 
+    const url =
+      process.env.NODE_ENV == "production"
+        ? "https://abscissa-1.onrender.com/api/v1/users/create"
+        : "/api/v1/users/create";
+
     try {
       setFormLoading(true);
-      const res = await fetch("https://abscissa-1.onrender.com/api/v1/users/create", {
+      const res = await fetch(url, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
