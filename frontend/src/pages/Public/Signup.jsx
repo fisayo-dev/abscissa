@@ -102,7 +102,7 @@ const Signup = () => {
                           <label className="font-bold text-slate-300">
                             First Name
                           </label>
-                          <div className="border border-slate-600 rounded-full p-4 ">
+                          <div className="border border-slate-600 rounded-full py-4 px-5 ">
                             <div className="flex items-center gap-2">
                               <User className="h-6 w-6" />
                               <input
@@ -119,7 +119,7 @@ const Signup = () => {
                           <label className="font-bold text-slate-300">
                             Last Name
                           </label>
-                          <div className="border border-slate-600 rounded-full p-4 ">
+                          <div className="border border-slate-600 rounded-full py-4 px-5 ">
                             <div className="flex items-center gap-2">
                               <Users className="h-6 w-6" />
                               <input
@@ -138,7 +138,7 @@ const Signup = () => {
                         <label className="font-bold text-slate-300">
                           Email Address
                         </label>
-                        <div className="border border-slate-600 rounded-full p-4 ">
+                        <div className="border border-slate-600 rounded-full py-4 px-5 ">
                           <div className="flex items-center gap-2">
                             <User className="h-6 w-6" />
                             <input
@@ -156,7 +156,7 @@ const Signup = () => {
                         <label className="font-bold text-slate-300">
                           Password
                         </label>
-                        <div className="border border-slate-600 rounded-full p-4 ">
+                        <div className="border border-slate-600 rounded-full py-4 px-5 ">
                           <div className="flex items-center gap-2">
                             <Key className="h-6 w-6" />
                             <input
@@ -200,11 +200,10 @@ const Signup = () => {
                   <Logo />
                   <div className="grid gap-3">
                     <h2 className="text-3xl font-bold text-center">
-                      What are you waiting for?
+                      Great! We just sent you an OTP 
                     </h2>
                     <p className="text-center text-[0.91rem]">
-                      Create an account and begin to explore the wonders of
-                      Mathematics
+                      Kindly check your email fo the OTP code we sent to you
                     </p>
                   </div>
                   <form
@@ -212,54 +211,17 @@ const Signup = () => {
                     className="grid gap-6 mt-5 w-full"
                   >
                     <div className="grid gap-3">
-                      <div className="flex gap-4 items-center">
-                        <div className="grid gap-3">
-                          <label className="font-bold text-slate-300">
-                            First Name
-                          </label>
-                          <div className="border border-slate-600 rounded-full p-4 ">
-                            <div className="flex items-center gap-2">
-                              <User className="h-6 w-6" />
-                              <input
-                                type="text"
-                                className="w-full"
-                                placeholder="Fisayo"
-                                value={firstName}
-                                onChange={(e) => setFirstName(e.target.value)}
-                              />
-                            </div>
-                          </div>
-                        </div>
-                        <div className="grid gap-3">
-                          <label className="font-bold text-slate-300">
-                            Last Name
-                          </label>
-                          <div className="border border-slate-600 rounded-full p-4 ">
-                            <div className="flex items-center gap-2">
-                              <Users className="h-6 w-6" />
-                              <input
-                                type="text"
-                                className="w-full"
-                                placeholder="Obadina"
-                                value={lastName}
-                                onChange={(e) => setLastName(e.target.value)}
-                              />
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-
+                    
                       <div className="grid gap-3">
                         <label className="font-bold text-slate-300">
-                          Email Address
+                          OTP
                         </label>
-                        <div className="border border-slate-600 rounded-full p-4 ">
+                        <div className="border border-slate-600 rounded-full py-4 px-5 ">
                           <div className="flex items-center gap-2">
-                            <User className="h-6 w-6" />
                             <input
-                              type="email"
+                              type="number"
                               className="w-full"
-                              placeholder="olufisayobadina@gmail.com"
+                              placeholder="6-digit code"
                               value={email}
                               onChange={(e) => setEmail(e.target.value)}
                             />
@@ -267,29 +229,7 @@ const Signup = () => {
                         </div>
                       </div>
 
-                      <div className="grid gap-3">
-                        <label className="font-bold text-slate-300">
-                          Password
-                        </label>
-                        <div className="border border-slate-600 rounded-full p-4 ">
-                          <div className="flex items-center gap-2">
-                            <Key className="h-6 w-6" />
-                            <input
-                              type={showPassword ? "text" : "password"}
-                              className="w-full"
-                              placeholder="My very strong password"
-                              value={password}
-                              onChange={(e) => setPassword(e.target.value)}
-                            />
-                            <div
-                              className="cursor-pointer"
-                              onClick={() => setShowPassword((prev) => !prev)}
-                            >
-                              {!showPassword ? <Eye /> : <EyeSlash />}
-                            </div>
-                          </div>
-                        </div>
-                      </div>
+                    
                     </div>
                     <div className="flex justify-center gap-3">
                       <button className="shadow-md text-[0.9rem] px-4 py-3 flex items-center justify-center gap-2 rounded-full bg-pink hover-dark-bg-pink">
