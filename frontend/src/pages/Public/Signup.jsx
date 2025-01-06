@@ -221,7 +221,7 @@ const Signup = () => {
                             <input
                               type="number"
                               className="w-full"
-                              placeholder="6-digit code"
+                              placeholder="Enter the 6-digit code"
                               value={email}
                               onChange={(e) => setEmail(e.target.value)}
                             />
