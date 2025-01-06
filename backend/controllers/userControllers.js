@@ -5,6 +5,7 @@ import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import nodemailer from 'nodemailer';
 import crypto from 'crypto';
+import { response } from 'express';
 
 dotenv.config();
 
@@ -47,7 +48,7 @@ const sendOtp = async (req, res) => {
             text: `Your OTP is ${otp}. It expires in 7 minutes.`,
         });
 
-        res.status(200).json({ message: 'OTP sent successfully' });
+        res.status(200).json({ message: 'OTP sent successfully', response:true });
     } catch (error) {
         console.error(error);
         res.status(500).json({ message: 'Error sending OTP', error: error.message });
