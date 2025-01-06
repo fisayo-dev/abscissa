@@ -91,7 +91,7 @@ const Login = () => {
                       <label className="font-bold text-slate-300">
                         Email Address
                       </label>
-                      <div className="border border-slate-600 rounded-full p-4 ">
+                      <div className="border border-slate-600 rounded-full py-4 px-5">
                         <div className="flex items-center gap-2">
                           <User className="h-6 w-6" />
                           <input
@@ -109,7 +109,7 @@ const Login = () => {
                       <label className="font-bold text-slate-300">
                         Password
                       </label>
-                      <div className="border border-slate-600 rounded-full p-4 ">
+                      <div className="border border-slate-600 rounded-full py-4 px-5">
                         <div className="flex items-center gap-2">
                           <Key className="h-6 w-6" />
                           <input
