@@ -27,6 +27,19 @@ const Signup = () => {
     setLoadingIntroPhase(false);
   }, [user, navigate]);
 
+  const sendOtp = async (e) => {
+    e.preventDefault();
+    if (
+      password.trim() == "" ||
+      firstName.trim() == "" ||
+      email.trim() == "" ||
+      lastName.trim() == ""
+    ) {
+      alert("Pls fill in the fields");
+      return;
+    }
+  }
+
   const submitForm = async (e) => {
     e.preventDefault();
     if (
@@ -93,7 +106,7 @@ const Signup = () => {
                     </p>
                   </div>
                   <form
-                    onSubmit={submitForm}
+                    onSubmit={sendOtp}
                     className="grid gap-6 mt-5 w-full"
                   >
                     <div className="grid gap-3">
