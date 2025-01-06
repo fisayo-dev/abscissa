@@ -235,7 +235,6 @@ const Signup = () => {
                           </button>
                           <button className="shadow-md text-[0.9rem]  px-4 py-3 font-bold flex items-center justify-center gap-2 rounded-full bg-slate-800 text-slate-900 hover:bg-slate-700">
                             <img src={Google} width={20} height={20} />
-                            {/* <p className="capitalize">Continue with google</p> */}
                           </button>
                         </>
                       )}
