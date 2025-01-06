@@ -15,7 +15,7 @@ const Signup = () => {
   const [password, setPassword] = useState("");
   const [loadingIntroPhase, setLoadingIntroPhase] = useState(true);
   const [formLoading, setFormLoading] = useState(false);
-  const [showOtp, setShowOtp] = useState(true);
+  const [showOtp, setShowOtp] = useState(false);
 
   const navigate = useNavigate();
 
@@ -38,8 +38,25 @@ const Signup = () => {
       alert("Pls fill in the fields");
       return;
     }
-  }
+    
+    try {
+      setFormLoading(true);
+      const url =
+        process.env.NODE_ENV == "production"
+          ? "https://abscissa-1.onrender.com/api/v1/users/send-otp"
+          : "/api/v1/users/send-otp";
 
+      await fetch(url, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email }),
+      });
+      setShowOtp(true)
+      setFormLoading(false)
+    } catch (err) {
+      console.log("Error: ", err.message);
+    }
+  };
   const submitForm = async (e) => {
     e.preventDefault();
     if (
@@ -105,10 +122,7 @@ const Signup = () => {
                       Mathematics
                     </p>
                   </div>
-                  <form
-                    onSubmit={sendOtp}
-                    className="grid gap-6 mt-5 w-full"
-                  >
+                  <form onSubmit={sendOtp} className="grid gap-6 mt-5 w-full">
                     <div className="grid gap-3">
                       <div className="flex gap-4 items-center">
                         <div className="grid gap-3">
