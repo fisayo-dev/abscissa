@@ -200,7 +200,7 @@ const Signup = () => {
                   <Logo />
                   <div className="grid gap-3">
                     <h2 className="text-3xl font-bold text-center">
-                      Great! We just sent you an OTP 
+                      Great! We just sent you an OTP
                     </h2>
                     <p className="text-center text-[0.91rem]">
                       Kindly check your email fo the OTP code we sent to you
@@ -211,11 +211,8 @@ const Signup = () => {
                     className="grid gap-6 mt-5 w-full"
                   >
                     <div className="grid gap-3">
-                    
                       <div className="grid gap-3">
-                        <label className="font-bold text-slate-300">
-                          OTP
-                        </label>
+                        <label className="font-bold text-slate-300">OTP</label>
                         <div className="border border-slate-600 rounded-full py-4 px-5 ">
                           <div className="flex items-center gap-2">
                             <input
@@ -228,18 +225,26 @@ const Signup = () => {
                           </div>
                         </div>
                       </div>
-
-                    
                     </div>
                     <div className="flex justify-center gap-3">
-                      <button className="shadow-md text-[0.9rem] px-4 py-3 flex items-center justify-center gap-2 rounded-full bg-pink hover-dark-bg-pink">
-                        <Rocket className="h-4 w-4 md:h-6 md:w-6" />
-                        <p className="capitalize">Create account</p>
-                      </button>
-                      <button className="shadow-md text-[0.9rem]  px-4 py-3 font-bold flex items-center justify-center gap-2 rounded-full bg-slate-800 text-slate-900 hover:bg-slate-700">
-                        <img src={Google} width={20} height={20} />
-                        {/* <p className="capitalize">Continue with google</p> */}
-                      </button>
+                      {!showOtp && (
+                        <>
+                          <button className="shadow-md text-[0.9rem] px-4 py-3 flex items-center justify-center gap-2 rounded-full bg-pink hover-dark-bg-pink">
+                            <Rocket className="h-4 w-4 md:h-6 md:w-6" />
+                            <p className="capitalize">Create account</p>
+                          </button>
+                          <button className="shadow-md text-[0.9rem]  px-4 py-3 font-bold flex items-center justify-center gap-2 rounded-full bg-slate-800 text-slate-900 hover:bg-slate-700">
+                            <img src={Google} width={20} height={20} />
+                            {/* <p className="capitalize">Continue with google</p> */}
+                          </button>
+                        </>
+                      )}
+                      {showOtp && (
+                        <button className="shadow-md text-[0.9rem] px-4 py-3 flex items-center justify-center gap-2 rounded-full bg-pink hover-dark-bg-pink">
+                          <Rocket className="h-4 w-4 md:h-6 md:w-6" />
+                          <p className="capitalize">Finish account</p>
+                        </button>
+                      )}
                     </div>
                     <div className="text-sm text-center flex gap-1 justify-center">
                       I already have an account?
