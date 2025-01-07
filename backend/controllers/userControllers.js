@@ -1,5 +1,5 @@
 import User from '../mongodb/models/User.js';
-import Otp from '../mongodb/models/Otp.js'; // Add a new model for OTP storage
+import Otp from '../mongodb/models/Otp.js'; 
 import * as dotenv from 'dotenv';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
@@ -9,15 +9,15 @@ import crypto from 'crypto';
 dotenv.config();
 
 const SECRET_KEY = process.env.SECRET_KEY;
-const OTP_EXPIRY = 7 * 60 * 1000; // 7 minutes in milliseconds
+const OTP_EXPIRY = 7 * 60 * 1000; 
 
 // Configure Nodemailer with Mailtrap credentials
 const transporter = nodemailer.createTransport({
     host: 'sandbox.smtp.mailtrap.io',
     port: 587,
     auth: {
-        user: process.env.MAILTRAP_USER, // Add Mailtrap username from .env file
-        pass: process.env.MAILTRAP_PASS, // Add Mailtrap password from .env file
+        user: process.env.MAILTRAP_USER, 
+        pass: process.env.MAILTRAP_PASS, 
     },
 });
 
@@ -55,8 +55,8 @@ const sendOtp = async (req, res) => {
 
         // Send OTP email using Mailtrap
         await transporter.sendMail({
-            from: process.env.MAILTRAP_SENDER_EMAIL,  // Sender email from .env file
-            to: email,  // Recipient email
+            from: process.env.MAILTRAP_SENDER_EMAIL,  
+            to: email,  
             subject: 'Your OTP Code',
             text: `Your OTP is ${otp}. It expires in 7 minutes.`,
         });
