@@ -110,8 +110,7 @@ const Signup = () => {
           )}
           <div className="grid h-[100vh] overflow-scroll place-items-center">
             <div className="px-10 py-2">
-              {!showOtp && (
-                <div className="flex flex-col gap-4 place-items-center">
+                <div className={`${!showOtp ? 'flex' : 'hidden'} flex-col gap-4 place-items-center`}>
                   <Logo />
                   <div className="grid gap-3">
                     <h2 className="text-3xl font-bold text-center">
@@ -220,9 +219,7 @@ const Signup = () => {
                     </div>
                   </form>
                 </div>
-              )}
-              {showOtp && (
-                <div className="flex flex-col gap-4 place-items-center">
+                <div className={`${showOtp ? 'flex': 'hidden'} flex-col gap-4 place-items-center`}>
                   <Logo />
                   <div className="grid gap-3">
                     <h2 className="text-3xl font-bold text-center">
@@ -266,7 +263,6 @@ const Signup = () => {
                     </div>
                   </form>
                 </div>
-              )}
             </div>
           </div>
           <div className="hidden xl:grid place-items-center dark-bg-blue border-l-[0.1rem] border-l-slate-500 shadow-md">
