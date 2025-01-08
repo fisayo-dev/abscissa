@@ -3,25 +3,23 @@ import Otp from '../mongodb/models/Otp.js';
 import * as dotenv from 'dotenv';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
-import nodemailer from 'nodemailer';
 import crypto from 'crypto';
+import Mailgun from 'mailgun.js';
+import formData from 'form-data';
 
 dotenv.config();
 
 const SECRET_KEY = process.env.SECRET_KEY;
 const OTP_EXPIRY = 7 * 60 * 1000; 
 
-// Configure Nodemailer with Mailtrap credentials
-const transporter = nodemailer.createTransport({
-    host: 'sandbox.smtp.mailtrap.io',
-    port: 587,
-    auth: {
-        user: process.env.MAILTRAP_USER, 
-        pass: process.env.MAILTRAP_PASS, 
-    },
+// Initialize Mailgun
+const mg = new Mailgun(formData);
+const mailgunClient = mg.client({
+    username: 'api',
+    key: process.env.MAILGUN_API_KEY,
 });
 
-// Send OTP
+// Send OTP function
 const sendOtp = async (req, res) => {
     const { email } = req.body;
 
@@ -30,16 +28,10 @@ const sendOtp = async (req, res) => {
     }
 
     try {
-        // Validate email format
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (!emailRegex.test(email)) {
-            return res.status(400).json({ message: 'Invalid email format' });
-        }
-
-        // Check if an OTP has already been sent and hasn't expired
+        // Check if a valid OTP already exists
         const existingOtp = await Otp.findOne({ email });
         if (existingOtp && existingOtp.expiry > new Date()) {
-            return res.status(429).json({ message: 'OTP already sent. Please wait before requesting a new one.' });
+            return res.status(400).json({ message: 'A valid OTP already exists. Please wait until it expires.' });
         }
 
         // Generate OTP
@@ -53,17 +45,20 @@ const sendOtp = async (req, res) => {
             { upsert: true, new: true }
         );
 
-        // Send OTP email using Mailtrap
-        await transporter.sendMail({
-            from: process.env.MAILTRAP_SENDER_EMAIL,  
-            to: email,  
+        // Send OTP email via Mailgun
+        const data = {
+            from: process.env.MAILGUN_SENDER_EMAIL,
+            to: email,
             subject: 'Your OTP Code',
             text: `Your OTP is ${otp}. It expires in 7 minutes.`,
-        });
+            html: `<strong>Your OTP is ${otp}</strong><br><br>It expires in 7 minutes.`,
+        };
 
+        await mailgunClient.messages.create(process.env.MAILGUN_DOMAIN, data);
+    
         res.status(200).json({ message: 'OTP sent successfully' });
     } catch (error) {
-        console.error('Error sending OTP:', error);
+        console.error('Error sending OTP:', error.message);
         res.status(500).json({ message: 'Error sending OTP', error: error.message });
     }
 };
@@ -116,7 +111,7 @@ const createUser = async (req, res) => {
 
         res.status(201).json({ message: 'User created successfully', token });
     } catch (error) {
-        console.error('Error creating user:', error);
+        console.error('Error creating user:', error.message);
         res.status(500).json({ message: 'Error creating user', error: error.message });
     }
 };
@@ -135,7 +130,7 @@ const loginUser = async (req, res) => {
         const token = jwt.sign({ id: savedUser._id }, SECRET_KEY, { expiresIn: '36h' });
         res.status(200).json({ token });
     } catch (err) {
-        console.error('Error logging in:', err);
+        console.error('Error logging in:', err.message);
         res.status(500).json({ message: 'Error logging in', error: err.message });
     }
 };
@@ -149,7 +144,7 @@ const getUserInfoByID = async (req, res) => {
 
         res.status(200).json(user);
     } catch (err) {
-        console.error('Error fetching user details:', err);
+        console.error('Error fetching user details:', err.message);
         res.status(500).json({ message: 'Error fetching user details', error: err.message });
     }
 };
@@ -175,10 +170,10 @@ const editUserProfile = async (req, res) => {
 
         res.status(200).json({ message: 'User profile updated successfully', user });
     } catch (err) {
-        console.error('Error updating user profile:', err);
+        console.error('Error updating user profile:', err.message);
         res.status(500).json({ message: 'Error updating user profile', error: err.message });
     }
 };
 
-// Other functions for update, delete etc.
+// Other functions for update, delete, etc.
 export { createUser, loginUser, getUserInfoByID, editUserProfile, sendOtp };
