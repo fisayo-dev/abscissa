@@ -1,9 +1,8 @@
-import React, { useState } from "react"; // Step 1: Import useState
+import React, { useState } from "react";
 import { Send } from "iconsax-react";
 import { History, Plus } from "lucide-react";
 
 const AbscissaAI = () => {
-  // Step 2: Set up state for chats and input value
   const [chats, setChats] = useState([
     {
       text: "What is the value of x+2?",
@@ -11,42 +10,69 @@ const AbscissaAI = () => {
       date: "12/12/2024",
     },
     {
-      text: "Ok",
+      text: "It depends on the value of x. Please specify.",
       type: "response",
       date: "12/12/2024",
     },
   ]);
-  const [input, setInput] = useState(""); // State to track input field value
+  const [input, setInput] = useState(""); // State for input field
+  const [loading, setLoading] = useState(false); // State for loading
 
-  // Step 3: Handle user input submission
+  // Mock AI Response Generator
+  const mockAIResponse = (userMessage) => {
+    const defaultResponses = [
+      "That's an interesting question.",
+      "Could you clarify your query?",
+      "I think it depends on the context.",
+      "Let me get back to you on that.",
+      "I'm here to help you!",
+    ];
+
+    // Simulate response based on keywords
+    if (userMessage.includes("x+2")) {
+      return "It depends on the value of x. Please specify.";
+    } else if (userMessage.includes("hello")) {
+      return "Hello! How can I assist you today?";
+    }
+
+    // Default response
+    return defaultResponses[Math.floor(Math.random() * defaultResponses.length)];
+  };
+
+  // Handle sending user messages
   const handleSend = () => {
     if (!input.trim()) return; // Prevent empty submissions
 
-    // Add the user message
+    // Add the user's message to the chat
     const newChat = {
       text: input,
       type: "request",
       date: new Date().toLocaleDateString(),
     };
 
-    setChats([...chats, newChat]); // Update chats state
-    setInput(""); // Clear input field
+    setChats((prevChats) => [...prevChats, newChat]);
+    setInput(""); // Clear the input field
 
-    // Step 4: Simulate AI response
-    simulateAIResponse(input);
+    // Generate and add AI's response
+    generateAIResponse(input);
   };
 
-  // Step 4: Generate AI response
-  const simulateAIResponse = (userMessage) => {
-    const aiResponse = {
-      text: `You asked: "${userMessage}". Here's my answer: ...`,
-      type: "response",
-      date: new Date().toLocaleDateString(),
-    };
+  // Simulate AI response with a delay
+  const generateAIResponse = (userMessage) => {
+    setLoading(true); // Show loading state
 
     setTimeout(() => {
-      setChats((prevChats) => [...prevChats, aiResponse]); // Add response with delay
-    }, 1000); // 1-second delay for realism
+      const aiReply = mockAIResponse(userMessage);
+
+      const aiChat = {
+        text: aiReply,
+        type: "response",
+        date: new Date().toLocaleDateString(),
+      };
+
+      setChats((prevChats) => [...prevChats, aiChat]);
+      setLoading(false); // Hide loading state
+    }, 1500); // Simulate a delay for the AI response
   };
 
   return (
@@ -67,6 +93,11 @@ const AbscissaAI = () => {
                 {chat.text}
               </div>
             ))}
+            {loading && (
+              <div className="p-3 border-t border-t-slate-800 mr-auto w-full text-left">
+                Typing...
+              </div>
+            )}
           </div>
         </div>
 
@@ -87,12 +118,15 @@ const AbscissaAI = () => {
                 type="text"
                 className="w-full"
                 placeholder="Type in your word problem"
-                value={input} // Step 5: Bind input field to state
-                onChange={(e) => setInput(e.target.value)} // Update state on change
+                value={input} // Controlled input
+                onChange={(e) => setInput(e.target.value)} // Update input state
+                onKeyDown={(e) => {
+                  if (e.key === "Enter") handleSend(); // Send message on Enter key
+                }}
               />
               <div
                 className="p-2 rounded-full bg-pink hover-dark-bg-pink cursor-pointer"
-                onClick={handleSend} // Step 5: Send message on click
+                onClick={handleSend} // Send message on click
               >
                 <Send className="h-6 w-6" />
               </div>
