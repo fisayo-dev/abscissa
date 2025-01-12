@@ -1,5 +1,5 @@
 import Nodemailer from "nodemailer";
-import { MailtrapTransport } from "@mailtrap/nodejs";
+import { MailtrapTransport } from "mailtrap";
 import User from "../mongodb/models/User.js";
 import Otp from "../mongodb/models/Otp.js";
 import * as dotenv from "dotenv";
@@ -54,7 +54,7 @@ const sendOtp = async (req, res) => {
             to: email,
             template_uuid: process.env.MAILTRAP_TEMPLATE_UUID,
             template_variables: {
-                recepient_name: email, // Customize as needed
+                recepient_name: email, 
                 otp: otp,
                 current_date: new Date().toLocaleString(),
             },
