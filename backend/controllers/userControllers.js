@@ -21,13 +21,16 @@ const transport = Nodemailer.createTransport(
 
 // Send OTP function
 const sendOtp = async (req, res) => {
-    const { email } = req.body;
+    const { email, first_name } = req.body;
 
     if (!email) {
         return res.status(400).json({ message: "Email is required" });
     }
 
     try {
+        // Check if email aslready exists
+        const userAlreadyExists = await User.findOne({ email })
+        if(userAlreadyExists) return res.status(401).json({message: 'This user already have an account '})
         // Check if a valid OTP already exists
         const existingOtp = await Otp.findOne({ email });
         if (existingOtp && existingOtp.expiry > new Date()) {
@@ -52,12 +55,14 @@ const sendOtp = async (req, res) => {
                 name: process.env.MAILTRAP_SENDER_NAME,
             },
             to: email,
+            subject:'Abscissa Signup OTP',
             template_uuid: process.env.MAILTRAP_TEMPLATE_UUID,
             template_variables: {
-                recepient_name: email, 
-                otp: otp,
-                current_date: new Date().toLocaleString(),
+                recepient_name: first_name, 
+                otp,
+                current_date: new Date().getFullYear(),
             },
+            text: `Hi ${first_name},\n\nYour OTP for Abscissa signup is ${otp}. It is valid for 7 minutes.\n\nThank you!`
         };
 
         await transport.sendMail(mailOptions);
