@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Send } from "iconsax-react";
 import { History, Plus } from "lucide-react";
+import axios from "axios";  // You will need axios for making HTTP requests
 
 const AbscissaAI = () => {
   const [chats, setChats] = useState([
@@ -18,29 +19,8 @@ const AbscissaAI = () => {
   const [input, setInput] = useState(""); // State for input field
   const [loading, setLoading] = useState(false); // State for loading
 
-  // Mock AI Response Generator
-  const mockAIResponse = (userMessage) => {
-    const defaultResponses = [
-      "That's an interesting question.",
-      "Could you clarify your query?",
-      "I think it depends on the context.",
-      "Let me get back to you on that.",
-      "I'm here to help you!",
-    ];
-
-    // Simulate response based on keywords
-    if (userMessage.includes("x+2")) {
-      return "It depends on the value of x. Please specify.";
-    } else if (userMessage.includes("hello")) {
-      return "Hello! How can I assist you today?";
-    }
-
-    // Default response
-    return defaultResponses[Math.floor(Math.random() * defaultResponses.length)];
-  };
-
   // Handle sending user messages
-  const handleSend = () => {
+  const handleSend = async () => {
     if (!input.trim()) return; // Prevent empty submissions
 
     // Add the user's message to the chat
@@ -54,26 +34,51 @@ const AbscissaAI = () => {
     setInput(""); // Clear the input field
 
     // Generate and add AI's response
-    generateAIResponse(input);
+    await generateAIResponse(input);
   };
 
-  // Simulate AI response with a delay
-  const generateAIResponse = (userMessage) => {
+  // Simulate AI response with a delay by calling your backend
+  const generateAIResponse = async (userMessage) => {
     setLoading(true); // Show loading state
-
-    setTimeout(() => {
-      const aiReply = mockAIResponse(userMessage);
-
+  
+    try {
+      const response = await axios.post(
+        "https://api.openai.com/v1/chat/completions", // Correct endpoint for chat completions
+        {
+          model: "gpt-3.5-turbo", // Or use "gpt-4" if you have access
+          messages: [
+            { role: "system", content: "You are a helpful assistant." },
+            { role: "user", content: userMessage },
+          ],
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${import.meta.env.OPENAI_API_KEY}`,
+          },
+        }
+      );
+  
+      const aiReply = response.data.choices[0].message.content;
+  
       const aiChat = {
         text: aiReply,
         type: "response",
         date: new Date().toLocaleDateString(),
       };
-
+  
       setChats((prevChats) => [...prevChats, aiChat]);
+    } catch (error) {
+      console.error("Error generating AI response:", error.message);
+      setChats((prevChats) => [
+        ...prevChats,
+        { text: "Sorry, there was an error.", type: "response", date: new Date().toLocaleDateString() },
+      ]);
+    } finally {
       setLoading(false); // Hide loading state
-    }, 1500); // Simulate a delay for the AI response
+    }
   };
+  
 
   return (
     <div className="mx-auto 2xl:w-2/3 w-full">
