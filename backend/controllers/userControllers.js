@@ -62,7 +62,27 @@ const sendOtp = async (req, res) => {
                 otp,
                 current_date: new Date().getFullYear(),
             },
-            text: `Hi ${first_name},\n\nYour OTP for Abscissa signup is ${otp}. It is valid for 7 minutes.\n\nThank you!`
+            html: `
+        <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700&display=swap" rel="stylesheet">
+
+            <div style="background-color: #000920; height: 100px; width: 100%; display: flex; justify-content: center; align-items: center; font-family: 'Space Grotesk', sans-serif;">
+                <div style="display: flex; gap: 4px; align-items: center; justify-content: center;">
+                    <img src="https://abscissa.vercel.app/assets/brain_svg-BDf_QVhD.png" style="height: 25px; width: 25px;" />
+                    <h2 style="color: #f1178f; font-size: 35px;">Abscissa</h2>
+                </div>
+            </div>
+            <div style="display: grid; text-align: center; margin: 10px 0; justify-content: center; align-items: center; font-family: 'Space Grotesk', sans-serif;">
+            <h2>Hi ${first_name}, 🖐</h2>
+            <p>Your Signup OTP is:</p>
+            <b style="font-size: 32px;">${otp}</b>
+            </div>
+
+            <div style="display: grid; text-align: center; margin: 40px 0; justify-content: center; align-items: center; font-size: 12px; font-family: 'Space Grotesk', sans-serif;">
+            <article style="font-size: 14px; text-align: center; font-family: 'Space Grotesk', sans-serif;"> Continue you signup process.</article>
+            <p>Copyright <b>${new Date().getFullYear()}, Abscissa</b> || All Rights reserved</p>
+            </div>
+        </link>
+`
         };
 
         await transport.sendMail(mailOptions);
